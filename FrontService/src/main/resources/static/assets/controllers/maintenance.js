@@ -3,7 +3,7 @@ angular.module('fitness').controller('maintenanceController', function ($scope, 
     let number = 1;
     let totalNumber;
     $scope.modalStatus = null;
-    $("header").addClass("background-header");
+
 
     // if($localStorage.webmarketUser){
     //     try {

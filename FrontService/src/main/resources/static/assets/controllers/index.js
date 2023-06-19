@@ -50,7 +50,6 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
     const contextPathAuth = 'http://localhost:8066/auth/api/v1';
     const contextPathCart = 'http://localhost:8066/cart/api/v1';
     $scope.modalStatus = null;
-    $("header").removeClass("background-header");
 
 
 
@@ -72,6 +71,14 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
             $scope.modalStatus = response.data.message;
         });
     };
+
+    $scope.addBackHeader = function (){
+        $("header").addClass("background-header");
+    }
+
+    $scope.delBackHeader = function (){
+        $("header").removeClass("background-header");
+    }
 
     $scope.registrations = function () {
         $http.post(contextPathAuth + '/registrations', $scope.auth)
