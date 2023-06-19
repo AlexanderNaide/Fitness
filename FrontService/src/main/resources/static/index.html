@@ -92,14 +92,14 @@
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
 <!--                        <a href="index.html" class="logo">Training<em> Studio</em></a>-->
-                        <a href="index.html"><img src="assets/images/logo.png" alt="ТРИ<em> Океана</em>" class="logo"></a>
+                        <a href="index.html" ng-click="delBackHeader()"><img src="assets/images/logo.png" alt="ТРИ<em> Океана</em>" class="logo"></a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="scroll-to-section" ng-click="del..............."><a href="#top" class="active">Домашняя</a></li>
+                            <li ng-click="delBackHeader()"><a href="#top" class="active">Домашняя</a></li>
 <!--                            <li class="scroll-to-section"><a href="#features">Услуги</a></li>-->
 <!--                            <li class="scroll-to-section"><a href="#!maintenance">Услуги</a></li>-->
-                            <li><a href="#!maintenance">Услуги</a></li>
+                            <li ng-click="addBackHeader()"><a href="#!maintenance">Услуги</a></li>
                             <li class="scroll-to-section"><a href="#our-classes">Студии</a></li>
                             <li class="scroll-to-section"><a href="#schedule">Расписание</a></li>
                             <li class="scroll-to-section"><a href="#contact-us">Контакты</a></li>

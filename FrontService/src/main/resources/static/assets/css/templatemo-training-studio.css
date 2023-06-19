@@ -227,6 +227,7 @@ header
 
 .header-area {
   position: absolute;
+  /*position: fixed!important;*/
   top: 0px;
   left: 0px;
   right: 0px;

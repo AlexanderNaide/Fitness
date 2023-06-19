@@ -1,7 +1,9 @@
 package org.satal.backservice.dto;
 
+import lombok.Data;
 import org.satal.backservice.entities.Maintenance;
 
+@Data
 public class MaintenanceDto {
     private Long id;
     private String title;
