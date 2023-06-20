@@ -2,21 +2,15 @@ angular.module('fitness').controller('homeController', function ($scope, $http, 
     const contextPath = 'http://localhost:3881/fitness/api/v1';
     // $(document).setStyle("styles/main_styles.css");
 
-    $scope.setStylesMain = function () {
-        var head  = document.getElementsByTagName('head')[0];
-        var link  = document.createElement('link');
-        link.id   = 'cssId1';
-        link.rel  = 'stylesheet';
-        link.type = 'text/css';
-        link.href = 'styles/main_styles.css';
-        head.appendChild(link);
-        link  = document.createElement('link');
-        link.id   = 'cssId2';
-        link.rel  = 'stylesheet';
-        link.type = 'text/css';
-        link.href = 'styles/responsive.css';
-        head.appendChild(link);
-        console.log(document.getElementsByTagName('head')[0])
+    $scope.setStylesHome = function () {
+
+        document.getElementById('cssId1').href = 'styles/main_styles.css';
+        document.getElementById('cssId2').href = 'styles/responsive.css';
+
+        $('#menuAboutId').removeClass('active');
+        $('#menuServicesId').removeClass('active');
+        $('#menuBlogId').removeClass('active');
+        $('#menuContactId').removeClass('active');
     };
 
 
@@ -48,5 +42,5 @@ angular.module('fitness').controller('homeController', function ($scope, $http, 
 
     // $scope.loadMaintenance();
     // $scope.setHeader();
-    $scope.setStylesMain();
+    $scope.setStylesHome();
 });

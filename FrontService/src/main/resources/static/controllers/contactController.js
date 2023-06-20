@@ -1,15 +1,15 @@
-angular.module('fitness').controller('aboutController', function ($scope, $http, $localStorage) {
+angular.module('fitness').controller('contactController', function ($scope, $http, $localStorage) {
     const contextPath = 'http://localhost:3881/fitness/api/v1';
 
     $scope.setStylesAbout = function () {
 
-        document.getElementById('cssId1').href = 'styles/about.css';
-        document.getElementById('cssId2').href = 'styles/about_responsive.css';
+        document.getElementById('cssId1').href = 'styles/contact.css';
+        document.getElementById('cssId2').href = 'styles/contact_responsive.css';
 
-        $('#menuAboutId').addClass('active');
+        $('#menuAboutId').removeClass('active');
         $('#menuServicesId').removeClass('active');
         $('#menuBlogId').removeClass('active');
-        $('#menuContactId').removeClass('active');
+        $('#menuContactId').addClass('active');
 
     };
 

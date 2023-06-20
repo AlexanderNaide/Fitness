@@ -13,8 +13,9 @@
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
 <link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
-<!--	<link rel="stylesheet" type="text/css" href="styles/main_styles.css">-->
-<!--	<link rel="stylesheet" type="text/css" href="styles/responsive.css">-->
+	<link rel="stylesheet" type="text/css" href="styles/index.css">
+	<link id="cssId1" rel="stylesheet" type="text/css" href="styles/main_styles.css">
+	<link id="cssId2" rel="stylesheet" type="text/css" href="styles/responsive.css">
 <!--	<link rel="stylesheet" type="text/css" href="styles/about.css">-->
 <!--	<link rel="stylesheet" type="text/css" href="styles/about_responsive.css">-->
 
@@ -30,6 +31,8 @@
 	<script src="controllers/homeController.js"></script>
 	<script src="controllers/aboutController.js"></script>
 	<script src="controllers/servicesController.js"></script>
+	<script src="controllers/blogController.js"></script>
+	<script src="controllers/contactController.js"></script>
 
 
 
@@ -50,12 +53,12 @@
 							<div class="logo d-flex flex-row align-items-center justify-content-start"><img src="images/logo.png" alt=""></div>
 						</a>
 						<nav class="main_nav">
-							<ul class="d-flex flex-row align-items-center justify-content-start">
+							<ul id="menuId" class="d-flex flex-row align-items-center justify-content-start">
 <!--								<li class="active"><a href="index.html">Home</a></li>-->
-								<li><a href="#!/about">About us</a></li>
-								<li><a href="#!/services">Classes & Services</a></li>
-								<li><a href="blog.html">Blog</a></li>
-								<li><a href="contact.html">Contact</a></li>
+								<li id="menuAboutId"><a href="#!/about">About us</a></li>
+								<li id="menuServicesId"><a href="#!/services">Classes & Services</a></li>
+								<li id="menuBlogId"><a href="#!/blog">Blog</a></li>
+								<li id="menuContactId"><a href="#!contact">Contact</a></li>
 							</ul>
 						</nav>
 						<div class="button home_button ml-auto mr-auto"><a href="#">Войти</a></div>
@@ -94,8 +97,8 @@
 <!--				<li><a href="index.html">Home</a></li>-->
 				<li><a href="#!/about">About us</a></li>
 				<li><a href="#!/services">Classes & Services</a></li>
-				<li><a href="blog.html">Blog</a></li>
-				<li><a href="contact.html">Contact</a></li>
+				<li><a href="pages/blog.html">Blog</a></li>
+				<li><a href="pages/contact.html">Contact</a></li>
 			</ul>
 		</div>
 <!--		<div class="menu_phone d-flex flex-row align-items-center justify-content-start">-->
@@ -233,8 +236,8 @@
 									<li><a href="#!/">Home</a></li>
 									<li><a href="#!/about">About us</a></li>
 									<li><a href="#!/services">Classes & Services</a></li>
-									<li><a href="blog.html">Blog</a></li>
-									<li><a href="contact.html">Contact</a></li>
+									<li><a href="pages/blog.html">Blog</a></li>
+									<li><a href="pages/contact.html">Contact</a></li>
 								</ul>
 							</nav>
 							<div class="newsletter_container">

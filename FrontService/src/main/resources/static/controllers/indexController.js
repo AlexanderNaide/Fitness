@@ -8,16 +8,19 @@
 
     function config($routeProvider){
         $routeProvider
-            .when('/maintenance', {
-                templateUrl: 'pages/maintenance.html',
-                controller: 'maintenanceController'
+            .when('/contact', {
+                templateUrl: 'pages/contact.html',
+                controller: 'contactController'
+            })
+            .when('/blog', {
+                templateUrl: 'pages/blog.html',
+                controller: 'blogController'
             })
             .when('/services', {
                 templateUrl: 'pages/services.html',
                 controller: 'servicesController'
             })
             .when('/about', {
-                // templateUrl: 'pages/about.html',
                 templateUrl: 'pages/about.html',
                 controller: 'aboutController'
             })
