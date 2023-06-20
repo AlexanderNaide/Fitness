@@ -10,6 +10,12 @@ angular.module('fitness').controller('aboutController', function ($scope, $http,
             document.scripts.item(i).remove();
         }
 
+        // $(this).removeData('image');
+        // $(this).removeData('src');
+        // $(this).removeData();
+        // $(this).cleanData();
+
+
         $('#menuAboutId').addClass('active');
         $('#menuServicesId').removeClass('active');
         $('#menuBlogId').removeClass('active');
