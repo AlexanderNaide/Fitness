@@ -6,7 +6,9 @@ angular.module('fitness').controller('blogController', function ($scope, $http, 
         document.getElementById('cssId1').href = 'styles/blog.css';
         document.getElementById('cssId2').href = 'styles/blog_responsive.css';
 
-        console.log("+++")
+        for (let i = 0; i < document.scripts.length; i++) {
+            document.scripts.item(i).remove();
+        }
 
         $('#menuAboutId').removeClass('active');
         $('#menuServicesId').removeClass('active');

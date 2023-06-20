@@ -6,6 +6,10 @@ angular.module('fitness').controller('homeController', function ($scope, $http, 
 
         document.getElementById('cssId1').href = 'styles/main_styles.css';
         document.getElementById('cssId2').href = 'styles/responsive.css';
+        // console.log(document.scripts);
+        for (let i = 0; i < document.scripts.length; i++) {
+            document.scripts.item(i).remove();
+        }
 
         $('#menuAboutId').removeClass('active');
         $('#menuServicesId').removeClass('active');
