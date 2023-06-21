@@ -1,9 +1,10 @@
 package org.satal.backservice.repositories;
 
-import org.satal.backservice.entities.Maintenance;
+import org.satal.backservice.entities.users.Role;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MaintenanceRepository extends CrudRepository<Maintenance, Long> {
+public interface RoleRepository extends CrudRepository<Role, Long> {
+
 }

@@ -62,7 +62,7 @@ public class User {
     @JoinTable(name = "user_roles",
     joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Collection<Role> roles;
+    private List<Role> roles;
 
     @ManyToOne
     @JoinColumn(name = "specialization_id")
