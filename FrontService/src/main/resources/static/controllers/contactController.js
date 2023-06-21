@@ -10,10 +10,11 @@ angular.module('fitness').controller('contactController', function ($scope, $htt
             document.scripts.item(i).remove();
         }
 
-        $('#menuAboutId').removeClass('active');
-        $('#menuServicesId').removeClass('active');
-        $('#menuBlogId').removeClass('active');
-        $('#menuContactId').addClass('active');
+        $('.home_linc').removeClass('active');
+        $('.about_linc').removeClass('active');
+        $('.services_linc').removeClass('active');
+        $('.blog_linc').removeClass('active');
+        $('.contact_linc').addClass('active');
 
     };
 

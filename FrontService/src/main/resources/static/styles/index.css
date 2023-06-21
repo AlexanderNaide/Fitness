@@ -616,7 +616,8 @@ section
 	display: block;
 	width: 100%;
 	background: #262626;
-	padding-top: 96px;
+	/*padding-top: 96px;*/
+	padding-top: 50px;
 	border-top: solid 1px #88591d;
 	padding-bottom: 20px;
 }
@@ -636,9 +637,10 @@ section
 }
 .footer_logo .logo img
 {
-	width: 38px;
-	height: 38px;
-	margin-right: 4px;
+	/*width: 38px;*/
+	/*height: 38px;*/
+	/*margin-right: 4px;*/
+	margin-bottom: 30px;
 }
 .footer_nav
 {

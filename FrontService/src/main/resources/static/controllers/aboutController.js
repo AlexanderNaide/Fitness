@@ -15,11 +15,11 @@ angular.module('fitness').controller('aboutController', function ($scope, $http,
         // $(this).removeData();
         // $(this).cleanData();
 
-
-        $('#menuAboutId').addClass('active');
-        $('#menuServicesId').removeClass('active');
-        $('#menuBlogId').removeClass('active');
-        $('#menuContactId').removeClass('active');
+        $('.home_linc').removeClass('active');
+        $('.about_linc').addClass('active');
+        $('.services_linc').removeClass('active');
+        $('.blog_linc').removeClass('active');
+        $('.contact_linc').removeClass('active');
 
     };
 
