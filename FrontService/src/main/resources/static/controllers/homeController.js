@@ -20,6 +20,8 @@ angular.module('fitness').controller('homeController', function ($scope, $http, 
 
 
 
+
+
     // $scope.loadMaintenance = function () {
     //     $http({
     //         url: contextPathMaintenance + "/maintenance",

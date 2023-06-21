@@ -18,7 +18,7 @@ public class FitnessController {
     private final MaintenanceService maintenanceService;
 
     @PostMapping("/maintenance")
-    public List<MaintenanceDto> gatAllMaintenance(){
+    public List<MaintenanceDto> getAllMaintenance(){
         return maintenanceService.findAll().stream().map(MaintenanceDto::new).toList();
     }
 

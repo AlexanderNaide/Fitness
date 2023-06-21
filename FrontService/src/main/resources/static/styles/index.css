@@ -17,6 +17,11 @@
 10. Services --
 11. Blog --
 12. Footer - !
+13. Modal fade
+14. Elements
+	14.1 Elements - Buttons
+	14.2 Elements - Accordions
+	14.3 Elements - Tabs
 
 
 ******************************/
@@ -270,6 +275,7 @@ section
 .button
 {
 	width: 190px;
+	/*width: 140px;*/
 	height: 43px;
 	border-radius: 22px;
 	background: #f98c00;
@@ -759,4 +765,389 @@ section
 .footer_image img
 {
 	max-width: 100%;
+}
+
+/****************
+13. Modal fade
+*****************/
+
+.modal-fade
+{
+	position: relative;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	width: 100%;
+	pointer-events: auto;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid rgba(0,0,0,.2);
+	border-radius: 22px;
+	outline: 0;
+}
+
+.orient-right
+{
+	text-align: end;
+}
+
+.contact_title
+{
+	font-size: 24px;
+	font-weight: 400;
+	color: #262626;
+	line-height: 0.75;
+}
+.contact_form_container
+{
+	margin-top: 45px;
+}
+.contact_input
+{
+	width: 100%;
+	height: 52px;
+	border: none;
+	outline: none;
+	background: #eff4f6;
+	padding-left: 25px;
+	border-left: solid 2px transparent;
+}
+.contact_input:focus,
+.contact_input:hover
+{
+	border-left: solid 2px #ff9711;
+}
+.input_item
+{
+	margin-bottom: 17px;
+}
+.contact_input::-webkit-input-placeholder
+{
+	font-size: 12px !important;
+	font-weight: 400 !important;
+	font-style: italic;
+	color: #bdbdbd !important;
+}
+.contact_input:-moz-placeholder
+{
+	font-size: 12px !important;
+	font-weight: 400 !important;
+	font-style: italic;
+	color: #bdbdbd !important;
+}
+.contact_input::-moz-placeholder
+{
+	font-size: 12px !important;
+	font-weight: 400 !important;
+	font-style: italic;
+	color: #bdbdbd !important;
+}
+.contact_input:-ms-input-placeholder
+{
+	font-size: 12px !important;
+	font-weight: 400 !important;
+	font-style: italic;
+	color: #bdbdbd !important;
+}
+.contact_input::input-placeholder
+{
+	font-size: 12px !important;
+	font-weight: 400 !important;
+	font-style: italic;
+	color: #bdbdbd !important;
+}
+
+/*********************************
+14. Elements
+*********************************/
+
+.elements
+{
+	background: #FFFFFF;
+	padding-top: 44px;
+	padding-bottom: 100px;
+}
+.elements_title
+{
+	font-size: 24px;
+	font-weight: 400;
+	color: #262626;
+	line-height: 0.75;
+}
+
+/*********************************
+14.1 Elements - Buttons
+*********************************/
+
+.btn-modal{
+	width: 140px;
+	border: 1px solid rgba(0,0,0,.2);
+}
+
+.buttons_container
+{
+	margin-top: 48px;
+}
+.buttons_container .button
+{
+	margin-bottom: 10px;
+}
+.buttons_container .button:not(:last-child)
+{
+	/*margin-right: 23px;*/
+	margin-right: 10px;
+}
+.button_2 a::before
+{
+	display: none;
+}
+.button_2:hover
+{
+	background: #ff9711;
+}
+.button_3
+{
+	background: #262626;
+	border: solid 2px #262626;
+	box-shadow: none;
+}
+.button_3 a
+{
+	line-height: 39px;
+}
+.button_3 a::before
+{
+	display: none;
+}
+.button_3:hover
+{
+	background: transparent;
+}
+.button_3:hover a
+{
+	color: #262626;
+}
+.button_4
+{
+	background: transparent;
+	border: solid 2px #f98c00;
+	box-shadow: none;
+}
+.button_4 a::before
+{
+	display: none;
+}
+.button_4:hover
+{
+	background: #f98c00;
+}
+.button_4 a
+{
+	color: #f98c00;
+	line-height: 39px;
+}
+.button_4:hover a
+{
+	color: #FFFFFF;
+}
+
+/*********************************
+14.2 Elements - Accordions
+*********************************/
+
+.accordions_and_tabs
+{
+	margin-top: 100px;
+}
+.accordidons_and_tabs_row
+{
+	margin-top: 48px;
+}
+.accordion_container:not(:last-child)
+{
+	margin-bottom: 12px;
+}
+.accordion
+{
+	height: 50px;
+	width: 100%;
+	background: #262626;
+	padding-left: 31px;
+	cursor: pointer;
+	color: #FFFFFF;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 50px;
+	border-radius: 25px;
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+.accordion div
+{
+	max-width: 90%;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.accordion::after
+{
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+	right: 0;
+	width: 50px;
+	height: 100%;
+	content: '+';
+	font-size: 14px;
+	color: #FFFFFF;
+	font-weight: 500;
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+.accordion.active
+{
+	background: #ff9711;
+	color: #FFFFFF;
+}
+.accordion.active::after
+{
+	content: '-';
+	color: #FFFFFF;
+}
+.accordion_panel
+{
+	padding-right: 8px;
+	max-height: 0px;
+	overflow: hidden;
+	-webkit-transition: all 500ms ease;
+	-moz-transition: all 500ms ease;
+	-ms-transition: all 500ms ease;
+	-o-transition: all 500ms ease;
+	transition: all 500ms ease;
+}
+.accordion_panel > div
+{
+	padding-bottom: 10px;
+}
+.accordion_panel p
+{
+	font-size: 14px;
+	font-weight: 500;
+	padding-top: 26px;
+	padding-left: 3px;
+	color: #535353;
+	line-height: 2;
+}
+
+/*********************************
+14.3 Elements - Tabs
+*********************************/
+
+.tab
+{
+	height: 50px;
+	background: #262626;
+	font-size: 14px;
+	font-weight: 600;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	line-height: 50px;
+	text-align: center;
+	cursor: pointer;
+	flex-grow: 1;
+	border-radius: 25px;
+	padding-left: 10px;
+	padding-right: 10px;
+	white-space: nowrap;
+	margin-bottom: 9px;
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+.tab:not(:last-child)
+{
+	margin-right: 4px;
+}
+.tab.active
+{
+	background: #ff9711;
+}
+.tab_panels
+{
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-top: 12px;
+	padding-bottom: 32px;
+}
+.tab_panel
+{
+	display: none !important;
+	width: 100%;
+	height: 100%;
+	-webkit-animation: fadeEffect 1s;
+	animation: fadeEffect 1s;
+}
+/* Fade in tabs */
+@-webkit-keyframes fadeEffect {
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
+.tab_panel.active
+{
+	display: block !important;
+}
+.tab_panel_content p:last-of-type
+{
+	margin-bottom: 0;
+}
+.tab_image
+{
+	width: 166px;
+	height: 166px;
+	margin-right: 30px;
+}
+.tab_image img
+{
+	max-width: 100%;
+}
+.tab_text
+{
+	padding-top: 11px;
+}
+.tab_text p
+{
+	font-size: 14px;
+	font-weight: 500;
+	color: #535353;
+	line-height: 2;
+	-webkit-transform: translateY(-6px);
+	-moz-transform: translateY(-6px);
+	-ms-transform: translateY(-6px);
+	-o-transform: translateY(-6px);
+	transform: translateY(-6px);
 }
