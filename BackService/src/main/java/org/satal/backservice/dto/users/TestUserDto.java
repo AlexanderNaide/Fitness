@@ -1,35 +1,40 @@
 package org.satal.backservice.dto.users;
 
 import lombok.Data;
+import org.satal.backservice.entities.users.Role;
 import org.satal.backservice.entities.users.Specialization;
+import org.satal.backservice.entities.users.Ticket;
 import org.satal.backservice.entities.users.User;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
-public class TrainerDto implements UserDto{
+public class TestUserDto {
 
     private Long id;
-    private String type;
-    private Specialization specialization;
     private String login;
+    private String password;
     private String name;
     private String surname;
     private String middleName;
     private String email;
     private String phone;
     private LocalDate birthday;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    private List<Role> roles;
+    private Specialization specialization;
+    private List<Ticket> ticketList;
 
-    public TrainerDto(User user, String type) {
+
+    public TestUserDto(User user) {
         this.id = user.getId();
-        this.type = type;
+        this.login = user.getLogin();
+        this.password = user.getPassword();
         this.name = user.getName();
         this.surname = user.getSurname();
-        this.email = user.getEmail();
-        this.phone = user.getPhone();
-        this.login = user.getLogin();
         this.middleName = user.getMiddleName();
-        this.birthday = user.getBirthday();
-        this.specialization = user.getSpecialization();
     }
 }

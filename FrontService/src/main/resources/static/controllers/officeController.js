@@ -15,8 +15,26 @@ angular.module('fitness').controller('officeController', function ($scope, $http
         $('.services_linc').removeClass('active');
         $('.blog_linc').removeClass('active');
         $('.contact_linc').removeClass('active');
-
     };
+
+    $scope.OwnerPath = function () {
+        if($scope.OfficeOwner == null){
+            $http.post(contextPath + '/auth', $scope.auth)
+                .then(function (response) {
+                    console.log(response.data);
+                    if(response.data){
+                        // $scope.buttonCart();
+                        $('#authRes').click();
+                        $scope.officeOwner = response.data;
+                    }
+                }).catch(function (response) {
+                // console.log(response.data.message)
+                $scope.modalStatus = response.data.message;
+            });
+        }
+    };
+
+
 
     // $scope.loadMaintenance = function () {
     //     $http({
@@ -31,5 +49,6 @@ angular.module('fitness').controller('officeController', function ($scope, $http
 
     // $scope.loadMaintenance();
     $scope.setStylesOffice();
+    $scope.OwnerPath();
 
 });

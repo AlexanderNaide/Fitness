@@ -73,7 +73,10 @@ public class User {
     @JsonBackReference(value = "ticketList") // без этой аннотации jackson тянет все объекты по цепочки, аналог lazyInitialization
     private List<Ticket> ticketList;
 
+    @Column(name = "avatar")
+    private String avatar;
 
-
+    @Column(name = "background")
+    private String background;
 
 }
