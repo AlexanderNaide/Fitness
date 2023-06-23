@@ -58,11 +58,10 @@ public class User {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @ManyToMany
-    @JoinTable(name = "user_roles",
-    joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles;
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    @Unsigned
+    private Role role;
 
     @ManyToOne
     @JoinColumn(name = "specialization_id")

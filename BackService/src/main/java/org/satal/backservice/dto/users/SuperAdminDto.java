@@ -8,7 +8,7 @@ import org.satal.backservice.entities.users.User;
 public class SuperAdminDto implements UserDto {
 
     private Long id;
-    private String type;
+    private String titleRole;
     private String name;
     private String surname;
     private String email;
@@ -16,9 +16,9 @@ public class SuperAdminDto implements UserDto {
     private String avatar;
     private String background;
 
-    public SuperAdminDto(User user, String type) {
+    public SuperAdminDto(User user) {
         this.id = user.getId();
-        this.type = type;
+        this.titleRole = user.getRole().getTitleRole();
         this.name = user.getName();
         this.surname = user.getSurname();
         this.email = user.getEmail();

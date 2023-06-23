@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class TrainerDto implements UserDto{
 
     private Long id;
-    private String type;
+    private String titleRole;
     private Specialization specialization;
     private String login;
     private String name;
@@ -20,9 +20,9 @@ public class TrainerDto implements UserDto{
     private String phone;
     private LocalDate birthday;
 
-    public TrainerDto(User user, String type) {
+    public TrainerDto(User user) {
         this.id = user.getId();
-        this.type = type;
+        this.titleRole = user.getRole().getTitleRole();
         this.name = user.getName();
         this.surname = user.getSurname();
         this.email = user.getEmail();

@@ -1,14 +1,11 @@
 package org.satal.backservice.services;
 
 import lombok.RequiredArgsConstructor;
-import org.satal.backservice.dto.users.*;
 import org.satal.backservice.entities.Maintenance;
 import org.satal.backservice.entities.users.*;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -26,45 +23,45 @@ public class ImplementService {
 
     public void init(){
         Role superUserRole = new Role();
-        superUserRole.setRole("super");
+        superUserRole.setTitleRole("super");
         roleService.save(superUserRole);
 
         Role adminRole = new Role();
-        adminRole.setRole("admin");
+        adminRole.setTitleRole("admin");
         roleService.save(adminRole);
 
         Role trainerRole = new Role();
-        trainerRole.setRole("trainer");
+        trainerRole.setTitleRole("trainer");
         roleService.save(trainerRole);
 
         Role userRole = new Role();
-        userRole.setRole("user");
+        userRole.setTitleRole("user");
         roleService.save(userRole);
 
         Specialization functional = new Specialization();
-        functional.setSpecialization("functional");
+        functional.setSpecializationTitle("functional");
         specialisationService.save(functional);
 
         Specialization water = new Specialization();
-        water.setSpecialization("water");
+        water.setSpecializationTitle("water");
         specialisationService.save(water);
 
         Specialization group = new Specialization();
-        group.setSpecialization("group");
+        group.setSpecializationTitle("group");
         specialisationService.save(group);
 
         Specialization kids = new Specialization();
-        kids.setSpecialization("kids");
+        kids.setSpecializationTitle("kids");
         specialisationService.save(kids);
 
         Specialization massage = new Specialization();
-        massage.setSpecialization("massage");
+        massage.setSpecializationTitle("massage");
         specialisationService.save(massage);
 
         User superUser = new User();
         superUser.setLogin("super");
         superUser.setPassword("123");
-        superUser.setRoles(List.of(superUserRole));
+        superUser.setRole(superUserRole);
         superUser.setName("Super");
         superUser.setSurname("Admin");
         superUser.setBackground("../images/contact.jpg");
@@ -74,7 +71,7 @@ public class ImplementService {
         User trainer1 = new User();
         trainer1.setLogin("tr1");
         trainer1.setPassword("123");
-        trainer1.setRoles(List.of(trainerRole));
+        trainer1.setRole(trainerRole);
         trainer1.setName("Trainer1");
         trainer1.setSurname("***");
         trainer1.setSpecialization(functional);
@@ -83,7 +80,7 @@ public class ImplementService {
         User trainer2 = new User();
         trainer2.setLogin("tr2");
         trainer2.setPassword("123");
-        trainer2.setRoles(List.of(trainerRole));
+        trainer2.setRole(trainerRole);
         trainer2.setName("Trainer2");
         trainer2.setSurname("***");
         trainer2.setSpecialization(water);
@@ -92,7 +89,7 @@ public class ImplementService {
         User admin = new User();
         admin.setLogin("admin");
         admin.setPassword("123");
-        admin.setRoles(List.of(adminRole));
+        admin.setRole(adminRole);
         admin.setName("Admin");
         admin.setSurname("***");
         userService.save(admin);
@@ -100,7 +97,7 @@ public class ImplementService {
         User user = new User();
         user.setLogin("user");
         user.setPassword("123");
-        user.setRoles(List.of(userRole));
+        user.setRole(userRole);
         user.setName("User");
         user.setSurname("***");
         userService.save(user);

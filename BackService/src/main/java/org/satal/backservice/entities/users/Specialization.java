@@ -23,7 +23,7 @@ public class Specialization {
     private Long id;
 
     @Column(name = "specialization", nullable = false)
-    private String specialization;
+    private String specializationTitle;
 
     @OneToMany(mappedBy = "specialization")
     @JsonBackReference(value = "specializationList")

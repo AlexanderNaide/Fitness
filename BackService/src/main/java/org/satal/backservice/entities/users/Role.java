@@ -1,10 +1,13 @@
 package org.satal.backservice.entities.users;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jdk.jfr.Unsigned;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -19,7 +22,11 @@ public class Role {
     @Unsigned
     private Long id;
 
-    @Column(name = "role", nullable = false)
-    private String role;
+    @Column(name = "title", nullable = false)
+    private String titleRole;
+
+    @OneToMany(mappedBy = "role")
+    @JsonBackReference(value = "userList")
+    private List<User> userList;
 
 }

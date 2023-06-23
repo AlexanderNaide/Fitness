@@ -11,7 +11,7 @@ import java.util.List;
 public class ClientDto implements UserDto {
 
     private Long id;
-    private String type;
+    private String titleRole;
     private String login;
     private String name;
     private String surname;
@@ -22,9 +22,9 @@ public class ClientDto implements UserDto {
     private List<Ticket> ticketList;
 
 
-    public ClientDto(User user, String type) {
+    public ClientDto(User user) {
         this.id = user.getId();
-        this.type = type;
+        this.titleRole = user.getRole().getTitleRole();
         this.name = user.getName();
         this.surname = user.getSurname();
         this.email = user.getEmail();

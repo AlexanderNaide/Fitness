@@ -357,6 +357,10 @@
 	transform: translateY(-6px);
 }
 
+.office-work-place{
+	display: flex;
+}
+
 /*********************************
 6.4 Elements - Loaders
 *********************************/

@@ -1,5 +1,8 @@
 angular.module('fitness').controller('officeController', function ($scope, $http, $localStorage) {
     const contextPath = 'http://localhost:3881/fitness/api/v1';
+    let number = 1;
+    let totalNumber;
+    $scope.OfficeOwner = null;
 
     $scope.setStylesOffice = function () {
 
@@ -34,6 +37,27 @@ angular.module('fitness').controller('officeController', function ($scope, $http
         }
     };
 
+    $scope.loadUsers = function () {
+        $http({
+            url: contextPath,
+            method: 'GET'
+        }).then(function (response) {
+            $scope.pagination(response);
+            $scope.UserList = response.data.content;
+            // console.log(response.data)
+        });
+    };
+
+    $scope.pagination = function (response) {
+        totalNumber = response.data.totalPages;
+        $scope.totalNumber = response.data.totalPages;
+        $scope.first = response.data.first === true ? 'disabled' : null;
+        $scope.first10 = response.data.number < 10 ? 'disabled' : null;
+        $scope.page1 = response.data.number + 1;
+        $scope.last10 = response.data.number > totalNumber - 11 ? 'disabled' : null;
+        $scope.last = response.data.last === true ? 'disabled' : null;
+    };
+
 
 
     // $scope.loadMaintenance = function () {
@@ -50,5 +74,6 @@ angular.module('fitness').controller('officeController', function ($scope, $http
     // $scope.loadMaintenance();
     $scope.setStylesOffice();
     $scope.OwnerPath();
+    $scope.loadUsers();
 
 });

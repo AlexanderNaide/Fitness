@@ -22,6 +22,99 @@
 <!--		<div class="owl-item"><img src={{officeOwner.avatar}} alt="" style="width: 376px"></div>-->
 <!--	</div>-->
 
+	<!-- Content -->
+
+	<div class="container" style="height: 600px">
+<!--		<div class="tabs_container office-work-place">-->
+		<div class="office-work-place">
+
+			<!-- Панель информации -->
+			<div class="col-9">
+				<div class="tab_panels">
+
+					<div class="tab_panel active">
+						<div class="tab_panel_content d-flex flex-row align-items-start justify-content-start">
+							<div class="tab_text">
+								<table class="table table-hover">
+									<thead>
+									<tr>
+										<th>ID</th>
+										<th>Имя</th>
+										<th>Фамилия</th>
+										<th>Роль</th>
+										<th></th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr ng-repeat="p in ProductsList">
+										<td ng-click="getProduct(p.id)" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">{{p.id}}</td>
+										<td ng-click="getProduct(p.id)" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">{{p.title}}</td>
+										<td ng-click="getProduct(p.id)" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">{{p.article}}</td>
+										<td ng-click="getProduct(p.id)" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">{{p.price}}</td>
+										<td ><button type="button" class="btn btn-outline-secondary" ng-click="addToCart(p.id, 1)" ng-show="ifUserLoggedIn()"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 20 20">
+											<path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
+											<path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+										</svg></button></td>
+									</tr>
+									</tbody>
+								</table>
+								<nav aria-label="...">
+									<ul class="pagination">
+										<li class="page-item {{first}}"><a class="page-link" ng-click="pageStart()">1</a></li>
+										<li class="page-item {{first10}}"><a class="page-link" ng-click="pageClick(-10)">-10</a></li>
+										<li class="page-item {{first}}"><a class="page-link" ng-click="pageClick(-1)">-1</a></li>
+										<li class="page-item active"><a class="page-link">{{page1}}</a></li>
+										<li class="page-item {{last}}"><a class="page-link" ng-click="pageClick(+1)">+1</a></li>
+										<li class="page-item {{last10}}"><a class="page-link" ng-click="pageClick(+10)">+10</a></li>
+										<li class="page-item {{last}}"><a class="page-link" ng-click="pageFinish()">{{totalNumber}}</a></li>
+									</ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+					<div class="tab_panel">
+						<div class="tab_panel_content">
+							<div class="tab_text">
+								<p>2Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
+							</div>
+						</div>
+					</div>
+					<div class="tab_panel">
+						<div class="tab_panel_content">
+							<div class="tab_text">
+								<p>3Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
+							</div>
+						</div>
+					</div>
+					<div class="tab_panel">
+						<div class="tab_panel_content">
+							<div class="tab_text">
+								<p>4Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
+							</div>
+						</div>
+					</div>
+
+
+
+
+				</div>
+			</div>
+
+
+			<!-- Панель меню -->
+			<div class="col-3">
+<!--				<div class="tabs d-flex flex-row align-items-center justify-content-start flex-wrap">-->
+				<div class="tabs flex-row align-items-center justify-content-start flex-wrap">
+					<div class="tab active">Пользователи</div>
+					<div class="tab">Новости</div>
+					<div class="tab">Акции</div>
+					<div class="tab">Тарифы</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
 	<!-- Elements -->
 
 	<div class="elements">
