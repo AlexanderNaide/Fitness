@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @CrossOrigin("*")
 public class UserController {
+
     private final MaintenanceService maintenanceService;
 
     private final RoleService roleService;
@@ -32,6 +33,10 @@ public class UserController {
 //        User user = userService.getUser(authRequest).orElseThrow(() -> new BadCredentialsException("Пользователь не найден"));
         assert user != null;
 
+        return parseUsers(user);
+    }
+
+    private UserDto parseUsers(User user){
         return switch (user.getRole().getTitleRole()){
             case "super" -> new SuperAdminDto(user);
             case "admin" -> new AdminDto(user);
@@ -40,15 +45,17 @@ public class UserController {
         };
     }
 
-    @PostMapping("/list")
-    public Page<User> getAllUsers(){
-        return userService.findAll(null, null, null, 1).map(productConverter::entityToDto);
+    @GetMapping("/list")
+    public Page<UserDto> getAllUsers(){
+
+        System.out.println("Controller >>>");
+        return userService.findAll(null, null, null, 1).map(this::parseUsers);
     }
 
-    @PostConstruct
-    public void init(){
-        implementService.init();
-    }
+//    @PostConstruct
+//    public void init(){
+//        implementService.init();
+//    }
 
 
 }

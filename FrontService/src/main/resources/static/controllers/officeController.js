@@ -24,7 +24,7 @@ angular.module('fitness').controller('officeController', function ($scope, $http
         if($scope.OfficeOwner == null){
             $http.post(contextPath + '/auth', $scope.auth)
                 .then(function (response) {
-                    console.log(response.data);
+                    // console.log(response.data);
                     if(response.data){
                         // $scope.buttonCart();
                         $('#authRes').click();
@@ -39,12 +39,12 @@ angular.module('fitness').controller('officeController', function ($scope, $http
 
     $scope.loadUsers = function () {
         $http({
-            url: contextPath,
+            url: contextPath + "/auth/list",
             method: 'GET'
         }).then(function (response) {
+            console.log(response.data)
             $scope.pagination(response);
             $scope.UserList = response.data.content;
-            // console.log(response.data)
         });
     };
 

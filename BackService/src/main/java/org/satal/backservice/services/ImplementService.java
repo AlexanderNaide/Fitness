@@ -94,13 +94,23 @@ public class ImplementService {
         admin.setSurname("***");
         userService.save(admin);
 
-        User user = new User();
-        user.setLogin("user");
-        user.setPassword("123");
-        user.setRole(userRole);
-        user.setName("User");
-        user.setSurname("***");
-        userService.save(user);
+//        User user = new User();
+//        user.setLogin("user");
+//        user.setPassword("123");
+//        user.setRole(userRole);
+//        user.setName("User");
+//        user.setSurname("***");
+//        userService.save(user);
+
+        for (int i = 0; i < 500; i++) {
+            User user = new User();
+            user.setLogin("user" + i);
+            user.setPassword("123");
+            user.setRole(userRole);
+            user.setName("User" + i + "_Name");
+            user.setSurname("User" + i + "_Surname");
+            userService.save(user);
+        }
 
         SeasonTicket full = new SeasonTicket();
         full.setTitle("Полная");
