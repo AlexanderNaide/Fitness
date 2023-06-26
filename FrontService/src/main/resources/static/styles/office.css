@@ -17,7 +17,8 @@
 	6.4 Elements - Loaders
 	6.5 Elements - Milestones
 	6.6 Elements - Icon Boxes
-7. Footer --
+7. Pagination
+8. Footer --
 
 
 ******************************/
@@ -502,4 +503,35 @@
 .service_text
 {
 	margin-top: 17px;
+}
+
+/*********************************
+6.6 Elements - Icon Boxes
+*********************************/
+
+.pagination
+{
+	margin-top: 35px;
+}
+
+.pagination ul li a
+{
+	color: #262626;
+}
+
+.pagination ul li.active a,
+.pagination ul li a:hover
+{
+	color: #ff9711;
+}
+
+
+.pagination_active
+{
+	pointer-events: inherit;
+}
+
+.pagination_non_active
+{
+	pointer-events: none;
 }

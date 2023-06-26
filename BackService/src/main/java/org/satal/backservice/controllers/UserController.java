@@ -48,9 +48,24 @@ public class UserController {
     @GetMapping("/list")
     public Page<UserDto> getAllUsers(){
 
-        System.out.println("Controller >>>");
+//        System.out.println("Controller >>>");
         return userService.findAll(null, null, null, 1).map(this::parseUsers);
     }
+
+    @PostMapping("/updates")
+    public Page<UserDto> upAllUsers(@RequestParam(required = false, defaultValue = "1") Integer page,
+                                    @RequestParam(required = false) Long role,
+                                    @RequestParam(required = false) Long specialization,
+                                    @RequestParam(required = false) String val
+    ){
+        if(page < 1){
+            page = 1;
+        }
+        System.out.println(">>>>>>>" + page + role + specialization + val);
+        return userService.findAll(role, specialization, val, page).map(this::parseUsers);
+    }
+
+
 
 //    @PostConstruct
 //    public void init(){

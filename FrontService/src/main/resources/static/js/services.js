@@ -28,6 +28,8 @@ $(document).ready(function()
 
 	setHeader();
 
+	jQuery(window).trigger('resize').trigger('scroll');
+
 	$(window).on('resize', function()
 	{
 		setHeader();

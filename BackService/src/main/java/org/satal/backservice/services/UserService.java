@@ -48,7 +48,7 @@ public class UserService {
 
     public Page<User> findAll(Long role, Long specialization, String value, Integer page){ // вот тут попробовать переделать на LOnd Id, по каждой сущности
 
-        System.out.println("Service >>>");
+//        System.out.println("Service >>>");
         Specification<User> spec = Specification.where(null);
 
         if(role != null){

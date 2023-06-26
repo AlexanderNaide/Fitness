@@ -1,8 +1,10 @@
+<script src="../controllers/officeController.js"></script>
 <div>
 	<!-- Home -->
 
 	<div class="home">
-		<div class="background_image" style="background-image:url(../images/contact.jpg)"></div>
+<!--		<div class="background_image" style="background-image:url(../images/contact.jpg)"></div>-->
+	<div class="background_image"></div>
 		<div class="overlay"></div>
 		<div class="home_container">
 			<div class="container">
@@ -38,11 +40,11 @@
 								<table class="table table-hover" style="table-layout: fixed">
 									<thead>
 									<tr>
-										<th>ID</th>
-										<th>Имя</th>
-										<th>Фамилия</th>
-										<th>Роль</th>
-										<th></th>
+										<th style="width: 10%">ID</th>
+										<th style="width: 30%">Имя</th>
+										<th style="width: 30%">Фамилия</th>
+										<th style="width: 20%">Роль</th>
+										<th style="width: 10%"></th>
 									</tr>
 									</thead>
 									<tbody>
@@ -58,15 +60,15 @@
 									</tr>
 									</tbody>
 								</table>
-								<nav aria-label="...">
-									<ul class="pagination">
-										<li class="page-item {{first}}"><a class="page-link" ng-click="pageStart()">1</a></li>
-										<li class="page-item {{first10}}"><a class="page-link" ng-click="pageClick(-10)">-10</a></li>
-										<li class="page-item {{first}}"><a class="page-link" ng-click="pageClick(-1)">-1</a></li>
-										<li class="page-item active"><a class="page-link">{{page1}}</a></li>
-										<li class="page-item {{last}}"><a class="page-link" ng-click="pageClick(+1)">+1</a></li>
-										<li class="page-item {{last10}}"><a class="page-link" ng-click="pageClick(+10)">+10</a></li>
-										<li class="page-item {{last}}"><a class="page-link" ng-click="pageFinish()">{{totalNumber}}</a></li>
+								<nav class="main_nav pagination">
+									<ul class="d-flex flex-row align-items-center justify-content-start">
+										<li class="{{first}}"><a href="" hng-click="pageStart()">1<<<</a></li>
+										<li class="{{first10}}"><a href="" ng-click="pageClick(-10)">-10<<</a></li>
+										<li class="{{first}}"><a href="" ng-click="pageClick(-1)">-1<</a></li>
+										<li class="active"><a href="">{{page1}}</a></li>
+										<li class="{{last}}"><a href="" ng-click="pageClick(+1)">>+1</a></li>
+										<li class="{{last10}}"><a href="" ng-click="pageClick(+10)">>>+10</a></li>
+										<li class="{{last}}"><a href="" ng-click="pageFinish()">>>>{{totalNumber}}</a></li>
 									</ul>
 								</nav>
 							</div>
@@ -383,4 +385,31 @@
 	<script src="../plugins/parallax-js-master/parallax.min.js"></script>
 	<script src="../plugins/progressbar/progressbar.min.js"></script>
 	<script src="../js/elements.js"></script>
+</div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<form id="form" novalidate>
+				<div class="modal-header">
+					<label class="modal-title" id="exampleModalCenterTitle">Информация о товаре</label>
+				</div>
+				<div class="modal-body">
+					<div class="form-group mb-3">
+						<h5 class="modal-title">{{Product.title}}</h5>
+						<label>Артикул: {{Product.article}}</label>
+						<h6>Цена: {{Product.price}}руб.</h6>
+						<label>Производитель: {{Product.manufacturer}}</label>
+					</div>
+					<div class="form-group mb-3">
+						<h6>Описание:</h6>
+						<div ng-repeat="l in ProductDescription">{{l}} <br></div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>

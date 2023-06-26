@@ -14,6 +14,7 @@
 7. Timetable
 8. Extra
 9. Footer --
+10. Parallax
 
 
 ******************************/
@@ -267,4 +268,33 @@
 {
 	border: solid 1px #FFFFFF;
 	margin-top: 47px;
+}
+
+/*********************************
+10. Parallax
+*********************************/
+
+.parallax-window
+{
+	min-height: 400px;
+	background: transparent;
+}
+.parallax_background
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.background_image
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
 }

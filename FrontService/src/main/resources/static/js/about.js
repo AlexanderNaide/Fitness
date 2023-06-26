@@ -29,6 +29,14 @@ $(document).ready(function()
 
 	setHeader();
 
+	$('.parallax-window').parallax(
+		{
+			imageSrc: "../images/blog.jpg",
+			speed: 0.8
+		});
+
+	jQuery(window).trigger('resize').trigger('scroll');
+
 	$(window).on('resize', function()
 	{
 		setHeader();
