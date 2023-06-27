@@ -9,6 +9,8 @@ import org.satal.backservice.services.*;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
@@ -61,10 +63,19 @@ public class UserController {
         if(page < 1){
             page = 1;
         }
-        System.out.println(">>>>>>>" + page + role + specialization + val);
+        System.out.printf(">>>>>>> role - %d, spec - %d, val - %s, page - %d\n", role, specialization, val, page);
         return userService.findAll(role, specialization, val, page).map(this::parseUsers);
     }
 
+    @PostMapping("/role_list")
+    public List<RoleDto> getAllRoles(){
+        return roleService.findAll().stream().map(RoleDto::new).toList();
+    }
+
+    @PostMapping("/specialization_list")
+    public List<SpecializationDto> getAllSpecializations(){
+        return specialisationService.findAll().stream().map(SpecializationDto::new).toList();
+    }
 
 
 //    @PostConstruct

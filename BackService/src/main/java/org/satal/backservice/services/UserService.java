@@ -52,17 +52,20 @@ public class UserService {
         Specification<User> spec = Specification.where(null);
 
         if(role != null){
-            Optional<Role> currentRole = roleService.findById(role);
-            if(currentRole.isPresent()){
-                spec = spec.and(UserSpecifications.equalRole(currentRole.get()));
-            }
+//            Optional<Role> currentRole = roleService.findById(role);
+//            if(currentRole.isPresent()){
+//                spec = spec.and(UserSpecifications.equalRole(currentRole.get()));
+//            }
+            spec = spec.and(UserSpecifications.equalRoleById(role));
         }
         if(specialization != null){
-            Optional<Specialization> currentSpecialization = specialisationService.findById(specialization);
-            if(currentSpecialization.isPresent()){
-                spec = spec.and(UserSpecifications.equalSpecialization(currentSpecialization.get()));
-            }
+//            Optional<Specialization> currentSpecialization = specialisationService.findById(specialization);
+//            if(currentSpecialization.isPresent()){
+//                spec = spec.and(UserSpecifications.equalSpecialization(currentSpecialization.get()));
+//            }
+            spec = spec.and(UserSpecifications.equalSpecializationById(specialization));
         }
+
         if(value != null){
             spec = spec.and(UserSpecifications.nameLike(value)).or(UserSpecifications.surnameLike(value));
         }

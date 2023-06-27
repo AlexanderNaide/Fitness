@@ -29,4 +29,7 @@ public class Role {
     @JsonBackReference(value = "userList")
     private List<User> userList;
 
+    @Column(name = "spec")
+    private boolean containsSpecializations;
+
 }

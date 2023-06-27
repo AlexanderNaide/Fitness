@@ -32,6 +32,7 @@ public class ImplementService {
 
         Role trainerRole = new Role();
         trainerRole.setTitleRole("trainer");
+        trainerRole.setContainsSpecializations(true);
         roleService.save(trainerRole);
 
         Role userRole = new Role();

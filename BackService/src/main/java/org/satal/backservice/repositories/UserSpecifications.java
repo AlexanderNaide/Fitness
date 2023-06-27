@@ -12,8 +12,16 @@ public class UserSpecifications {
         return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("role"), role);
     }
 
+    public static Specification<User> equalRoleById(Long role){
+        return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("role").get("id"), role);
+    }
+
     public static Specification<User> equalSpecialization(Specialization specialization){
         return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("specialization"), specialization);
+    }
+
+    public static Specification<User> equalSpecializationById(Long specialization){
+        return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("specialization").get("id"), specialization);
     }
 
     public static Specification<User> nameLike(String value){
