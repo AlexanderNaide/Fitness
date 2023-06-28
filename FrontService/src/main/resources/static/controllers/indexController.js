@@ -83,7 +83,7 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
     $scope.authentications = function () {
         $http.post(contextPath + '/auth', $scope.auth)
             .then(function (response) {
-                console.log(response.data);
+                // console.log(response.data);
                 if(response.data){
                     // $scope.buttonCart();
                     $('#authRes').click();

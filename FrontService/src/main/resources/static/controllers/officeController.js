@@ -9,10 +9,6 @@ angular.module('fitness').controller('officeController', function ($scope, $http
         document.getElementById('cssId1').href = 'styles/office.css';
         document.getElementById('cssId2').href = 'styles/elements_responsive.css';
 
-        // for (let i = 0; i < document.scripts.length; i++) {
-        //     document.scripts.item(i).remove();
-        // }
-
         $('.home_linc').removeClass('active');
         $('.about_linc').removeClass('active');
         $('.services_linc').removeClass('active');
@@ -21,8 +17,6 @@ angular.module('fitness').controller('officeController', function ($scope, $http
         // document.getElementById('a').style.backgroundImage="url(images/img.jpg)"; // specify the image path here
         document.getElementById('office_heading').style.backgroundImage="url(../images/contact.jpg)";
 
-        // $('.background_image').setAttribute('background-image', '../images/contact.jpg');
-        // $('.background_image').style.backgroundImage = '../images/contact.jpg';
     };
 
     // $scope.OwnerPath = function () {
@@ -54,36 +48,13 @@ angular.module('fitness').controller('officeController', function ($scope, $http
     };
 
     $scope.updateUsers = function () {
-        console.log("val>>>" + $scope.value);
-        // console.log($scope.filter !== null)
-        // console.log($scope.filter.role === undefined);
-        // let bf;
-        // let role;
-        let specialization;
-        // if ($scope.filter !== null){
-        //     // console.log("role>>>" + $scope.filter.role)
-        //     bf = true;
-        //     role = $scope.filter.role !== undefined ? $scope.filter.role.id : null;
-        //     // role = $scope.filter.role !== null ? $scope.filter.role.id : null;
-        //     specialization = $scope.filter.specialization !== undefined ? $scope.filter.specialization.id : null;
-        // }
-        if ($scope.filter.role !== null && $scope.filter.specialization !== undefined){
-            specialization = $scope.filter.specialization.id;
-        } else {
-            specialization = null;
-        }
-
         $http({
             url: contextPath + "/auth/updates",
             method: 'POST',
             params: {
                 val: $scope.value !== null ? $scope.value : null,
-                // role: bf ? role : null,
-                // role: $scope.filter.role !== undefined ? $scope.filter.role.id : null,
                 role: $scope.filter.role !== null ? $scope.filter.role.id : null,
-                // specialization: $scope.filter.specialization !== undefined ? $scope.filter.specialization.id : null,
-                // specialization: $scope.filter.specialization !== null ? $scope.filter.specialization.id : null,
-                specialization: specialization,
+                specialization: $scope.filter.specialization !== undefined ? $scope.filter.specialization.id : null,
                 page: number
             }
         }).then(function (response) {
@@ -118,12 +89,6 @@ angular.module('fitness').controller('officeController', function ($scope, $http
         $scope.updateUsers();
     };
 
-    // $scope.searchForm = function () {
-    //     // number = 1;
-    //     $scope.updateProducts();
-    //     $scope.manufacturer();
-    // };
-
     $scope.getRoleList = function () {
         $http({
             url: contextPath + "/auth/role_list",
@@ -134,14 +99,9 @@ angular.module('fitness').controller('officeController', function ($scope, $http
     };
 
     $scope.roleChange = function () {
-        console.log($scope.filter.role === null);
         if($scope.filter.role === null){
-            // $scope.filter.role = undefined;
-            // $scope.filter.specialization = undefined;
-            $scope.filter.specialization = null;
-            $scope.resetAndUpdateUsers();
+            $scope.filter.specialization = undefined;
         } else {
-            $scope.updateUsers();
             if($scope.filter.role.containsSpecializations){
                 $('#spec').prop('disabled', false);
                 $http({
@@ -156,22 +116,22 @@ angular.module('fitness').controller('officeController', function ($scope, $http
                     }
                 });
             } else {
-                // $scope.filter.specialization = undefined;
-                $scope.filter.specialization = null;
+                $scope.filter.specialization = undefined;
                 $scope.SpecializationList = null;
                 $('#spec').prop( 'disabled', true);
             }
+            $scope.resetAndUpdateUsers();
         }
     };
 
-    // $scope.addFilter = function () {
-    //     number = 1;
-    //     $scope.updateUsers();
-    // };
+    $scope.specializationChange = function () {
+        if($scope.filter.specialization === null){
+            $scope.filter.specialization = undefined;
+        }
+        $scope.resetAndUpdateUsers();
+    };
 
     $scope.resetAndUpdateUsers = function () {
-        // $scope.filter.role = undefined;
-        // $scope.filter.specialization = undefined;
         number = 1;
         $scope.updateUsers();
     };

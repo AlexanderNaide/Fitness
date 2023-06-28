@@ -30,7 +30,7 @@ public class UserSpecifications {
 
     public static Specification<User> surnameLike(String value){
 //        return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(root.get("article").as(String.class), String.format("%%%s%%", title));
-        return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(root.get("surname"), String.format("%%%s%%", value));
+        return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(root.get("surname").as(String.class), String.format("%%%s%%", value));
     }
 
 }
