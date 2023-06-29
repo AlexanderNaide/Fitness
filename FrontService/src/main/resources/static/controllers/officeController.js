@@ -4,11 +4,10 @@ angular.module('fitness').controller('officeController', function ($scope, $http
     let totalNumber;
     $scope.OfficeOwner = null;
 
+    // Преднастройки страницы
     $scope.setStylesOffice = function () {
-
         document.getElementById('cssId1').href = 'styles/office.css';
         document.getElementById('cssId2').href = 'styles/elements_responsive.css';
-
         $('.home_linc').removeClass('active');
         $('.about_linc').removeClass('active');
         $('.services_linc').removeClass('active');
@@ -36,12 +35,18 @@ angular.module('fitness').controller('officeController', function ($scope, $http
     //     }
     // };
 
+
+    /***********************************
+     * Управление таблицей пользователей
+     ***********************************/
+
     $scope.loadUsers = function () {
         $http({
             url: contextPath + "/auth/list",
             method: 'GET'
         }).then(function (response) {
             // console.log(response.data)
+            number = 1;
             $scope.pagination(response);
             $scope.UserList = response.data.content;
         });
@@ -135,6 +140,44 @@ angular.module('fitness').controller('officeController', function ($scope, $http
         number = 1;
         $scope.updateUsers();
     };
+
+
+    /***********************************
+     * Управление таблицей специализаций
+     ***********************************/
+
+    $scope.loadSpecializations = function (pageNumber) {
+        number = pageNumber;
+        $http({
+            url: contextPath + "/fit/spec_list",
+            method: 'POST',
+            params: {
+                page: pageNumber
+            }
+        }).then(function (response) {
+            console.log(response);
+            $scope.pagination(response);
+            $scope.SpecializationList = response.data.content;
+        });
+    };
+
+    $scope.pageSpecClick = function (delta) {
+        $scope.loadSpecializations(number + delta);
+    };
+
+    $scope.getSpecializations = function (id) {
+        $http({
+            url: contextPath + "/fit/spec_one",
+            method: 'POST',
+            params: {
+                id: id
+            }
+        }).then(function (response) {
+            // $scope.SpecializationList = response.data.content;
+            $scope.Specialization = response.data;
+        });
+    };
+
 
 
 

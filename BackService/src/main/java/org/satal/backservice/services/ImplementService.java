@@ -13,7 +13,7 @@ public class ImplementService {
 
     private final RoleService roleService;
 
-    private final SpecialisationService specialisationService;
+    private final SpecializationService specializationService;
 
     private final UserService userService;
 
@@ -41,23 +41,23 @@ public class ImplementService {
 
         Specialization functional = new Specialization();
         functional.setSpecializationTitle("functional");
-        specialisationService.save(functional);
+        specializationService.save(functional);
 
         Specialization water = new Specialization();
         water.setSpecializationTitle("water");
-        specialisationService.save(water);
+        specializationService.save(water);
 
         Specialization group = new Specialization();
         group.setSpecializationTitle("group");
-        specialisationService.save(group);
+        specializationService.save(group);
 
         Specialization kids = new Specialization();
         kids.setSpecializationTitle("kids");
-        specialisationService.save(kids);
+        specializationService.save(kids);
 
         Specialization massage = new Specialization();
         massage.setSpecializationTitle("massage");
-        specialisationService.save(massage);
+        specializationService.save(massage);
 
         User superUser = new User();
         superUser.setLogin("super");

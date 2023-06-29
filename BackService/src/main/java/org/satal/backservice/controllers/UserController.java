@@ -1,6 +1,5 @@
 package org.satal.backservice.controllers;
 
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.satal.backservice.dto.users.*;
 import org.satal.backservice.entities.users.AuthRequest;
@@ -21,7 +20,7 @@ public class UserController {
 
     private final RoleService roleService;
 
-    private final SpecialisationService specialisationService;
+    private final SpecializationService specializationService;
     private final UserService userService;
 
     private final ImplementService implementService;
@@ -49,8 +48,6 @@ public class UserController {
 
     @GetMapping("/list")
     public Page<UserDto> getAllUsers(){
-
-//        System.out.println("Controller >>>");
         return userService.findAll(null, null, null, 1).map(this::parseUsers);
     }
 
@@ -63,7 +60,6 @@ public class UserController {
         if(page < 1){
             page = 1;
         }
-        System.out.printf(">>>>>>> role - %d, spec - %d, val - %s, page - %d\n", role, specialization, val, page);
         return userService.findAll(role, specialization, val, page).map(this::parseUsers);
     }
 
@@ -74,7 +70,7 @@ public class UserController {
 
     @PostMapping("/specialization_list")
     public List<SpecializationDto> getAllSpecializations(){
-        return specialisationService.findAll().stream().map(SpecializationDto::new).toList();
+        return specializationService.findList().stream().map(SpecializationDto::new).toList();
     }
 
 

@@ -1,12 +1,8 @@
 package org.satal.backservice.services;
 
 import lombok.RequiredArgsConstructor;
-import org.satal.backservice.entities.Maintenance;
 import org.satal.backservice.entities.users.AuthRequest;
-import org.satal.backservice.entities.users.Role;
-import org.satal.backservice.entities.users.Specialization;
 import org.satal.backservice.entities.users.User;
-import org.satal.backservice.repositories.RoleRepository;
 import org.satal.backservice.repositories.UserRepository;
 import org.satal.backservice.repositories.UserSpecifications;
 import org.springframework.data.domain.Page;
@@ -14,9 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -25,7 +18,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final RoleService roleService;
 
-    private final SpecialisationService specialisationService;
+    private final SpecializationService specializationService;
 
     public void save(User user){
         userRepository.save(user);
