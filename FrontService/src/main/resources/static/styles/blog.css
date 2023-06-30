@@ -1,0 +1,140 @@
+@charset "utf-8";
+/* CSS Document */
+
+/******************************
+
+[Table of Contents]
+
+1. Fonts --
+2. Body and some general stuff --
+3. Header --
+4. Menu --
+5. Home
+6. Blog
+7. Footer --
+
+
+******************************/
+
+
+/*********************************
+5. Home
+*********************************/
+
+.home
+{
+	width: 100%;
+	height: 667px;
+	overflow: hidden;
+}
+.overlay
+{
+	position: absolute;
+	left: 0;
+	bottom: -270px;
+	width: 120%;
+	height: 270px;
+	background: #FFFFFF;
+	transform-origin: top left;
+	transform: rotate(-8deg);
+	z-index: 1;
+	box-shadow: 0 0 1px 0 #FFFFFF inset, 0 0 1px 0 #FFFFFF;
+}
+.home_container
+{
+	position: absolute;
+	left: 0;
+	top: 48.1%;
+	width: 100%;
+}
+.home_title
+{
+	font-size: 72px;
+	font-weight: 200;
+	color: #fff;
+	line-height: 1.2;
+	margin-top: -9px;
+}
+.home_subtitle
+{
+	font-size: 16px;
+	font-weight: 500;
+	color: #fff;
+	margin-top: 1px;
+}
+
+/*********************************
+6. Blog
+*********************************/
+
+.blog
+{
+	background: #FFFFFF;
+	padding-top: 45px;
+	padding-bottom: 100px;
+}
+.blog_row
+{
+	margin-top: 100px;
+}
+.blog_col
+{
+	margin-bottom: 49px;
+}
+.blog_post_image
+{
+	width: 100%;
+}
+.blog_post_image img
+{
+	max-width: 100%;
+}
+.blog_post_title
+{
+	margin-top: 20px;
+}
+.blog_post_title a
+{
+	font-size: 24px;
+	font-weight: 400;
+	color: #262626;
+	line-height: 1.1;
+}
+.blog_post_title a:hover
+{
+	color: #ff9711;
+}
+.blog_post_date
+{
+	margin-top: 4px;
+}
+.blog_post_date a
+{
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	color: #ff9711;
+}
+.blog_post_text
+{
+	margin-top: 22px;
+}
+.blog_post_text p
+{
+	font-weight: 500;
+	color: #535353;
+}
+.blog_post_link
+{
+	margin-top: 36px;
+}
+.blog_post_link a
+{
+	font-size: 12px;
+	font-weight: 400;
+	color: #ff9711;
+}
+.blog_button
+{
+	margin-top: 46px;
+}

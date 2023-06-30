@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html ng-app="fitness" lang="en">
+<head>
+<title>SportFIT</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="SportFIT template project">
+<!--	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../styles/bootstrap-4.1.2/bootstrap.min.css">
+<link href="../plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="../plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="../plugins/OwlCarousel2-2.2.1/animate.css">
+<link href="../plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="styles/index.css">
+	<link id="cssId1" rel="stylesheet" type="text/css" href="../styles/main_styles.css">
+	<link id="cssId2" rel="stylesheet" type="text/css" href="../styles/responsive.css">
+<!--	<link rel="stylesheet" type="text/css" href="styles/elements.css">-->
+	<link rel="stylesheet" type="text/css" href="../styles/elements_responsive.css">
+
+	<script src="../js/jquery-3.2.1.min.js"></script>
+<!--	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>-->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+
+<!--	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+	<!-- Angular-js -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-route.min.js"></script>
+	<!-- Main js -->
+	<script src="../controllers/indexController.js"></script>
+	<script src="../controllers/homeController.js"></script>
+	<script src="../controllers/aboutController.js"></script>
+	<script src="../controllers/servicesController.js"></script>
+	<script src="../controllers/blogController.js"></script>
+	<script src="../controllers/contactController.js"></script>
+	<script src="../controllers/officeController.js"></script>
+
+
+
+</head>
+<body>
+
+<div class="super_container" ng-controller="indexController">
+	
+	<!-- Header -->
+
+	<header class="header">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_content d-flex flex-row align-items-center justify-content-start trans_400">
+						<a href="#!/">
+<!--							<div class="logo d-flex flex-row align-items-center justify-content-start"><img src="images/dot.png" alt=""><div>Sport<span>fit</span></div></div>-->
+							<div class="logo d-flex flex-row align-items-center justify-content-start"><img src="../images/logo.png" alt=""></div>
+						</a>
+						<nav class="main_nav">
+							<ul class="d-flex flex-row align-items-center justify-content-start">
+<!--								<li class="active"><a href="index.html">Home</a></li>-->
+								<li class="about_linc"><a href="#!/about">About us</a></li>
+								<li class="services_linc"><a href="#!/services">Classes & Services</a></li>
+								<li class="blog_linc"><a href="#!/blog">Blog</a></li>
+								<li class="contact_linc"><a href="#!/contact">Contact</a></li>
+								<li class="office_linc"><a href="#!/office">Личный кабинет</a></li>
+							</ul>
+						</nav>
+						<div ng-show="!ownerIsEmpty()" class="button home_button ml-auto mr-auto">
+							<a href="#" data-bs-toggle="modal" data-bs-target="#modalAuthentication">Войти</a>
+						</div>
+
+						<div ng-show="ownerIsEmpty()" class="phone d-flex flex-row align-items-center justify-content-start ml-auto">
+							<div ng-click="clearOwner()" style="cursor: pointer">Выйти</div>
+						</div>
+
+<!--						<div ng-show="!ownerStatus" class="phone d-flex flex-row align-items-center justify-content-start ml-auto">-->
+<!--&lt;!&ndash;							<i class="fa fa-phone" aria-hidden="true"></i>&ndash;&gt;-->
+<!--							<div>Выйти</div>-->
+<!--						</div>-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Hamburger -->
+	
+	<div class="hamburger_bar trans_400 d-flex flex-row align-items-center justify-content-start">
+		<div class="hamburger">
+			<div class="menu_toggle d-flex flex-row align-items-center justify-content-start">
+				<span>menu</span>
+				<div class="hamburger_container">
+					<div class="menu_hamburger">
+						<div class="line_1 hamburger_lines" style="transform: matrix(1, 0, 0, 1, 0, 0);"></div>
+						<div class="line_2 hamburger_lines" style="visibility: inherit; opacity: 1;"></div>
+						<div class="line_3 hamburger_lines" style="transform: matrix(1, 0, 0, 1, 0, 0);"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Menu -->
+
+	<div class="menu trans_800">
+		<div class="menu_content d-flex flex-column align-items-center justify-content-center text-center">
+			<ul>
+<!--				<li><a href="index.html">Home</a></li>-->
+				<li class="about_linc"><a href="#!/about">About us</a></li>
+				<li class="services_linc"><a href="#!/services">Classes & Services</a></li>
+				<li class="blog_linc"><a href="#!/blog">Blog</a></li>
+				<li class="contact_linc"><a href="#!/contact">Contact</a></li>
+			</ul>
+		</div>
+<!--		<div class="menu_phone d-flex flex-row align-items-center justify-content-start">-->
+<!--			<i class="fa fa-phone" aria-hidden="true"></i>-->
+<!--				<span>652-345 3222 11</span>-->
+<!--		</div>-->
+	</div>
+
+
+	<ng-view></ng-view>
+
+<!--	import-->
+<!--	/import-->
+
+
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2">
+					<div class="footer_container">
+						<div class="footer_content">
+							<div class="footer_logo">
+
+								<a href="#!/">
+									<div class="logo d-flex flex-row align-items-center justify-content-center"><img src="images/logo.png" alt=""></div>
+								</a>
+
+
+<!--								<a href="#!/">-->
+<!--									<div class="logo d-flex flex-row align-items-center justify-content-center"><img src="images/dot.png" alt=""><div>Sport<span>fit</span></div></div>-->
+<!--								</a>-->
+							</div>
+<!--							<nav class="footer_nav">-->
+							<nav class="main_nav">
+<!--								<ul class="d-flex flex-sm-row flex-column align-items-sm-start align-items-center justify-content-center">-->
+								<ul class="d-flex flex-row align-items-center justify-content-start">
+									<li class="home_linc"><a href="#!/">Home</a></li>
+									<li class="about_linc"><a href="#!/about">About us</a></li>
+									<li class="services_linc"><a href="#!/services">Classes & Services</a></li>
+									<li class="blog_linc"><a href="#!/blog">Blog</a></li>
+									<li class="contact_linc"><a href="#!/contact">Contact</a></li>
+								</ul>
+							</nav>
+							<div class="newsletter_container">
+								<form action="#" id="newsletter_form" class="newsletter_form">
+									<input type="text" class="newsletter_input" placeholder="Enter your email here" required="required">
+									<button class="newsletter_button">go</button>
+								</form>
+							</div>
+							<div class="copyright d-flex flex-row align-items-start justify-content-sm-end justify-content-center"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
+						</div>
+						<div class="footer_image text-center"><img src="images/footer.png" alt=""></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+<!--	Модальное окно авторизации/регистрации   -->
+	<div class="modal fade" id="modalAuthentication" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<!--		<div class="modal-content">-->
+			<div class="modal-fade">
+				<!--			<form id="auth" novalidate ng-submit="authentications()">-->
+				<form id="auth" class="contact_form buttons" novalidate ng-submit="authentications()">
+
+					<div class="modal-header">
+						<h5 class="modal-title">{{modalStatus}}</h5>
+					</div>
+
+					<div class="modal-body">
+						<!--					<div class="form-group mb-3">-->
+						<div class="form-group mb-3">
+							<label for="username">Логин</label>
+							<!--						<input class="form-control" type="text" ng-model="auth.username" id="username">-->
+							<input class="contact_input trans_200" type="text" ng-model="auth.login" id="username" required="required" placeholder="Логин">
+						</div>
+						<div class="form-group mb-3">
+							<label for="password">Пароль</label>
+							<!--						<input class="form-control" type="text" ng-model="auth.password" id="password" >-->
+							<input class="contact_input trans_200" type="text" ng-model="auth.password" id="password" required="required" placeholder="Пароль">
+						</div>
+					</div>
+
+					<div class="buttons_container d-flex flex-row align-items-start justify-content-start flex-wrap">
+						<div class="col-4">
+							<button class="button button_2 trans_200 btn-modal" ng-click="registrations()" type="button" >Регистрация</button>
+						</div>
+						<div class="col-8 orient-right">
+							<button id="authRes" type="button" class="button button_4 btn-modal" data-bs-dismiss="modal">Отмена</button>
+							<!--                        <button class="btn btn-success" type="submit" data-bs-dismiss="modal">Авторизация</button>-->
+							<button id="authOk" type="submit"  class="button button_2 trans_200 btn-modal" >Авторизация</button>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="../js/jquery-3.2.1.min.js"></script>
+	<script src="../styles/bootstrap-4.1.2/popper.js"></script>
+	<script src="../styles/bootstrap-4.1.2/bootstrap.min.js"></script>
+	<script src="../plugins/greensock/TweenMax.min.js"></script>
+	<script src="../plugins/greensock/TimelineMax.min.js"></script>
+	<script src="../plugins/scrollmagic/ScrollMagic.min.js"></script>
+	<script src="../plugins/greensock/animation.gsap.min.js"></script>
+	<script src="../plugins/greensock/ScrollToPlugin.min.js"></script>
+	<script src="../plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+	<script src="../plugins/easing/easing.js"></script>
+	<script src="../plugins/progressbar/progressbar.min.js"></script>
+	<script src="../plugins/parallax-js-master/parallax.min.js"></script>
+	<script src="../plugins/colorbox/jquery.colorbox-min.js"></script>
+	<script src="../js/custom.js"></script>
+	<script src="../js/elements.js"></script>
+</div>
+</body>
+</html>

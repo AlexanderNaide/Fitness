@@ -1,0 +1,323 @@
+@charset "utf-8";
+/* CSS Document */
+
+/******************************
+
+[Table of Contents]
+
+1. Fonts --
+2. Body and some general stuff --
+3. Header --
+4. Menu --
+5. Home
+6. About
+7. Team
+8. Footer --
+9. Parallax
+
+
+******************************/
+
+
+/*********************************
+5. Home
+*********************************/
+
+.home
+{
+	width: 100%;
+	height: 667px;
+	overflow: hidden;
+}
+.overlay
+{
+	position: absolute;
+	left: 0;
+	bottom: -270px;
+	width: 120%;
+	height: 270px;
+	background: #FFFFFF;
+	transform-origin: top left;
+	transform: rotate(-8deg);
+	z-index: 1;
+	box-shadow: 0 0 1px 0 #FFFFFF inset, 0 0 1px 0 #FFFFFF;
+}
+.home_container
+{
+	position: absolute;
+	left: 0;
+	top: 48.1%;
+	width: 100%;
+}
+.home_title
+{
+	font-size: 72px;
+	font-weight: 200;
+	color: #fff;
+	line-height: 1.2;
+	margin-top: -9px;
+}
+.home_subtitle
+{
+	font-size: 16px;
+	font-weight: 500;
+	color: #fff;
+	margin-top: 1px;
+}
+
+/*********************************
+6. About
+*********************************/
+
+.about
+{
+	padding-top: 69px;
+	padding-bottom: 192px;
+	background: #FFFFFF;
+}
+.about_container
+{
+	z-index: 2;
+}
+.about_content
+{
+	
+}
+.about_background
+{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	transform-origin: bottom right;
+	-webkit-transform: rotate(-8deg);
+	-moz-transform: rotate(-8deg);
+	-ms-transform: rotate(-8deg);
+	-o-transform: rotate(-8deg);
+	transform: rotate(-8deg);
+	background: #FFFFFF;
+	z-index: 1;
+}
+.about_background::before
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 150%;
+	height: 100%;
+	background: #FFFFFF;
+	content: '';
+}
+.about_overlay
+{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 2200px;
+	height: 558px;
+	background: #FFFFFF;
+	transform-origin: bottom right;
+	-webkit-transform: rotate(-8deg);
+	-moz-transform: rotate(-8deg);
+	-ms-transform: rotate(-8deg);
+	-o-transform: rotate(-8deg);
+	transform: rotate(-8deg);
+	z-index: 1;
+	padding-right: 190px;
+}
+.text_highlight
+{
+	font-size: 16px;
+	font-weight: 600;
+	color: #535353;
+	line-height: 1.75;
+	margin-top: 35px;
+}
+.about_text
+{
+	margin-top: 28px;
+}
+.about_button
+{
+	margin-top: 50px;
+}
+.about_image
+{
+	position: absolute;
+	right: -20px;
+	bottom: 20px;
+	max-width: 75%;
+}
+.about_image img
+{
+	max-width: 100%;
+}
+
+/*********************************
+7. Team
+*********************************/
+
+.team
+{
+	padding-top: 312px;
+	padding-bottom: 179px;
+}
+.team .section_title
+{
+	color: #fff;
+}
+.team_row
+{
+	margin-top: 70px;
+}
+.team_item
+{
+	width: 100%;
+}
+.team_item img
+{
+	max-width: 100%;
+}
+.team_panel
+{
+	position: absolute;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-o-transform: translateX(-50%);
+	transform: translateX(-50%);
+	bottom: -48px;
+	width: 233px;
+	height: 80px;
+	background: #ff9711;
+}
+.team_name a
+{
+	font-size: 16px;
+	font-weight: 500;
+	color: #fff;
+}
+.team_title
+{
+	font-size: 10px;
+	font-weight: 400;
+	color: #FFFFFF;
+	text-transform: uppercase;
+	margin-top: 3px;
+}
+
+.skills
+{
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+.skills_content
+{
+	padding-bottom: 14px;
+}
+.skills .section_title
+{
+	font-size: 48px;
+	margin-top: 6px;
+}
+.skills_text
+{
+	margin-top: 31px;
+}
+.progress_bar_container
+{
+	margin-top: 52px;
+}
+.pb_item
+{
+	display: block;
+	position: relative;
+	box-sizing: border-box;
+	margin-bottom: 20px;
+}
+.pb_item:last-child
+{
+	margin-bottom: 0px;
+}
+.pb_item h5
+{
+	font-size: 14px;
+	line-height: 0.75;
+	font-weight: 600;
+	margin-top: 33px;
+	color: #262626;
+}
+.progressbar-text
+{
+	top: 37px !important;
+	line-height: 0.75 !important;
+	font-size: 14px !important;
+	font-weight: 600 !important;
+	color: #262626 !important;
+}
+.skill_bars
+{
+	height: 4px;
+}
+.extra
+{
+	width: 100%;
+	height: 100%;
+	padding-left: 40px;
+	padding-right: 40px;
+	padding-top: 50px;
+	padding-bottom: 65px;
+}
+.extra_title
+{
+	font-family: 'Allerta Stencil', sans-serif;
+	font-size: 60px;
+	color: #FFFFFF;
+	line-height: 1.1;
+}
+.extra_text
+{
+	text-align: center;
+	margin-top: 32px;
+}
+.extra_text p
+{
+	color: #FFFFFF;
+	font-weight: 600;
+}
+.extra_button
+{
+	border: solid 1px #FFFFFF;
+	margin-top: 47px;
+}
+
+/*********************************
+9. Parallax
+*********************************/
+
+.parallax-window
+{
+	min-height: 400px;
+	background: transparent;
+}
+.parallax_background
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.background_image
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+}
