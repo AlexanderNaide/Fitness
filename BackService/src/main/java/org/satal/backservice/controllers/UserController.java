@@ -2,7 +2,6 @@ package org.satal.backservice.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.satal.backservice.dto.users.*;
-import org.satal.backservice.entities.users.AuthRequest;
 import org.satal.backservice.entities.users.User;
 import org.satal.backservice.services.*;
 import org.springframework.data.domain.Page;

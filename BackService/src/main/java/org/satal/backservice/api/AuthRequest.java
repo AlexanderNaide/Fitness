@@ -1,11 +1,11 @@
-package org.satal.backservice.entities.users;
+package org.satal.backservice.api;
 
 import lombok.Getter;
 
 @Getter
 public class AuthRequest {
 
-    private String login;
+    private String username;
     private String password;
 
 }
