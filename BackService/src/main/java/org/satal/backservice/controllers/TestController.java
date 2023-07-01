@@ -11,6 +11,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping("/test")
 public class TestController {
@@ -24,8 +26,9 @@ public class TestController {
 
     @GetMapping("/secure")
     @ResponseBody
-    public String secureTest(){
-        return "Secure Hello";
+    public String secureTest(Principal principal){
+        System.out.println(">>>>>>>>>>" + principal.getName());
+        return "Secure Hello" + principal.getName();
     }
 
 }

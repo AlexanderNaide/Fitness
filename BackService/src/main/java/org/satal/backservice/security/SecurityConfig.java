@@ -71,15 +71,15 @@ public class SecurityConfig {
 //        return new InMemoryUserDetailsManager(user);
 //    }
 
-    @Bean
-    public UserDetailsService userDetailsService(){
-        UserDetails user = User.builder()
-                .username("user")
-                .password("pass")
-                .authorities("ADMIN", "MANAGER")
-                .build();
-        return new InMemoryUserDetailsManager(user);
-    }
+//    @Bean
+//    public UserDetailsService userDetailsService(){
+//        UserDetails user = User.builder()
+//                .username("user")
+//                .password("pass")
+//                .authorities("ADMIN", "MANAGER")
+//                .build();
+//        return new InMemoryUserDetailsManager(user);
+//    }
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationProvider... providers){

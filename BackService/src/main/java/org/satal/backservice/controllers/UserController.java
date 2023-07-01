@@ -78,9 +78,9 @@ public class UserController {
     }
 
 
-    @PostConstruct
-    public void init(){
-        implementService.init();
-    }
+//    @PostConstruct
+//    public void init(){
+//        implementService.init();
+//    }
 
 }
