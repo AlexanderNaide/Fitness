@@ -23,6 +23,10 @@ public class RoleService {
         return roleRepository.findById(id);
     }
 
+    public Optional<Role> findByTitle(String title){
+        return roleRepository.findRoleByTitleRole(title);
+    }
+
     public List<Role> findAll(){
         return (List<Role>) roleRepository.findAll();
     }

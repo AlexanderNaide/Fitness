@@ -23,7 +23,6 @@ public class UserController {
 
     private final SpecializationService specializationService;
     private final UserService userService;
-
     private final ImplementService implementService;
 
     @PostMapping()

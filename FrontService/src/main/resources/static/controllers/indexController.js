@@ -1,9 +1,9 @@
 (function () {
     angular
         .module('fitness', ['ngRoute', 'ngStorage'])
-        .config(config);
+        .config(config)
         // .configuration(config)
-        // .run(run);
+        .run(run);
 
 
     function config($routeProvider){
@@ -45,7 +45,7 @@
                 let currentTime = parseInt(new Date().getTime() / 1000);
                 if (currentTime > payload.exp) {
                     console.log("Время жизни токена истекло");
-                    delete $localStorage.webmarketUser;
+                    delete $localStorage.officeOwner;
                     $http.defaults.headers.common.Authorization = '';
                     $location.path('/')
                 } else {
@@ -58,8 +58,7 @@
 })();
 
 angular.module('fitness').controller('indexController', function ($rootScope, $scope, $http, $location, $localStorage) {
-    const contextPath = 'http://localhost:3881/fitness/api/v1';
-    $scope.ownerStatus = null;
+    const contextPath = 'http://localhost:3881/fitness';
 
     // $scope.authentications = function () {
     //     $http({
@@ -85,10 +84,30 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
             .then(function (response) {
                 // console.log(response.data);
                 if(response.data){
+                    console.log("Токен получен")
+                    $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
+                    $localStorage.officeOwner = {username: $scope.auth.username, token: response.data.token};
+
                     // $scope.buttonCart();
                     $('#authRes').click();
-                    $localStorage.officeOwner = response.data;
-                    $scope.ownerStatus = true;
+                    // $localStorage.officeOwner = response.data;
+                    $location.path('/office');
+                }
+            }).catch(function (response) {
+            // console.log(response.data.message)
+            $scope.modalStatus = response.data.message;
+        });
+    };
+
+    $scope.registrations = function () {
+        $http.post(contextPath + '/reg', $scope.auth)
+            .then(function (response) {
+                if(response.data.token){
+                    console.log("Токен получен")
+                    $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
+                    $localStorage.officeOwner = {username: $scope.auth.username, token: response.data.token};
+                    // $scope.buttonCart();
+                    $('#authRes').click();
                     $location.path('/office');
                 }
             }).catch(function (response) {
@@ -99,7 +118,7 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
 
     $scope.clearOwner = function (){
         delete $localStorage.officeOwner;
-        $scope.ownerStatus = false;
+        $http.defaults.headers.common.Authorization = '';
         $location.path('/');
     }
 
