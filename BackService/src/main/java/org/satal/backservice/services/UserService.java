@@ -32,6 +32,10 @@ public class UserService {
         return userRepository.findByName(name);
     }
 
+    public Optional<User> findByLogin(String login){
+        return userRepository.findByLogin(login);
+    }
+
     public Optional<User> getUser(AuthRequest authRequest){
         return userRepository.findUserByLoginAndPassword(authRequest.getLogin(), authRequest.getPassword());
     }

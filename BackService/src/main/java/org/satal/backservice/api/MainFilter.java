@@ -18,41 +18,15 @@ import java.util.List;
 import java.util.Objects;
 
 @Component
-//public class MainFilter extends OncePerRequestFilter/*implements Filter*/ {
-public class MainFilter extends OncePerRequestFilter implements Filter {
+public class MainFilter extends OncePerRequestFilter/*implements Filter*/ {
+//public class MainFilter extends OncePerRequestFilter implements Filter {
 //public class MainFilter implements Filter {
 
-//    private JwtService jwtService;
-//    @Autowired
-//    public void setJwtService(JwtService jwtService) {
-//        this.jwtService = jwtService;
-//    }
-
-/*    @Override
-//    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-    public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-
-        System.out.println("\n\nВходящие данные:\n");
-        System.out.println("URL:");
-        System.out.println(request.getRequestURI());
-        System.out.println("Parameters:");
-        request.getParameterMap().forEach((a, e) -> System.out.println("[" + a + " " + Arrays.toString(e) + "]"));
-        System.out.println(request.getHeader("Authorization"));
-
-        response.setCharacterEncoding("UTF-8");
-
-//        String authorizationHeaderValue = request.getHeader(HttpHeaders.AUTHORIZATION);
-//        if(authorizationHeaderValue != null && authorizationHeaderValue.startsWith("Bearer ")){
-//            String bearerTokenValue = authorizationHeaderValue.substring(7);
-//            String username = jwtService.getUsername(bearerTokenValue);
-//            List<GrantedAuthority> authorityList = jwtService.getAuthorities(bearerTokenValue);
-//            if(Objects.nonNull(username) && Objects.isNull(SecurityContextHolder.getContext().getAuthentication())){
-//                SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(username, null, authorityList));
-//            }
-//        }
-
-        filterChain.doFilter(request, response);
-    }*/
+    private JwtService jwtService;
+    @Autowired
+    public void setJwtService(JwtService jwtService) {
+        this.jwtService = jwtService;
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -65,15 +39,15 @@ public class MainFilter extends OncePerRequestFilter implements Filter {
 
         response.setCharacterEncoding("UTF-8");
 
-//        String authorizationHeaderValue = request.getHeader(HttpHeaders.AUTHORIZATION);
-//        if(authorizationHeaderValue != null && authorizationHeaderValue.startsWith("Bearer ")){
-//            String bearerTokenValue = authorizationHeaderValue.substring(7);
-//            String username = jwtService.getUsername(bearerTokenValue);
-//            List<GrantedAuthority> authorityList = jwtService.getAuthorities(bearerTokenValue);
-//            if(Objects.nonNull(username) && Objects.isNull(SecurityContextHolder.getContext().getAuthentication())){
-//                SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(username, null, authorityList));
-//            }
-//        }
+        String authorizationHeaderValue = request.getHeader(HttpHeaders.AUTHORIZATION);
+        if(authorizationHeaderValue != null && authorizationHeaderValue.startsWith("Bearer ")){
+            String bearerTokenValue = authorizationHeaderValue.substring(7);
+            String username = jwtService.getUsername(bearerTokenValue);
+            List<GrantedAuthority> authorityList = jwtService.getAuthorities(bearerTokenValue);
+            if(Objects.nonNull(username) && Objects.isNull(SecurityContextHolder.getContext().getAuthentication())){
+                SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(username, null, authorityList));
+            }
+        }
 
         filterChain.doFilter(request, response);
     }

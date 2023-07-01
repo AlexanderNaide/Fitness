@@ -1,5 +1,6 @@
 package org.satal.backservice.controllers;
 
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.satal.backservice.api.AuthRequest;
 import org.satal.backservice.dto.users.*;
@@ -77,10 +78,9 @@ public class UserController {
     }
 
 
-//    @PostConstruct
-//    public void init(){
-//        implementService.init();
-//    }
-
+    @PostConstruct
+    public void init(){
+        implementService.init();
+    }
 
 }

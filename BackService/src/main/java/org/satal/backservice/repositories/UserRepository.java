@@ -11,6 +11,6 @@ import java.util.Optional;
 public interface UserRepository extends CrudRepository<User, Long>, JpaSpecificationExecutor<User> {
 
     Optional<User> findByName (String name);
-
+    Optional<User> findByLogin (String login);
     Optional<User> findUserByLoginAndPassword (String login, String password);
 }

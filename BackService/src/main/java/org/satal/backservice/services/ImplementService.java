@@ -3,6 +3,7 @@ package org.satal.backservice.services;
 import lombok.RequiredArgsConstructor;
 import org.satal.backservice.entities.Maintenance;
 import org.satal.backservice.entities.users.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -20,6 +21,8 @@ public class ImplementService {
     private final SeasonTicketService seasonTicketService;
 
     private final MaintenanceService maintenanceService;
+
+    private final BCryptPasswordEncoder passwordEncoder;
 
     public void init(){
         Role superUserRole = new Role();
@@ -61,7 +64,8 @@ public class ImplementService {
 
         User superUser = new User();
         superUser.setLogin("super");
-        superUser.setPassword("123");
+//        superUser.setPassword("123");
+        superUser.setPassword(passwordEncoder.encode("123"));
         superUser.setRole(superUserRole);
         superUser.setName("Super");
         superUser.setSurname("Admin");
@@ -71,7 +75,8 @@ public class ImplementService {
 
         User trainer1 = new User();
         trainer1.setLogin("tr1");
-        trainer1.setPassword("123");
+//        trainer1.setPassword("123");
+        trainer1.setPassword(passwordEncoder.encode("123"));
         trainer1.setRole(trainerRole);
         trainer1.setName("Trainer1");
         trainer1.setSurname("***");
@@ -80,7 +85,8 @@ public class ImplementService {
 
         User trainer2 = new User();
         trainer2.setLogin("tr2");
-        trainer2.setPassword("123");
+//        trainer2.setPassword("123");
+        trainer2.setPassword(passwordEncoder.encode("123"));
         trainer2.setRole(trainerRole);
         trainer2.setName("Trainer2");
         trainer2.setSurname("***");
@@ -89,7 +95,8 @@ public class ImplementService {
 
         User admin = new User();
         admin.setLogin("admin");
-        admin.setPassword("123");
+//        admin.setPassword("123");
+        admin.setPassword(passwordEncoder.encode("123"));
         admin.setRole(adminRole);
         admin.setName("Admin");
         admin.setSurname("***");
@@ -106,7 +113,8 @@ public class ImplementService {
         for (int i = 0; i < 500; i++) {
             User user = new User();
             user.setLogin("user" + i);
-            user.setPassword("123");
+//            user.setPassword("123");
+            user.setPassword(passwordEncoder.encode("123"));
             user.setRole(userRole);
             user.setName("User" + i + "_Name");
             user.setSurname("User" + i + "_Surname");

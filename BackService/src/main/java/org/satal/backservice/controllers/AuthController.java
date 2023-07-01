@@ -34,7 +34,7 @@ public class AuthController {
     @PostMapping("/token")
     public AuthResponse token(@RequestBody AuthRequest request){
 //        log.info("Request from: {}", request.getUsername());
-        System.out.printf("Request from: {%s}", request.getLogin());
+        System.out.printf("Request from: {%s}\n", request.getLogin());
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(request.getLogin(), request.getPassword());
 
         Authentication authenticate = authenticationManager.authenticate(authenticationToken);
