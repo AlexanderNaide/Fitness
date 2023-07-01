@@ -1,6 +1,7 @@
 package org.satal.backservice.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.satal.backservice.api.AuthRequest;
 import org.satal.backservice.dto.users.*;
 import org.satal.backservice.entities.users.User;
 import org.satal.backservice.services.*;
@@ -26,7 +27,10 @@ public class UserController {
 
     @PostMapping()
     public UserDto auth(@RequestBody AuthRequest authRequest){
+        System.out.println(authRequest.getLogin());
+        System.out.println(authRequest.getPassword());
         User user = userService.getUser(authRequest).orElse(null);
+        System.out.println(user.getName());
 
         // пока не подключено Security - не могу кидаться ошибками во фронт.
         // в проекте должно быть как-то так:

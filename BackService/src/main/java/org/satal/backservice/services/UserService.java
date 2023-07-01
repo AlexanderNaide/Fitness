@@ -1,6 +1,7 @@
 package org.satal.backservice.services;
 
 import lombok.RequiredArgsConstructor;
+import org.satal.backservice.api.AuthRequest;
 import org.satal.backservice.entities.users.User;
 import org.satal.backservice.repositories.UserRepository;
 import org.satal.backservice.repositories.UserSpecifications;
