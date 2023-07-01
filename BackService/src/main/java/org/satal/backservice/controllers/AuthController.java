@@ -42,6 +42,11 @@ public class AuthController {
         return new AuthResponse(token);
     }
 
+
+    /***
+     * * TODO * при регистрации говорит что 2 сервлета под одним именем - разобраться.
+     * */
+
     @PostMapping("/reg")
     public AuthResponse register(@RequestBody AuthRequest request){
         log.info("Request registration from: {}", request.getLogin());
