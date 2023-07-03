@@ -13,4 +13,5 @@ public interface UserRepository extends CrudRepository<User, Long>, JpaSpecifica
     Optional<User> findByName (String name);
     Optional<User> findByLogin (String login);
     Optional<User> findUserByLoginAndPassword (String login, String password);
+    Long countAllByIdIsNotNull ();
 }

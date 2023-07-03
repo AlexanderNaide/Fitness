@@ -38,9 +38,9 @@
     }
 
     function run($rootScope, $http, $localStorage, $location) {
-        if ($localStorage.webmarketUser) {
+        if ($localStorage.officeOwner) {
             try {
-                let jwt = $localStorage.webmarketUser.token;
+                let jwt = $localStorage.officeOwner.token;
                 let payload = JSON.parse(atob(jwt.split('.')[1]));
                 let currentTime = parseInt(new Date().getTime() / 1000);
                 if (currentTime > payload.exp) {
@@ -85,12 +85,15 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
                 // console.log(response.data);
                 if(response.data){
                     console.log("Токен получен")
+                    // console.log("Токен получен")
                     $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
-                    $localStorage.officeOwner = {username: $scope.auth.username, token: response.data.token};
-
-                    // $scope.buttonCart();
+                    $localStorage.officeOwner = {
+                        token: response.data.token,
+                        username: response.data.username,
+                        surname: response.data.surname
+                    };
+                    // console.log($localStorage.officeOwner);
                     $('#authRes').click();
-                    // $localStorage.officeOwner = response.data;
                     $location.path('/office');
                 }
             }).catch(function (response) {
@@ -100,13 +103,17 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
     };
 
     $scope.registrations = function () {
-        $http.post(contextPath + '/reg', $scope.auth)
+        $http.post(contextPath + '/auth/reg', $scope.auth)
             .then(function (response) {
-                if(response.data.token){
+                if(response.data){
                     console.log("Токен получен")
                     $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
-                    $localStorage.officeOwner = {username: $scope.auth.username, token: response.data.token};
-                    // $scope.buttonCart();
+                    // $localStorage.officeOwner = {username: $scope.auth.username, token: response.data.token};
+                    $localStorage.officeOwner = {
+                        token: response.data.token,
+                        username: response.data.username,
+                        surname: response.data.surname
+                    };
                     $('#authRes').click();
                     $location.path('/office');
                 }

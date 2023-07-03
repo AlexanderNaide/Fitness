@@ -1,6 +1,5 @@
 package org.satal.backservice.controllers;
 
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.satal.backservice.api.AuthRequest;
 import org.satal.backservice.dto.users.*;
@@ -12,10 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping("/api/v1/super")
 @RequiredArgsConstructor
 @CrossOrigin("*")
-public class UserController {
+public class SuperUserController {
 
     private final MaintenanceService maintenanceService;
 
@@ -24,21 +23,6 @@ public class UserController {
     private final SpecializationService specializationService;
     private final UserService userService;
     private final ImplementService implementService;
-
-    @PostMapping()
-    public UserDto auth(@RequestBody AuthRequest authRequest){
-        System.out.println(authRequest.getLogin());
-        System.out.println(authRequest.getPassword());
-        User user = userService.getUser(authRequest).orElse(null);
-        System.out.println(user.getName());
-
-        // пока не подключено Security - не могу кидаться ошибками во фронт.
-        // в проекте должно быть как-то так:
-//        User user = userService.getUser(authRequest).orElseThrow(() -> new BadCredentialsException("Пользователь не найден"));
-        assert user != null;
-
-        return parseUsers(user);
-    }
 
     private UserDto parseUsers(User user){
         return switch (user.getRole().getTitleRole()){

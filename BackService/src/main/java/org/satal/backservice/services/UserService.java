@@ -24,6 +24,10 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public Long findCount(){
+        return userRepository.countAllByIdIsNotNull();
+    }
+
     public Optional<User> findById(Long id){
         return userRepository.findById(id);
     }
@@ -43,6 +47,8 @@ public class UserService {
 //        return (List<User>) userRepository.findAll();
 //    }
 
+
+    /*TODO: Уйти от спеки. Она здесь нах не нужна. Запросы через where. Пагинацию организовать https://sysout.ru/spring-data-jpa-zaprosy-generiruemye-po-imeni-metoda/ */
     public Page<User> findAll(Long role, Long specialization, String value, Integer page){ // вот тут попробовать переделать на LOnd Id, по каждой сущности
 
 //        System.out.println("Service >>>");

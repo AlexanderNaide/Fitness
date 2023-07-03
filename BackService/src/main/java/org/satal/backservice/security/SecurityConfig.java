@@ -47,8 +47,9 @@ public class SecurityConfig {
         build();*/
 
          return http.
-                 securityMatcher("/secure_test/**").
-                 authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated()).
+                 securityMatcher("/super/**").
+//                 authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated()).
+                 authorizeHttpRequests(authorize -> authorize.anyRequest().hasRole("super")).
 //                httpBasic(Customizer.withDefaults()).
 
                  addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class).

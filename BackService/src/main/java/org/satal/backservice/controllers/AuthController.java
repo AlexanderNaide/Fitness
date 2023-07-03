@@ -21,7 +21,7 @@ import java.util.Collections;
 
 @Slf4j
 @RestController
-@RequestMapping()
+@RequestMapping("/auth")
 @RequiredArgsConstructor
 @CrossOrigin("*")
 public class AuthController {
@@ -32,20 +32,18 @@ public class AuthController {
     private final RoleService roleService;
     private final JwtService jwtService;
 
-    @PostMapping("/auth")
+    @PostMapping()
     public AuthResponse token(@RequestBody AuthRequest request){
         log.info("Request from: {}", request.getLogin());
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(request.getLogin(), request.getPassword());
         Authentication authenticate = authenticationManager.authenticate(authenticationToken);
         UserDetails user = (UserDetails) authenticate.getPrincipal();
         String token = jwtService.generateToken(user);
-        return new AuthResponse(token);
+//        User u = userService.findByLogin(request.getLogin()).orElse(null);
+//        System.out.println(userService.findByLogin(request.getLogin()).get());
+//        return new AuthResponse(token, userService.findByLogin(request.getLogin()));
+        return new AuthResponse(token, userService.findByLogin(request.getLogin()).orElse(null));
     }
-
-
-    /***
-     * * TODO * при регистрации говорит что 2 сервлета под одним именем - разобраться.
-     * */
 
     @PostMapping("/reg")
     public AuthResponse register(@RequestBody AuthRequest request){
@@ -55,6 +53,7 @@ public class AuthController {
         } else {
             User user = new User();
             user.setLogin(request.getLogin());
+//            user.setName("User_" + (userService.findCount() + 1));
             user.setPassword(passwordEncoder.encode(request.getPassword()));
             user.setRole(roleService.findByTitle("user").orElse(null));
             userService.save(user);

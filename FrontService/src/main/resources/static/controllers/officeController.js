@@ -1,8 +1,8 @@
 angular.module('fitness').controller('officeController', function ($scope, $http, $localStorage) {
-    const contextPath = 'http://localhost:3881/fitness/api/v1';
+    $scope.OfficeOwner = undefined;
+    const contextPath = 'http://localhost:3881/fitness/api/v1/super';
     let number = 1;
     let totalNumber;
-    $scope.OfficeOwner = null;
 
     // Преднастройки страницы
     $scope.setStylesOffice = function () {
@@ -14,8 +14,19 @@ angular.module('fitness').controller('officeController', function ($scope, $http
         $('.blog_linc').removeClass('active');
         $('.contact_linc').removeClass('active');
         // document.getElementById('a').style.backgroundImage="url(images/img.jpg)"; // specify the image path here
+        jQuery(window).trigger('resize').trigger('scroll');
         document.getElementById('office_heading').style.backgroundImage="url(../images/contact.jpg)";
+    };
 
+    $scope.setOfficeOwner = function () {
+        $scope.OfficeOwner = {
+            username: $localStorage.officeOwner.username,
+            surname: $localStorage.officeOwner.surname
+        };
+        console.log($scope.OfficeOwner.username);
+        console.log($scope.OfficeOwner.surname);
+        console.log($localStorage.officeOwner.username);
+        console.log($localStorage.officeOwner.surname);
     };
 
     // $scope.OwnerPath = function () {
@@ -42,7 +53,7 @@ angular.module('fitness').controller('officeController', function ($scope, $http
 
     $scope.loadUsers = function () {
         $http({
-            url: contextPath + "/auth/list",
+            url: contextPath + "/list",
             method: 'GET'
         }).then(function (response) {
             // console.log(response.data)
@@ -54,7 +65,7 @@ angular.module('fitness').controller('officeController', function ($scope, $http
 
     $scope.updateUsers = function () {
         $http({
-            url: contextPath + "/auth/updates",
+            url: contextPath + "/updates",
             method: 'POST',
             params: {
                 val: $scope.value !== null ? $scope.value : null,
@@ -96,7 +107,7 @@ angular.module('fitness').controller('officeController', function ($scope, $http
 
     $scope.getRoleList = function () {
         $http({
-            url: contextPath + "/auth/role_list",
+            url: contextPath + "/role_list",
             method: 'POST'
         }).then(function (response) {
             $scope.RoleList = response.data;
@@ -110,7 +121,7 @@ angular.module('fitness').controller('officeController', function ($scope, $http
             if($scope.filter.role.containsSpecializations){
                 $('#spec').prop('disabled', false);
                 $http({
-                    url: contextPath + "/auth/specialization_list",
+                    url: contextPath + "/specialization_list",
                     method: 'POST',
                 }).then(function (response) {
                     if(response.data.length === 0){
@@ -194,6 +205,7 @@ angular.module('fitness').controller('officeController', function ($scope, $http
 
     // $scope.loadMaintenance();
     $scope.setStylesOffice();
+    $scope.setOfficeOwner();
     // $scope.OwnerPath();
     $scope.getRoleList();
     $scope.loadUsers();
