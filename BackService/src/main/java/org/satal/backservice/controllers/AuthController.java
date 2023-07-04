@@ -23,7 +23,7 @@ import java.util.Collections;
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
-@CrossOrigin("*")
+//@CrossOrigin("*")
 public class AuthController {
 
     private final UserService userService;

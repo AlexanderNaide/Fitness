@@ -8,9 +8,21 @@
 
     function config($routeProvider){
         $routeProvider
-            .when('/office', {
-                templateUrl: 'pages/office.html',
-                controller: 'officeController'
+            .when('/user_office', {
+                templateUrl: 'pages/user_office.html',
+                controller: 'userOfficeController'
+            })
+            .when('/trainer_office', {
+                templateUrl: 'pages/trainer_office.html',
+                controller: 'trainerOfficeController'
+            })
+            .when('/admin_office', {
+                templateUrl: 'pages/admin_office.html',
+                controller: 'adminOfficeController'
+            })
+            .when('/super_office', {
+                templateUrl: 'pages/super_office.html',
+                controller: 'superOfficeController'
             })
             .when('/contact', {
                 templateUrl: 'pages/contact.html',
@@ -49,7 +61,7 @@
                     $http.defaults.headers.common.Authorization = '';
                     $location.path('/')
                 } else {
-                    $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.webmarketUser.token;
+                    $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.officeOwner.token;
                 }
             } catch (e) {
             }
@@ -60,44 +72,14 @@
 angular.module('fitness').controller('indexController', function ($rootScope, $scope, $http, $location, $localStorage) {
     const contextPath = 'http://localhost:3881/fitness';
 
-    // $scope.authentications = function () {
-    //     $http({
-    //         url: contextPath + "/auth/1",
-    //         method: 'POST',
-    //         body: $scope.auth
-    //     }).then(function (response) {
-    //         console.log(response);
-    //     });
-    // };
-
-    // $scope.loadUsers = function () {
-    //     $http.post(contextPath + '/1', $scope.auth)
-    //         .then(function (response) {
-    //         // $scope.MaintenanceList = response.data.content;
-    //         // $scope.UserList = response.data;
-    //         console.log(response);
-    //     });
-    // };
-
     $scope.authentications = function () {
         $http.post(contextPath + '/auth', $scope.auth)
             .then(function (response) {
-                // console.log(response.data);
                 if(response.data){
-                    console.log("Токен получен")
-                    // console.log("Токен получен")
-                    $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
-                    $localStorage.officeOwner = {
-                        token: response.data.token,
-                        username: response.data.username,
-                        surname: response.data.surname
-                    };
-                    // console.log($localStorage.officeOwner);
+                    $scope.setOwner(response);
                     $('#authRes').click();
-                    $location.path('/office');
                 }
             }).catch(function (response) {
-            // console.log(response.data.message)
             $scope.modalStatus = response.data.message;
         });
     };
@@ -106,22 +88,37 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
         $http.post(contextPath + '/auth/reg', $scope.auth)
             .then(function (response) {
                 if(response.data){
-                    console.log("Токен получен")
-                    $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
-                    // $localStorage.officeOwner = {username: $scope.auth.username, token: response.data.token};
-                    $localStorage.officeOwner = {
-                        token: response.data.token,
-                        username: response.data.username,
-                        surname: response.data.surname
-                    };
+                    $scope.setOwner(response);
                     $('#authRes').click();
-                    $location.path('/office');
                 }
             }).catch(function (response) {
-            // console.log(response.data.message)
             $scope.modalStatus = response.data.message;
         });
     };
+
+    $scope.setOwner = function (response){
+        $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
+        $localStorage.officeOwner = {
+            token: response.data.token,
+            username: response.data.username,
+            surname: response.data.surname,
+            role: response.data.role
+        };
+        console.log($localStorage.officeOwner.role);
+        $scope.goToOffice();
+    }
+
+    $scope.goToOffice = function (){
+        if($localStorage.officeOwner.role === "super"){
+            $location.path('/super_office');
+        } else if ($localStorage.officeOwner.role === "admin") {
+            $location.path('/admin_office');
+        } else if ($localStorage.officeOwner.role === "trainer") {
+            $location.path('/trainer_office');
+        } else {
+            $location.path('/user_office');
+        }
+    }
 
     $scope.clearOwner = function (){
         delete $localStorage.officeOwner;

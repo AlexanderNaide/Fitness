@@ -1,4 +1,4 @@
-<script src="../controllers/officeController.js"></script>
+<script src="../controllers/userOfficeController.js"></script>
 <div>
 	<!-- Home -->
 
@@ -24,164 +24,324 @@
 <!--		<div class="owl-item"><img src={{officeOwner.avatar}} alt="" style="width: 376px"></div>-->
 <!--	</div>-->
 
+	<H1>Кабинет пользователя</H1>
+
 	<!-- Content -->
 
 	<div class="container" style="min-height: 600px">
 <!--		<div class="tabs_container office-work-place">-->
 		<div class="office-work-place">
 
-			<!-- Панель информации -->
-			<div class="col-10">
+			<div class="tabs_container">
+
+				<div class="tabs d-flex flex-row align-items-center justify-content-start flex-wrap">
+					<div class="tab active">Мои занятия</div>
+					<div class="tab">Мой абонемент и услуги</div>
+					<div class="tab">Личная информация</div>
+				</div>
+
 				<div class="tab_panels">
-
-
-
-
-					<!-- Таблица пользователей -->
 					<div class="tab_panel active">
-<!--						<div class="tab_panel_content d-flex flex-row align-items-start justify-content-start">-->
-							<div class="tab_panel_content">
+						<div class="tab_panel_content d-flex flex-row align-items-start justify-content-start">
 							<div class="tab_text">
 
-								<nav class="navbar bg-light">
-									<div class="container-fluid">
+								<!-- Timetable -->
 
-										<div class="col-8">
-											<!--Фильтр сотрудников-->
-											<div style="text-align: inherit">
-												<label> Роль
-													<select name="role" ng-options="role.titleRole for role in RoleList" ng-change="roleChange()" ng-model="filter.role" class="form-control" style="width: 12vw; margin-right: 2vw">
-														<option value="">- Все -</option>
-													</select>
-												</label>
-												<label> Специализация
-													<!--												<select id="spec" name="sub_cat" ng-options="sub_cat.title for sub_cat in SubCategoriesList" ng-change="manufacturer()" ng-model="filter.sub_cat" class="form-control" style="margin-bottom: 30px">-->
-													<select id="spec" disabled ng-options="spec.specializationTitle for spec in SpecializationList" ng-change="specializationChange()" ng-model="filter.specialization" class="form-control" style="width: 12vw; margin-right: 2vw">
-														<option value="">- Все -</option>
-													</select>
-												</label>
+								<div class="timetable">
+									<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="../images/timetable.jpg" data-speed="0.8"></div>
+									<div class="tt_overlay"></div>
+									<div class="container">
+										<div class="row">
+											<div class="col">
+												<div class="section_title_container">
+													<div class="section_subtitle">welcome to sportfit</div>
+													<div class="section_title">Classes Timetable</div>
+												</div>
+												<div class="timetable_filtering">
+													<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
+														<li class="active item_filter_btn" data-filter="*">All Classes</li>
+														<li class="item_filter_btn" data-filter=".weight_loss">Weight Loss</li>
+														<li class="item_filter_btn" data-filter=".aerobics">Aerobics</li>
+														<li class="item_filter_btn" data-filter=".crossfit">Crossfit</li>
+														<li class="item_filter_btn" data-filter=".fitness">Fitness</li>
+														<li class="item_filter_btn" data-filter=".yoga">Yoga</li>
+														<li class="item_filter_btn" data-filter=".pilates">Pilates</li>
+														<li class="item_filter_btn" data-filter=".stretching">Stretching</li>
+													</ul>
+												</div>
+												<div class="timetable_container d-flex flex-sm-row flex-column align-items-start justify-content-sm-between justify-content-start">
+
+													<!-- Monday -->
+													<div class="tt_day">
+														<div class="tt_title">monday</div>
+														<div class="tt_day_content grid">
+
+															<!-- Class -->
+															<div class="tt_class grid-item weight_loss">
+																<div class="tt_class_title">Weight Loss</div>
+																<div class="tt_class_instructor">Jessica Smith</div>
+																<div class="tt_class_time">9:00</div>
+															</div>
+
+															<!-- Class -->
+															<div class="tt_class grid-item aerobics">
+																<div class="tt_class_title">Aerobics</div>
+																<div class="tt_class_instructor">Jessica Smith</div>
+																<div class="tt_class_time">10:00</div>
+															</div>
+
+															<!-- Class -->
+															<div class="tt_class empty grid-item">
+
+															</div>
+
+															<!-- Class -->
+															<div class="tt_class grid-item aerobics">
+																<div class="tt_class_title">Aerobics</div>
+																<div class="tt_class_instructor">Jessica Smith</div>
+																<div class="tt_class_time">13:00</div>
+															</div>
+
+														</div>
+													</div>
+
+													<!-- Tuesday -->
+													<div class="tt_day">
+														<div class="tt_title">tuesday</div>
+														<div class="tt_day_content grid">
+
+															<!-- Class -->
+															<div class="tt_class grid-item weight_loss">
+																<div class="tt_class_title">Weight Loss</div>
+																<div class="tt_class_instructor">Jessica Smith</div>
+																<div class="tt_class_time">8:00</div>
+															</div>
+
+															<!-- Class -->
+															<div class="tt_class empty grid-item">
+
+															</div>
+
+															<!-- Class -->
+															<div class="tt_class grid-item aerobics">
+																<div class="tt_class_title">Aerobics</div>
+																<div class="tt_class_instructor">Jessica Smith</div>
+																<div class="tt_class_time">12:00</div>
+															</div>
+
+															<!-- Class -->
+															<div class="tt_class grid-item aerobics">
+																<div class="tt_class_title">Aerobics</div>
+																<div class="tt_class_instructor">Jessica Smith</div>
+																<div class="tt_class_time">13:00</div>
+															</div>
+														</div>
+													</div>
+
+													<!-- Wednesday -->
+													<div class="tt_day">
+														<div class="tt_title">wednesday</div>
+														<div class="tt_day_content grid">
+
+															<!-- Class -->
+															<div class="tt_class grid-item crossfit">
+																<div class="tt_class_title">Crossfit</div>
+																<div class="tt_class_instructor">Jessica Smith</div>
+																<div class="tt_class_time">9:00</div>
+															</div>
+
+															<!-- Class -->
+															<div class="tt_class grid-item aerobics">
+																<div class="tt_class_title">Aerobics</div>
+																<div class="tt_class_instructor">Jessica Smith</div>
+																<div class="tt_class_time">10:00</div>
+															</div>
+
+															<!-- Class -->
+															<div class="tt_class empty grid-item">
+
+															</div>
+
+															<!-- Class -->
+															<div class="tt_class grid-item aerobics">
+																<div class="tt_class_title">Aerobics</div>
+																<div class="tt_class_instructor">Jessica Smith</div>
+																<div class="tt_class_time">13:00</div>
+															</div>
+
+															<!-- Class -->
+															<div class="tt_class grid-item aerobics">
+																<div class="tt_class_title">Aerobics</div>
+																<div class="tt_class_instructor">Jessica Smith</div>
+																<div class="tt_class_time">17:00</div>
+															</div>
+														</div>
+													</div>
+
+													<!-- Thursday -->
+													<div class="tt_day">
+														<div class="tt_title">thursday</div>
+														<div class="tt_day_content grid">
+
+															<!-- Class -->
+															<div class="tt_class grid-item fitness">
+																<div class="tt_class_title">Fitness</div>
+																<div class="tt_class_instructor">Jessica Smith</div>
+																<div class="tt_class_time">9:00</div>
+															</div>
+
+															<!-- Class -->
+															<div class="tt_class grid-item aerobics">
+																<div class="tt_class_title">Aerobics</div>
+																<div class="tt_class_instructor">Jessica Smith</div>
+																<div class="tt_class_time">10:00</div>
+															</div>
+
+															<!-- Class -->
+															<div class="tt_class grid-item yoga">
+																<div class="tt_class_title">Yoga</div>
+																<div class="tt_class_instructor">Jessica Smith</div>
+																<div class="tt_class_time">12:00</div>
+															</div>
+
+															<!-- Class -->
+															<div class="tt_class grid-item pilates">
+																<div class="tt_class_title">Pilates</div>
+																<div class="tt_class_instructor">Jessica Smith</div>
+																<div class="tt_class_time">13:00</div>
+															</div>
+														</div>
+													</div>
+
+													<!-- Friday -->
+													<div class="tt_day">
+														<div class="tt_title">friday</div>
+														<div class="tt_day_content grid">
+
+															<!-- Class -->
+															<div class="tt_class grid-item yoga">
+																<div class="tt_class_title">Yoga</div>
+																<div class="tt_class_instructor">Jessica Smith</div>
+																<div class="tt_class_time">9:00</div>
+															</div>
+
+															<!-- Class -->
+															<div class="tt_class grid-item aerobics">
+																<div class="tt_class_title">Aerobics</div>
+																<div class="tt_class_instructor">Jessica Smith</div>
+																<div class="tt_class_time">10:00</div>
+															</div>
+
+															<!-- Class -->
+															<div class="tt_class empty grid-item">
+
+															</div>
+
+															<!-- Class -->
+															<div class="tt_class grid-item aerobics">
+																<div class="tt_class_title">Aerobics</div>
+																<div class="tt_class_instructor">Jessica Smith</div>
+																<div class="tt_class_time">13:00</div>
+															</div>
+														</div>
+													</div>
+
+													<!-- Saturday -->
+													<div class="tt_day">
+														<div class="tt_title">Saturday</div>
+														<div class="tt_day_content grid">
+
+															<!-- Class -->
+															<div class="tt_class grid-item weight_loss">
+																<div class="tt_class_title">Weight Loss</div>
+																<div class="tt_class_instructor">Jessica Smith</div>
+																<div class="tt_class_time">9:00</div>
+															</div>
+
+															<!-- Class -->
+															<div class="tt_class grid-item pilates">
+																<div class="tt_class_title">Pilates</div>
+																<div class="tt_class_instructor">Jessica Smith</div>
+																<div class="tt_class_time">10:00</div>
+															</div>
+
+															<!-- Class -->
+															<div class="tt_class empty grid-item">
+
+															</div>
+
+															<!-- Class -->
+															<div class="tt_class grid-item aerobics">
+																<div class="tt_class_title">Aerobics</div>
+																<div class="tt_class_instructor">Jessica Smith</div>
+																<div class="tt_class_time">13:00</div>
+															</div>
+														</div>
+													</div>
+
+													<!-- Sunday -->
+													<div class="tt_day">
+														<div class="tt_title">Sunday</div>
+														<div class="tt_day_content grid">
+
+															<!-- Class -->
+															<div class="tt_class grid-item stretching">
+																<div class="tt_class_title">Stretching</div>
+																<div class="tt_class_instructor">Jessica Smith</div>
+																<div class="tt_class_time">9:00</div>
+															</div>
+
+															<!-- Class -->
+															<div class="tt_class grid-item aerobics">
+																<div class="tt_class_title">Aerobics</div>
+																<div class="tt_class_instructor">Jessica Smith</div>
+																<div class="tt_class_time">10:00</div>
+															</div>
+
+															<!-- Class -->
+															<div class="tt_class empty grid-item">
+
+															</div>
+
+															<!-- Class -->
+															<div class="tt_class empty grid-item">
+
+															</div>
+														</div>
+													</div>
+
+												</div>
 											</div>
-
-										</div>
-										<div class="col-4">
-											<!--Форма поиска по имени и фамилии-->
-											<label for="search">Поиск по имени или фамилии
-												<input id="search" class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск" ng-model="value" ng-change="resetAndUpdateUsers()">
-											</label>
 										</div>
 									</div>
-								</nav>
-
-								<table class="table table-hover" style="table-layout: fixed">
-									<thead>
-									<tr>
-										<th style="width: 10%">ID</th>
-										<th style="width: 30%">Имя</th>
-										<th style="width: 30%">Фамилия</th>
-										<th style="width: 20%">Роль</th>
-										<th style="width: 10%"></th>
-									</tr>
-									</thead>
-									<tbody>
-									<tr ng-repeat="u in UserList">
-										<td ng-click="getProduct(p.id)" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">{{u.id}}</td>
-										<td ng-click="getProduct(p.id)" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">{{u.name}}</td>
-										<td ng-click="getProduct(p.id)" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">{{u.surname}}</td>
-										<td ng-click="getProduct(p.id)" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">{{u.titleRole}}</td>
-										<td ><button type="button" class="btn btn-outline-secondary" ng-click="addToCart(p.id, 1)" ng-show="ifUserLoggedIn()"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 20 20">
-											<path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
-											<path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg></button></td>
-									</tr>
-									</tbody>
-								</table>
-								<nav class="main_nav pagination">
-									<ul class="d-flex flex-row align-items-center justify-content-start">
-										<li class="{{first}}"><a href="" hng-click="pageStart()">1<<<</a></li>
-										<li class="{{first10}}"><a href="" ng-click="pageClick(-10)">-10<<</a></li>
-										<li class="{{first}}"><a href="" ng-click="pageClick(-1)">-1<</a></li>
-										<li class="active"><a href="">{{page1}}</a></li>
-										<li class="{{last}}"><a href="" ng-click="pageClick(+1)">>+1</a></li>
-										<li class="{{last10}}"><a href="" ng-click="pageClick(+10)">>>+10</a></li>
-										<li class="{{last}}"><a href="" ng-click="pageFinish()">>>>{{totalNumber}}</a></li>
-									</ul>
-								</nav>
-							</div>
-						</div>
-					</div>
-
-					<!-- Таблица Специальностей -->
-					<div class="tab_panel">
-<!--						<div class="tab_panel_content d-flex flex-row align-items-start justify-content-start">-->
-						<div class="tab_panel_content">
-							<div class="tab_text">
-
-								<table class="table table-hover" style="table-layout: fixed">
-									<thead>
-									<tr>
-										<th style="width: 10%">ID</th>
-										<th style="width: 90%">Специализация</th>
-									</tr>
-									</thead>
-									<tbody>
-									<tr ng-repeat="s in SpecializationList">
-										<td ng-click="getSpecializations(s.id)" data-bs-toggle="modal" data-bs-target="#modalSpecializationWindow">{{s.id}}</td>
-										<td ng-click="getSpecializations(s.id)" data-bs-toggle="modal" data-bs-target="#modalSpecializationWindow">{{s.specializationTitle}}</td>
-									</tr>
-									</tbody>
-								</table>
-								<nav class="main_nav pagination">
-									<ul class="d-flex flex-row align-items-center justify-content-start">
-										<li class="{{first}}"><a href="" ng-click="pageSpecClick(-1)">-1<</a></li>
-										<li class="active"><a href="">{{page1}}</a></li>
-										<li class="{{last}}"><a href="" ng-click="pageSpecClick(+1)">>+1</a></li>
-									</ul>
-								</nav>
-							</div>
-						</div>
-					</div>
+								</div>
 
 
-					<div class="tab_panel">
-						<div class="tab_panel_content">
-							<div class="tab_text">
-								<p>2Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
+
+
+
+
+
 							</div>
 						</div>
 					</div>
 					<div class="tab_panel">
 						<div class="tab_panel_content">
 							<div class="tab_text">
-								<p>3Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
+								<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
 							</div>
 						</div>
 					</div>
 					<div class="tab_panel">
 						<div class="tab_panel_content">
 							<div class="tab_text">
-								<p>4Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
+								<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
 							</div>
 						</div>
 					</div>
-
-
-
-
 				</div>
+
 			</div>
-
-
-			<!-- Панель меню -->
-			<div class="col-2">
-<!--				<div class="tabs d-flex flex-row align-items-center justify-content-start flex-wrap">-->
-				<div class="tabs flex-row align-items-center justify-content-start flex-wrap" style="margin-top: 20px">
-					<div class="tab active" ng-click="loadUsers()">Пользователи</div>
-					<div class="tab" ng-click="loadSpecializations(1)">Специализация</div>
-					<div class="tab">Акции</div>
-					<div class="tab">Тарифы</div>
-				</div>
-			</div>
-
 		</div>
 	</div>
 
@@ -452,60 +612,9 @@
 	<script src="../plugins/easing/easing.js"></script>
 	<script src="../plugins/parallax-js-master/parallax.min.js"></script>
 	<script src="../plugins/progressbar/progressbar.min.js"></script>
+	<script src="../js/services.js"></script>
 	<script src="../js/elements.js"></script>
 </div>
 
-<!-- Окно юзера -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content">
-			<form id="form" novalidate>
-				<div class="modal-header">
-					<label class="modal-title" id="exampleModalCenterTitle">Информация о товаре</label>
-				</div>
-				<div class="modal-body">
-					<div class="form-group mb-3">
-						<h5 class="modal-title">{{Product.title}}</h5>
-						<label>Артикул: {{Product.article}}</label>
-						<h6>Цена: {{Product.price}}руб.</h6>
-						<label>Производитель: {{Product.manufacturer}}</label>
-					</div>
-					<div class="form-group mb-3">
-						<h6>Описание:</h6>
-						<div ng-repeat="l in ProductDescription">{{l}} <br></div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
 
-<!-- Окно специализации -->
-<div class="modal fade" id="modalSpecializationWindow" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content">
-<!--			<form id="form" novalidate>-->
-			<form novalidate>
-				<div class="modal-header">
-<!--					<label class="modal-title" id="exampleModalCenterTitle">Информация о товаре</label>-->
-					<label class="modal-title">{{Specialization.message}}</label>
-				</div>
-				<div class="modal-body">
-					<div class="form-group mb-3">
-						<h5 class="modal-title">{{Specialization.message}}</h5>
-						<label>Id:</label>
-						<h6>{{Specialization.id}}</h6>
-						<label>Специализация:</label>
-						<h6>{{Specialization.specializationTitle}}</h6>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
+

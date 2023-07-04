@@ -1,6 +1,6 @@
-angular.module('fitness').controller('officeController', function ($scope, $http, $localStorage) {
+angular.module('fitness').controller('userOfficeController', function ($scope, $http, $localStorage) {
     $scope.OfficeOwner = undefined;
-    const contextPath = 'http://localhost:3881/fitness/api/v1/super';
+    const contextPath = 'http://localhost:3881/fitness/api/v1/user';
     let number = 1;
     let totalNumber;
 
@@ -19,12 +19,14 @@ angular.module('fitness').controller('officeController', function ($scope, $http
             }
         } catch (e) {
         }
-    };
+    }
 
     // Преднастройки страницы
     $scope.setStylesOffice = function () {
         document.getElementById('cssId1').href = 'styles/office.css';
-        document.getElementById('cssId2').href = 'styles/elements_responsive.css';
+        // document.getElementById('cssId2').href = 'styles/elements_responsive.css';
+        // document.getElementById('cssId1').href = 'styles/services.css';
+        document.getElementById('cssId2').href = 'styles/services_responsive.css';
         $('.home_linc').removeClass('active');
         $('.about_linc').removeClass('active');
         $('.services_linc').removeClass('active');
@@ -41,23 +43,6 @@ angular.module('fitness').controller('officeController', function ($scope, $http
             surname: $localStorage.officeOwner.surname
         };
     };
-
-    // $scope.OwnerPath = function () {
-    //     if($scope.OfficeOwner == null){
-    //         $http.post(contextPath + '/auth', $scope.auth)
-    //             .then(function (response) {
-    //                 // console.log(response.data);
-    //                 // if(response.data){
-    //                 //     // $scope.buttonCart();
-    //                 //     $('#authRes').click();
-    //                 //     $scope.officeOwner = response.data;
-    //                 // }
-    //             }).catch(function (response) {
-    //             // console.log(response.data.message)
-    //             $scope.modalStatus = response.data.message;
-    //         });
-    //     }
-    // };
 
 
     /***********************************

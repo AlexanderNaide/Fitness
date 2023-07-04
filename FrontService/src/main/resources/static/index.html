@@ -36,7 +36,10 @@
 	<script src="controllers/servicesController.js"></script>
 	<script src="controllers/blogController.js"></script>
 	<script src="controllers/contactController.js"></script>
-	<script src="controllers/officeController.js"></script>
+	<script src="controllers/userOfficeController.js"></script>
+	<script src="controllers/trainerOfficeController.js"></script>
+	<script src="controllers/adminOfficeController.js"></script>
+	<script src="controllers/superOfficeController.js"></script>
 
 
 
@@ -63,7 +66,7 @@
 								<li class="services_linc"><a href="#!/services">Classes & Services</a></li>
 								<li class="blog_linc"><a href="#!/blog">Blog</a></li>
 								<li class="contact_linc"><a href="#!/contact">Contact</a></li>
-								<li class="office_linc"><a href="#!/office">Личный кабинет</a></li>
+								<li class="office_linc"><a href="" ng-click="goToOffice()">Личный кабинет</a></li>
 							</ul>
 						</nav>
 						<div ng-show="!ownerIsEmpty()" class="button home_button ml-auto mr-auto">

@@ -3,17 +3,19 @@ package org.satal.backservice.controllers;
 import lombok.RequiredArgsConstructor;
 import org.satal.backservice.api.AuthRequest;
 import org.satal.backservice.dto.users.*;
+import org.satal.backservice.entities.users.Specialization;
 import org.satal.backservice.entities.users.User;
 import org.satal.backservice.services.*;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/super")
 @RequiredArgsConstructor
-@CrossOrigin("*")
+//@CrossOrigin("*")
 public class SuperUserController {
 
     private final MaintenanceService maintenanceService;
@@ -60,6 +62,19 @@ public class SuperUserController {
         return specializationService.findList().stream().map(SpecializationDto::new).toList();
     }
 
+    @PostMapping("/spec_list")
+    public Page<SpecializationDto> getAllSpecializations(@RequestParam(required = false, defaultValue = "1") Integer page){
+        if(page < 1){
+            page = 1;
+        }
+        return specializationService.findAll(page).map(SpecializationDto::new);
+    }
+
+    @PostMapping("/spec_one")
+    public SpecializationDto getProductById(@RequestParam Long id){
+        Optional<Specialization> specializationOptional = specializationService.findById(id);
+        return specializationOptional.map(SpecializationDto::new).orElseGet(() -> new SpecializationDto(null, "Специализация с id:" + id + " не найдена."));
+    }
 
 //    @PostConstruct
 //    public void init(){
