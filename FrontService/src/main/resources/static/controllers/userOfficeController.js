@@ -27,11 +27,15 @@ angular.module('fitness').controller('userOfficeController', function ($scope, $
         // document.getElementById('cssId2').href = 'styles/elements_responsive.css';
         // document.getElementById('cssId1').href = 'styles/services.css';
         document.getElementById('cssId2').href = 'styles/services_responsive.css';
-        $('.home_linc').removeClass('active');
-        $('.about_linc').removeClass('active');
-        $('.services_linc').removeClass('active');
-        $('.blog_linc').removeClass('active');
-        $('.contact_linc').removeClass('active');
+
+
+        // $scope.refreshMenu();
+
+        // $('.home_linc').removeClass('active');
+        // $('.about_linc').removeClass('active');
+        // $('.services_linc').removeClass('active');
+        // $('.blog_linc').removeClass('active');
+        // $('.contact_linc').removeClass('active');
         // document.getElementById('a').style.backgroundImage="url(images/img.jpg)"; // specify the image path here
         jQuery(window).trigger('resize').trigger('scroll');
         document.getElementById('office_heading').style.backgroundImage="url(../images/contact.jpg)";
@@ -42,6 +46,45 @@ angular.module('fitness').controller('userOfficeController', function ($scope, $
             username: $localStorage.officeOwner.username,
             surname: $localStorage.officeOwner.surname
         };
+    };
+
+    $scope.refreshMenu = function () {
+        const header = $('.lower_header_content');
+        $scope.slow(header);
+        for (const child of header.children()) {
+            console.log(child);
+            // child.children().get(0).setText("gdhdhbskhjhv")
+            child.remove();
+            // child.getElementsByName('a').setText("jfdjhjfhfh");
+        }
+        let linc = document.createElement('div');
+        linc.classList.add('linc');
+        let a = document.createElement('a');
+        a.setAttribute('href',"yourlink.htm");
+        a.textContent= "link text";
+        linc.append(a);
+        header.append(linc);
+
+        $scope.slow(header);
+    };
+
+    $scope.slow = function (header) {
+        if (header.hasClass('visible')){
+            header.animate({"right":"-2000px"}, "slow").removeClass('visible');
+        } else {
+            header.animate({"right":"0px"}, "slow").addClass('visible');
+        }
+    };
+
+    $scope.test = function () {
+        console.log(">>>>>>>>")
+        $scope.refreshMenu();
+        // const header = $('.lower_header_content');
+        // if (header.hasClass('visible')){
+        //     header.animate({"right":"-2000px"}, "slow").removeClass('visible');
+        // } else {
+        //     header.animate({"right":"0px"}, "slow").addClass('visible');
+        // }
     };
 
 
