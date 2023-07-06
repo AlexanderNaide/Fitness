@@ -1,72 +1,5 @@
-/*(function () {
-    angular
-        .module('fitness.userOffice', ['ngRoute', 'ngStorage'])
-        .config(config)
-        .run(run);
-
-
-    function config($routeProvider){
-        $routeProvider
-            .when('/services', {
-                templateUrl: 'pages/services.html',
-                controller: 'servicesController'
-            })
-            .when('/about', {
-                templateUrl: 'pages/about.html',
-                controller: 'aboutController'
-            })
-            .when('/schedule', {
-                templateUrl: '../pages/user/user_schedule.html',
-                controller: 'userScheduleController'
-            })
-            .otherwise({
-                redirectTo: '/schedule'
-            });
-    }
-
-    function run($rootScope, $http, $localStorage, $location) {
-        if ($localStorage.officeOwner) {
-            try {
-                let jwt = $localStorage.officeOwner.token;
-                let payload = JSON.parse(atob(jwt.split('.')[1]));
-                let currentTime = parseInt(new Date().getTime() / 1000);
-                if (currentTime > payload.exp) {
-                    console.log("Время жизни токена истекло");
-                    delete $localStorage.officeOwner;
-                    $http.defaults.headers.common.Authorization = '';
-                    $location.path('/')
-                } else {
-                    $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.officeOwner.token;
-                }
-            } catch (e) {
-            }
-        }
-    }
-})();*/
-
-
-angular.module('fitness').controller('userOfficeController', function ($scope, $http, $localStorage) {
-    $scope.OfficeOwner = undefined;
+angular.module('fitness').controller('userScheduleController', function ($scope, $http, $localStorage) {
     const contextPath = 'http://localhost:3881/fitness/api/v1/user';
-    let number = 1;
-    let totalNumber;
-
-    // if ($localStorage.officeOwner) {
-    //     try {
-    //         let jwt = $localStorage.officeOwner.token;
-    //         let payload = JSON.parse(atob(jwt.split('.')[1]));
-    //         let currentTime = parseInt(new Date().getTime() / 1000);
-    //         if (currentTime > payload.exp) {
-    //             console.log("Время жизни токена истекло");
-    //             delete $localStorage.officeOwner;
-    //             $http.defaults.headers.common.Authorization = '';
-    //             $location.path('/')
-    //         } else {
-    //             $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.officeOwner.token;
-    //         }
-    //     } catch (e) {
-    //     }
-    // }
 
     // Преднастройки страницы
     $scope.setStylesOffice = function () {
@@ -76,7 +9,7 @@ angular.module('fitness').controller('userOfficeController', function ($scope, $
         document.getElementById('cssId2').href = 'styles/services_responsive.css';
 
 
-        $scope.refreshMenu();
+        // $scope.refreshMenu();
 
         // $('.home_linc').removeClass('active');
         // $('.about_linc').removeClass('active');
@@ -88,34 +21,27 @@ angular.module('fitness').controller('userOfficeController', function ($scope, $
         document.getElementById('office_heading').style.backgroundImage="url(../images/contact.jpg)";
     };
 
-    $scope.setOfficeOwner = function () {
-        $scope.OfficeOwner = {
-            username: $localStorage.officeOwner.username,
-            surname: $localStorage.officeOwner.surname
-        };
-    };
-
     $scope.refreshMenu = async function () {
         let header = $('.lower_header_content');
 
         let information = document.createElement('div');
         information.classList.add('linc');
         let informationLinc = document.createElement('a');
-        informationLinc.setAttribute('href', "#!/schedule");
+        informationLinc.setAttribute('href', "yourlink.htm");
         informationLinc.textContent = "Занятия";
         information.append(informationLinc);
 
         let services = document.createElement('div');
         services.classList.add('linc');
         let servicesLinc = document.createElement('a');
-        servicesLinc.setAttribute('href', "#!/");
+        servicesLinc.setAttribute('href', "yourlink.htm");
         servicesLinc.textContent = "Абонемент";
         services.append(servicesLinc);
 
         let info = document.createElement('div');
         info.classList.add('linc');
         let infoLinc = document.createElement('a');
-        infoLinc.setAttribute('href', "#!/");
+        infoLinc.setAttribute('href', "yourlink.htm");
         infoLinc.textContent = "Информация";
         info.append(infoLinc);
 

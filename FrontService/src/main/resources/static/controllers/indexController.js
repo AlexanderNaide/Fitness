@@ -1,55 +1,74 @@
 (function () {
     angular
-        .module('fitness', ['ngRoute', 'ngStorage'])
-        .config(config)
-        // .configuration(config)
+            // .module('fitness', ['ui.router', 'ngRoute', 'ngStorage'])
+            // .config(config)
+            // .run(run);
+
+
+        .module('fitness', ['ui.router', 'ngRoute', 'ngStorage'])
+        .config(function($stateProvider, $urlRouterProvider, $locationProvider){
+
+            $urlRouterProvider.otherwise("/");
+
+            $stateProvider
+                .state('home', {
+                    url: '/',
+                    templateUrl: 'pages/home.html',
+                    controller: 'homeController'
+                })
+                .state('about', {
+                    url: '/about',
+                    templateUrl: 'pages/about.html',
+                    controller: 'aboutController'
+                })
+                .state('services', {
+                    url: '/services',
+                    templateUrl: 'pages/services.html',
+                    controller: 'servicesController'
+                })
+                .state('blog', {
+                    url: '/blog',
+                    templateUrl: 'pages/blog.html',
+                    controller: 'blogController'
+                })
+                .state('contact', {
+                    url: '/contact',
+                    templateUrl: 'pages/contact.html',
+                    controller: 'contactController'
+                })
+                .state('user_office', {
+                    url: '/user_office',
+                    templateUrl: 'pages/user_office.html',
+                    controller: 'userOfficeController'
+                })
+                .state('trainer_office', {
+                    url: '/trainer_office',
+                    templateUrl: 'pages/trainer_office.html',
+                    controller: 'trainerOfficeController'
+                })
+                .state('admin_office', {
+                    url: '/admin_office',
+                    templateUrl: 'pages/admin_office.html',
+                    controller: 'adminOfficeController'
+                })
+                .state('super_office', {
+                    url: '/super_office',
+                    templateUrl: 'pages/super_office.html',
+                    controller: 'superOfficeController'
+                })
+                .state('user_office.schedule', {
+                    // parent: 'user_office',
+                    url: '/schedule',
+                    templateUrl: '../pages/user/user_schedule.html',
+                    controller: 'userScheduleController'
+                })
+
+        })
         .run(run);
 
-
-    function config($routeProvider){
-        $routeProvider
-            .when('/user_office', {
-                templateUrl: 'pages/user_office.html',
-                controller: 'userOfficeController'
-            })
-            .when('/trainer_office', {
-                templateUrl: 'pages/trainer_office.html',
-                controller: 'trainerOfficeController'
-            })
-            .when('/admin_office', {
-                templateUrl: 'pages/admin_office.html',
-                controller: 'adminOfficeController'
-            })
-            .when('/super_office', {
-                templateUrl: 'pages/super_office.html',
-                controller: 'superOfficeController'
-            })
-            .when('/contact', {
-                templateUrl: 'pages/contact.html',
-                controller: 'contactController'
-            })
-            .when('/blog', {
-                templateUrl: 'pages/blog.html',
-                controller: 'blogController'
-            })
-            .when('/services', {
-                templateUrl: 'pages/services.html',
-                controller: 'servicesController'
-            })
-            .when('/about', {
-                templateUrl: 'pages/about.html',
-                controller: 'aboutController'
-            })
-            .when('/', {
-                templateUrl: 'pages/home.html',
-                controller: 'homeController'
-            })
-            .otherwise({
-                redirectTo: '/'
-            });
-    }
-
     function run($rootScope, $http, $localStorage, $location) {
+
+        console.log("Запускаемся");
         if ($localStorage.officeOwner) {
             try {
                 let jwt = $localStorage.officeOwner.token;
