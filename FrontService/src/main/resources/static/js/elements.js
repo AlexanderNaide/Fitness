@@ -299,7 +299,8 @@ $(document).ready(function()
 						ease: Circ.easeOut, 
 						onUpdate:function()
 						{
-							document.getElementsByClassName('milestone_counter')[i].innerHTML = signBefore + counter.value + signAfter;
+							// надо разбираться
+							// document.getElementsByClassName('milestone_counter')[i].innerHTML = signBefore + counter.value + signAfter;
 						}
 		    		});
 		    	})

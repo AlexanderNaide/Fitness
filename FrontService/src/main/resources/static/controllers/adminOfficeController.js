@@ -1,4 +1,4 @@
-angular.module('fitness').controller('officeController', function ($scope, $http, $localStorage) {
+angular.module('fitness').controller('adminOfficeController', function ($scope, $http, $localStorage) {
     $scope.OfficeOwner = undefined;
     const contextPath = 'http://localhost:3881/fitness/api/v1/super';
     let number = 1;

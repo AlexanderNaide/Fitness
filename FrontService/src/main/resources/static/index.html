@@ -36,7 +36,10 @@
 	<script src="controllers/servicesController.js"></script>
 	<script src="controllers/blogController.js"></script>
 	<script src="controllers/contactController.js"></script>
-	<script src="controllers/officeController.js"></script>
+	<script src="controllers/userOfficeController.js"></script>
+	<script src="controllers/trainerOfficeController.js"></script>
+	<script src="controllers/adminOfficeController.js"></script>
+	<script src="controllers/superOfficeController.js"></script>
 
 
 
@@ -51,33 +54,54 @@
 		<div class="container">
 			<div class="row">
 				<div class="col">
-					<div class="header_content d-flex flex-row align-items-center justify-content-start trans_400">
-						<a href="#!/">
-<!--							<div class="logo d-flex flex-row align-items-center justify-content-start"><img src="images/dot.png" alt=""><div>Sport<span>fit</span></div></div>-->
-							<div class="logo d-flex flex-row align-items-center justify-content-start"><img src="images/logo.png" alt=""></div>
-						</a>
-						<nav class="main_nav">
-							<ul class="d-flex flex-row align-items-center justify-content-start">
-<!--								<li class="active"><a href="index.html">Home</a></li>-->
-								<li class="about_linc"><a href="#!/about">About us</a></li>
-								<li class="services_linc"><a href="#!/services">Classes & Services</a></li>
-								<li class="blog_linc"><a href="#!/blog">Blog</a></li>
-								<li class="contact_linc"><a href="#!/contact">Contact</a></li>
-								<li class="office_linc"><a href="#!/office">Личный кабинет</a></li>
-							</ul>
-						</nav>
-						<div ng-show="!ownerIsEmpty()" class="button home_button ml-auto mr-auto">
-							<a href="#" data-bs-toggle="modal" data-bs-target="#modalAuthentication">Войти</a>
+<!--					<div class="header_content d-flex flex-row align-items-center justify-content-start trans_400">-->
+					<div class="upper_header_content d-flex flex-row align-items-center justify-content-start trans_400">
+						<div class="col-5">
+							<a href="#!/">
+								<!--							<div class="logo d-flex flex-row align-items-center justify-content-start"><img src="images/dot.png" alt=""><div>Sport<span>fit</span></div></div>-->
+								<div class="logo d-flex flex-row align-items-center justify-content-start"><img src="images/logo.png" alt=""></div>
+							</a>
 						</div>
-
-						<div ng-show="ownerIsEmpty()" class="phone d-flex flex-row align-items-center justify-content-start ml-auto">
-							<div ng-click="clearOwner()" style="cursor: pointer">Выйти</div>
+						<div class="col-3">
+							<div class="phone d-flex flex-row align-items-center justify-content-start ml-auto">
+								<i class="fa fa-phone" aria-hidden="true"></i>
+								<div>+7 (4712) 340-000</div>
+							</div>
 						</div>
+						<div class="col-4">
+							<!--						<div ng-show="!ownerIsEmpty()" class="button home_button ml-auto mr-auto">-->
+							<!--							<a href="#" data-bs-toggle="modal" data-bs-target="#modalAuthentication">Войти</a>-->
+							<!--						</div>-->
 
-<!--						<div ng-show="!ownerStatus" class="phone d-flex flex-row align-items-center justify-content-start ml-auto">-->
-<!--&lt;!&ndash;							<i class="fa fa-phone" aria-hidden="true"></i>&ndash;&gt;-->
-<!--							<div>Выйти</div>-->
-<!--						</div>-->
+							<div ng-show="!ownerIsEmpty()" class="button button_log">
+								<a href="" data-bs-toggle="modal" data-bs-target="#modalAuthentication">Войти</a>
+							</div>
+
+<!--							<div ng-show="ownerIsEmpty()" class="phone d-flex flex-row align-items-center justify-content-start ml-auto">-->
+							<div ng-show="ownerIsEmpty()" class="button button_log">
+<!--								<div ng-click="clearOwner()" style="cursor: pointer">Выйти</div>-->
+								<a href="#!/" ng-click="clearOwner()">Выйти</a>
+							</div>
+
+						</div>
+					</div>
+
+
+<!--					<div class="header_content d-flex flex-row align-items-center justify-content-start trans_400">-->
+<!--					<div class="lower_header_content d-flex flex-row align-items-center justify-content-start trans_400">-->
+					<div class="lower_header_content d-flex flex-row align-items-center justify-content-around trans_400 visible">
+							<div class="linc about_linc">
+								<a href="#!/about">О клубе</a>
+							</div>
+							<div class="linc services_linc">
+								<a href="#!/services">Сервисы и услуги</a>
+							</div>
+							<div class="linc blog_linc">
+								<a href="#!/blog">Блог</a>
+							</div>
+							<div class="linc contact_linc">
+								<a href="#!/contact">Контакты</a>
+							</div>
 					</div>
 				</div>
 			</div>

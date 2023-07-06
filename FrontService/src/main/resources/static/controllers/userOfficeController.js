@@ -1,6 +1,6 @@
-angular.module('fitness').controller('officeController', function ($scope, $http, $localStorage) {
+angular.module('fitness').controller('userOfficeController', function ($scope, $http, $localStorage) {
     $scope.OfficeOwner = undefined;
-    const contextPath = 'http://localhost:3881/fitness/api/v1/super';
+    const contextPath = 'http://localhost:3881/fitness/api/v1/user';
     let number = 1;
     let totalNumber;
 
@@ -10,7 +10,7 @@ angular.module('fitness').controller('officeController', function ($scope, $http
             let payload = JSON.parse(atob(jwt.split('.')[1]));
             let currentTime = parseInt(new Date().getTime() / 1000);
             if (currentTime > payload.exp) {
-                console.log("Время жизни токена истекло");
+                console.log("Р’СЂРµРјСЏ Р¶РёР·РЅРё С‚РѕРєРµРЅР° РёСЃС‚РµРєР»Рѕ");
                 delete $localStorage.officeOwner;
                 $http.defaults.headers.common.Authorization = '';
                 $location.path('/')
@@ -19,17 +19,23 @@ angular.module('fitness').controller('officeController', function ($scope, $http
             }
         } catch (e) {
         }
-    };
+    }
 
-    // Преднастройки страницы
+    // РџСЂРµРґРЅР°СЃС‚СЂРѕР№РєРё СЃС‚СЂР°РЅРёС†С‹
     $scope.setStylesOffice = function () {
         document.getElementById('cssId1').href = 'styles/office.css';
-        document.getElementById('cssId2').href = 'styles/elements_responsive.css';
-        $('.home_linc').removeClass('active');
-        $('.about_linc').removeClass('active');
-        $('.services_linc').removeClass('active');
-        $('.blog_linc').removeClass('active');
-        $('.contact_linc').removeClass('active');
+        // document.getElementById('cssId2').href = 'styles/elements_responsive.css';
+        // document.getElementById('cssId1').href = 'styles/services.css';
+        document.getElementById('cssId2').href = 'styles/services_responsive.css';
+
+
+        // $scope.refreshMenu();
+
+        // $('.home_linc').removeClass('active');
+        // $('.about_linc').removeClass('active');
+        // $('.services_linc').removeClass('active');
+        // $('.blog_linc').removeClass('active');
+        // $('.contact_linc').removeClass('active');
         // document.getElementById('a').style.backgroundImage="url(images/img.jpg)"; // specify the image path here
         jQuery(window).trigger('resize').trigger('scroll');
         document.getElementById('office_heading').style.backgroundImage="url(../images/contact.jpg)";
@@ -42,26 +48,57 @@ angular.module('fitness').controller('officeController', function ($scope, $http
         };
     };
 
-    // $scope.OwnerPath = function () {
-    //     if($scope.OfficeOwner == null){
-    //         $http.post(contextPath + '/auth', $scope.auth)
-    //             .then(function (response) {
-    //                 // console.log(response.data);
-    //                 // if(response.data){
-    //                 //     // $scope.buttonCart();
-    //                 //     $('#authRes').click();
-    //                 //     $scope.officeOwner = response.data;
-    //                 // }
-    //             }).catch(function (response) {
-    //             // console.log(response.data.message)
-    //             $scope.modalStatus = response.data.message;
-    //         });
-    //     }
-    // };
+    $scope.refreshMenu = async function () {
+        let header = $('.lower_header_content');
+
+        let information = document.createElement('div');
+        information.classList.add('linc');
+        let informationLinc = document.createElement('a');
+        informationLinc.setAttribute('href', "yourlink.htm");
+        informationLinc.textContent = "Р—Р°РЅСЏС‚РёСЏ";
+        information.append(informationLinc);
+
+        let services = document.createElement('div');
+        services.classList.add('linc');
+        let servicesLinc = document.createElement('a');
+        servicesLinc.setAttribute('href', "yourlink.htm");
+        servicesLinc.textContent = "РђР±РѕРЅРµРјРµРЅС‚";
+        services.append(servicesLinc);
+
+        let info = document.createElement('div');
+        info.classList.add('linc');
+        let infoLinc = document.createElement('a');
+        infoLinc.setAttribute('href', "yourlink.htm");
+        infoLinc.textContent = "РРЅС„РѕСЂРјР°С†РёСЏ";
+        info.append(infoLinc);
+
+        await $scope.slow(header);
+        for (let ch of header.children()) {
+            ch.remove();
+        }
+
+        header.append(information);
+        header.append(services);
+        header.append(info);
+
+        $scope.slow(header);
+    };
+
+    $scope.slow = function (header) {
+        if (header.hasClass('visible')){
+            header.animate({"right":"-4000px"}, "slow").removeClass('visible');
+        } else {
+            header.animate({"right":"0px"}, "slow").addClass('visible');
+        }
+    };
+
+    $scope.test = function () {
+        $scope.refreshMenu();
+    };
 
 
     /***********************************
-     * Управление таблицей пользователей
+     * РЈРїСЂР°РІР»РµРЅРёРµ С‚Р°Р±Р»РёС†РµР№ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
      ***********************************/
 
     $scope.loadUsers = function () {
@@ -167,7 +204,7 @@ angular.module('fitness').controller('officeController', function ($scope, $http
 
 
     /***********************************
-     * Управление таблицей специализаций
+     * РЈРїСЂР°РІР»РµРЅРёРµ С‚Р°Р±Р»РёС†РµР№ СЃРїРµС†РёР°Р»РёР·Р°С†РёР№
      ***********************************/
 
     $scope.loadSpecializations = function (pageNumber) {
