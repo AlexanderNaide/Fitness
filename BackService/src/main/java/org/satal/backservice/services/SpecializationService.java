@@ -28,7 +28,11 @@ public class SpecializationService {
         return (List<Specialization>) specializationRepository.findAll();
     }
 
+//    public Page<Specialization> findAll(Integer page){
+//        return specializationRepository.findAll(PageRequest.of(page, 15));
+//    }
+
     public Page<Specialization> findAll(Integer page){
-        return specializationRepository.findAll(PageRequest.of(page, 15));
+        return specializationRepository.findByIdNotNull(PageRequest.of(page - 1, 15));
     }
 }

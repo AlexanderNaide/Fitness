@@ -1,7 +1,7 @@
 package org.satal.backservice.services;
 
 import lombok.RequiredArgsConstructor;
-import org.satal.backservice.entities.users.AuthRequest;
+import org.satal.backservice.api.AuthRequest;
 import org.satal.backservice.entities.users.User;
 import org.satal.backservice.repositories.UserRepository;
 import org.satal.backservice.repositories.UserSpecifications;
@@ -24,12 +24,20 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public Long findCount(){
+        return userRepository.countAllByIdIsNotNull();
+    }
+
     public Optional<User> findById(Long id){
         return userRepository.findById(id);
     }
 
     public Optional<User> findByName(String name){
         return userRepository.findByName(name);
+    }
+
+    public Optional<User> findByLogin(String login){
+        return userRepository.findByLogin(login);
     }
 
     public Optional<User> getUser(AuthRequest authRequest){
@@ -39,6 +47,8 @@ public class UserService {
 //        return (List<User>) userRepository.findAll();
 //    }
 
+
+    /*TODO: Уйти от спеки. Она здесь нах не нужна. Запросы через where. Пагинацию организовать https://sysout.ru/spring-data-jpa-zaprosy-generiruemye-po-imeni-metoda/ */
     public Page<User> findAll(Long role, Long specialization, String value, Integer page){ // вот тут попробовать переделать на LOnd Id, по каждой сущности
 
 //        System.out.println("Service >>>");
