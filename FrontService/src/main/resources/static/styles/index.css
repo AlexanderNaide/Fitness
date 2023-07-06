@@ -414,6 +414,13 @@ section
 	/*height: 65px;*/
 	height: 55px;
 }
+/*.slow,*/
+/*.slow.scrolled*/
+/*{*/
+/*	position: relative;*/
+/*	left: 1000px;*/
+/*	opacity: 0;*/
+/*}*/
 .logo
 {
 	/*left: -30px;*/
