@@ -7,20 +7,64 @@ angular.module('fitness').controller('homeController', function ($scope, $http, 
         document.getElementById('cssId1').href = 'styles/main_styles.css';
         document.getElementById('cssId2').href = 'styles/responsive.css';
         // console.log(document.scripts);
-        for (let i = 0; i < document.scripts.length; i++) {
-            document.scripts.item(i).remove();
-        }
+        // for (let i = 0; i < document.scripts.length; i++) {
+        //     document.scripts.item(i).remove();
+        // }
+
+        jQuery(window).trigger('resize').trigger('scroll');
 
         $('.home_linc').addClass('active');
         $('.about_linc').removeClass('active');
         $('.services_linc').removeClass('active');
         $('.blog_linc').removeClass('active');
         $('.contact_linc').removeClass('active');
+
+        console.log(window.location.href);
     };
 
+    $scope.refreshMenu = async function () {
+        let header = $('.lower_header_content');
 
+        let information = document.createElement('div');
+        information.classList.add('linc');
+        let informationLinc = document.createElement('a');
+        informationLinc.setAttribute('href', "#!/schedule");
+        informationLinc.textContent = "Занятия";
+        information.append(informationLinc);
 
+        let services = document.createElement('div');
+        services.classList.add('linc');
+        let servicesLinc = document.createElement('a');
+        servicesLinc.setAttribute('href', "#!/");
+        servicesLinc.textContent = "Абонемент";
+        services.append(servicesLinc);
 
+        let info = document.createElement('div');
+        info.classList.add('linc');
+        let infoLinc = document.createElement('a');
+        infoLinc.setAttribute('href', "#!/");
+        infoLinc.textContent = "Информация";
+        info.append(infoLinc);
+
+        await $scope.slow(header);
+        for (let ch of header.children()) {
+            ch.remove();
+        }
+
+        header.append(information);
+        header.append(services);
+        header.append(info);
+
+        $scope.slow(header);
+    };
+
+    $scope.slow = function (header) {
+        if (header.hasClass('visible')){
+            header.animate({"right":"-4000px"}, "slow").removeClass('visible');
+        } else {
+            header.animate({"right":"0px"}, "slow").addClass('visible');
+        }
+    };
 
     // $scope.loadMaintenance = function () {
     //     $http({

@@ -6,20 +6,24 @@ angular.module('fitness').controller('aboutController', function ($scope, $http,
         document.getElementById('cssId1').href = 'styles/about.css';
         document.getElementById('cssId2').href = 'styles/about_responsive.css';
 
-        for (let i = 0; i < document.scripts.length; i++) {
-            document.scripts.item(i).remove();
-        }
+        // for (let i = 0; i < document.scripts.length; i++) {
+        //     document.scripts.item(i).remove();
+        // }
 
         // $(this).removeData('image');
         // $(this).removeData('src');
         // $(this).removeData();
         // $(this).cleanData();
 
+        jQuery(window).trigger('resize').trigger('scroll');
+
         $('.home_linc').removeClass('active');
         $('.about_linc').addClass('active');
         $('.services_linc').removeClass('active');
         $('.blog_linc').removeClass('active');
         $('.contact_linc').removeClass('active');
+
+        console.log(window.location.href);
 
     };
 

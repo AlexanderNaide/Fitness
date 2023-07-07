@@ -35,7 +35,7 @@ $(document).ready(function()
 			speed: 0.8
 		});
 
-	jQuery(window).trigger('resize').trigger('scroll');
+	// jQuery(window).trigger('resize').trigger('scroll');
 
 	$(window).on('resize', function()
 	{

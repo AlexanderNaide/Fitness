@@ -16,6 +16,8 @@ angular.module('fitness').controller('blogController', function ($scope, $http, 
         $('.blog_linc').addClass('active');
         $('.contact_linc').removeClass('active');
 
+        console.log(window.location.href);
+
     };
 
     // $scope.loadMaintenance = function () {

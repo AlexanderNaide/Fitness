@@ -67,8 +67,7 @@
         .run(run);
 
     function run($rootScope, $http, $localStorage, $location) {
-
-        console.log("Запускаемся");
+        console.log("Запускается проверка $localStorage.officeOwner");
         if ($localStorage.officeOwner) {
             try {
                 let jwt = $localStorage.officeOwner.token;
@@ -90,6 +89,53 @@
 
 angular.module('fitness').controller('indexController', function ($rootScope, $scope, $http, $location, $localStorage) {
     const contextPath = 'http://localhost:3881/fitness';
+
+    $scope.refreshMenu = async function () {
+
+
+
+        let header = $('.lower_header_content');
+
+        let information = document.createElement('div');
+        information.classList.add('linc');
+        let informationLinc = document.createElement('a');
+        informationLinc.setAttribute('href', "#!/schedule");
+        informationLinc.textContent = "Занятия";
+        information.append(informationLinc);
+
+        let services = document.createElement('div');
+        services.classList.add('linc');
+        let servicesLinc = document.createElement('a');
+        servicesLinc.setAttribute('href', "#!/");
+        servicesLinc.textContent = "Абонемент";
+        services.append(servicesLinc);
+
+        let info = document.createElement('div');
+        info.classList.add('linc');
+        let infoLinc = document.createElement('a');
+        infoLinc.setAttribute('href', "#!/");
+        infoLinc.textContent = "Информация";
+        info.append(infoLinc);
+
+        await $scope.slow(header);
+        for (let ch of header.children()) {
+            ch.remove();
+        }
+
+        header.append(information);
+        header.append(services);
+        header.append(info);
+
+        $scope.slow(header);
+    };
+
+    $scope.slow = function (header) {
+        if (header.hasClass('visible')){
+            header.animate({"right":"-4000px"}, "slow").removeClass('visible');
+        } else {
+            header.animate({"right":"0px"}, "slow").addClass('visible');
+        }
+    };
 
     $scope.authentications = function () {
         $http.post(contextPath + '/auth', $scope.auth)
