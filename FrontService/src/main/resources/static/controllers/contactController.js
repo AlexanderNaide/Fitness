@@ -31,5 +31,6 @@ angular.module('fitness').controller('contactController', function ($scope, $htt
 
     // $scope.loadMaintenance();
     $scope.setStylesAbout();
+    // $scope.starting();
 
 });

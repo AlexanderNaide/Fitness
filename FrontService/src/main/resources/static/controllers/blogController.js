@@ -16,7 +16,7 @@ angular.module('fitness').controller('blogController', function ($scope, $http, 
         $('.blog_linc').addClass('active');
         $('.contact_linc').removeClass('active');
 
-        console.log(window.location.href);
+        // console.log(window.location.href);
 
     };
 
@@ -33,5 +33,6 @@ angular.module('fitness').controller('blogController', function ($scope, $http, 
 
     // $scope.loadMaintenance();
     $scope.setStylesAbout();
+    // $scope.starting();
 
 });

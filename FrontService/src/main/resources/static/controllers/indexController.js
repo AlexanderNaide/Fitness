@@ -67,7 +67,6 @@
         .run(run);
 
     function run($rootScope, $http, $localStorage, $location) {
-        console.log("Запускается проверка $localStorage.officeOwner");
         if ($localStorage.officeOwner) {
             try {
                 let jwt = $localStorage.officeOwner.token;
@@ -90,50 +89,77 @@
 angular.module('fitness').controller('indexController', function ($rootScope, $scope, $http, $location, $localStorage) {
     const contextPath = 'http://localhost:3881/fitness';
 
-    $scope.refreshMenu = async function () {
-
-
-
+    $scope.refreshSideMenu = async function () {
         let header = $('.lower_header_content');
 
-        let information = document.createElement('div');
-        information.classList.add('linc');
-        let informationLinc = document.createElement('a');
-        informationLinc.setAttribute('href', "#!/schedule");
-        informationLinc.textContent = "Занятия";
-        information.append(informationLinc);
+        let home = document.createElement('div');
+        home.classList.add('linc home_linc');
+        let homeLinc = document.createElement('a');
+        homeLinc.setAttribute('href', "#!/");
+        homeLinc.textContent = "Главная";
+        home.append(homeLinc);
+
+        let about = document.createElement('div');
+        about.classList.add('linc about_linc');
+        let aboutLinc = document.createElement('a');
+        aboutLinc.setAttribute('href', "#!/about");
+        aboutLinc.textContent = "О клубе";
+        about.append(aboutLinc);
 
         let services = document.createElement('div');
-        services.classList.add('linc');
+        services.classList.add('linc services_linc');
         let servicesLinc = document.createElement('a');
-        servicesLinc.setAttribute('href', "#!/");
-        servicesLinc.textContent = "Абонемент";
+        servicesLinc.setAttribute('href', "#!/services");
+        servicesLinc.textContent = "Сервисы и услуги";
         services.append(servicesLinc);
 
-        let info = document.createElement('div');
-        info.classList.add('linc');
-        let infoLinc = document.createElement('a');
-        infoLinc.setAttribute('href', "#!/");
-        infoLinc.textContent = "Информация";
-        info.append(infoLinc);
+        let blog = document.createElement('div');
+        blog.classList.add('linc blog_linc');
+        let blogLinc = document.createElement('a');
+        blogLinc.setAttribute('href', "#!/blog");
+        blogLinc.textContent = "Блог";
+        blog.append(blogLinc);
+
+        let contact = document.createElement('div');
+        contact.classList.add('linc contact_linc');
+        let contactLinc = document.createElement('a');
+        contactLinc.setAttribute('href', "#!/contact");
+        contactLinc.textContent = "Контакты";
+        contact.append(contactLinc);
 
         await $scope.slow(header);
+
         for (let ch of header.children()) {
             ch.remove();
         }
 
-        header.append(information);
+        header.append(home);
+        header.append(about);
         header.append(services);
-        header.append(info);
+        header.append(blog);
+        header.append(contact);
+        $scope.setOfficeLinc();
+        header.addClass('side_menu');
 
         $scope.slow(header);
     };
 
-    $scope.slow = function (header) {
-        if (header.hasClass('visible')){
-            header.animate({"right":"-4000px"}, "slow").removeClass('visible');
+    $scope.slow = function (element) {
+        if (element.hasClass('visible')){
+            if (element.hasClass('side_menu')){
+                element.animate({"right":"4000px"}, "slow");
+            } else {
+                element.animate({"left":"4000px"}, "slow");
+            }
+            element.
+            removeClass('visible').
+            removeClass('side_menu');
         } else {
-            header.animate({"right":"0px"}, "slow").addClass('visible');
+            if (element.hasClass('side_menu')){
+                element.animate({"right":"0px"}, "slow").addClass('visible');
+            } else {
+                element.animate({"left":"0px"}, "slow").addClass('visible');
+            }
         }
     };
 
@@ -189,7 +215,29 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
         delete $localStorage.officeOwner;
         $http.defaults.headers.common.Authorization = '';
         $location.path('/');
-    }
+        $scope.deleteOfficeLinc();
+    };
+
+    $scope.test1 = function () {
+        let linc = $('.my_fitness_linc');
+        const p1 = Promise.resolve(linc.animate({left: 600}, {duration: 400, queue: false}).promise());
+        Promise.all([p1]).then(function () {
+            return $('.lower_header_content').children('.my_fitness_linc').remove();
+        });
+    };
+
+    $scope.deleteOfficeLinc = function (){
+        Promise.resolve($('.my_fitness_linc').animate({left: 600}, {duration: 400, queue: false}).promise()).
+        then(function () {
+            return $('.lower_header_content').children('.my_fitness_linc').remove();
+        });
+
+        // let linc = $('.my_fitness_linc');
+        // const p1 = Promise.resolve(linc.animate({left: 600}, {duration: 400, queue: false}).promise());
+        // Promise.all([p1]).then(function () {
+        //     return $('.lower_header_content').children('.my_fitness_linc').remove();
+        // });
+    };
 
     $scope.ownerIsEmpty = function (){
         return !!$localStorage.officeOwner;
@@ -301,12 +349,33 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
     //     return !!$localStorage.webmarketUser;
     // }
     $scope.starting = function (){
+        let str = window.location.href;
+        let str2 = str.substring(str.lastIndexOf('/') + 1);
+        console.log(str2);
+    };
 
-    }
+    $scope.setOfficeLinc = function (){
+        if ($scope.ownerIsEmpty()){
+            let header = $('.lower_header_content');
+            let myFitness = document.createElement('div');
+            myFitness.classList.add('linc', 'my_fitness_linc');
+            let myFitnessLinc = document.createElement('a');
+            myFitnessLinc.setAttribute('href', '#!/user_office');
+            myFitnessLinc.textContent = "Мой фитнес";
+            myFitness.append(myFitnessLinc);
+            header.append(myFitness);
+        }
+    };
+
+
 
 
     // $scope.filter = null;
     // $scope.showCartCount();
-    $scope.starting();
+    // $scope.starting();
+    if(!$('.lower_header_content').hasClass('side_menu')){
+        $scope.refreshSideMenu().then();
+    }
+    $scope.setOfficeLinc();
 });
 

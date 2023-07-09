@@ -1,72 +1,12 @@
-/*(function () {
-    angular
-        .module('fitness.userOffice', ['ngRoute', 'ngStorage'])
-        .config(config)
-        .run(run);
-
-
-    function config($routeProvider){
-        $routeProvider
-            .when('/services', {
-                templateUrl: 'pages/services.html',
-                controller: 'servicesController'
-            })
-            .when('/about', {
-                templateUrl: 'pages/about.html',
-                controller: 'aboutController'
-            })
-            .when('/schedule', {
-                templateUrl: '../pages/user/user_schedule.html',
-                controller: 'userScheduleController'
-            })
-            .otherwise({
-                redirectTo: '/schedule'
-            });
-    }
-
-    function run($rootScope, $http, $localStorage, $location) {
-        if ($localStorage.officeOwner) {
-            try {
-                let jwt = $localStorage.officeOwner.token;
-                let payload = JSON.parse(atob(jwt.split('.')[1]));
-                let currentTime = parseInt(new Date().getTime() / 1000);
-                if (currentTime > payload.exp) {
-                    console.log("Время жизни токена истекло");
-                    delete $localStorage.officeOwner;
-                    $http.defaults.headers.common.Authorization = '';
-                    $location.path('/')
-                } else {
-                    $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.officeOwner.token;
-                }
-            } catch (e) {
-            }
-        }
-    }
-})();*/
-
-
 angular.module('fitness').controller('userOfficeController', function ($scope, $http, $localStorage) {
     $scope.OfficeOwner = undefined;
     const contextPath = 'http://localhost:3881/fitness/api/v1/user';
     let number = 1;
     let totalNumber;
 
-    // if ($localStorage.officeOwner) {
-    //     try {
-    //         let jwt = $localStorage.officeOwner.token;
-    //         let payload = JSON.parse(atob(jwt.split('.')[1]));
-    //         let currentTime = parseInt(new Date().getTime() / 1000);
-    //         if (currentTime > payload.exp) {
-    //             console.log("Время жизни токена истекло");
-    //             delete $localStorage.officeOwner;
-    //             $http.defaults.headers.common.Authorization = '';
-    //             $location.path('/')
-    //         } else {
-    //             $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.officeOwner.token;
-    //         }
-    //     } catch (e) {
-    //     }
-    // }
+    if($localStorage.officeOwner.role !== "user"){
+        $scope.goToOffice();
+    }
 
     // Преднастройки страницы
     $scope.setStylesOffice = function () {
@@ -75,10 +15,8 @@ angular.module('fitness').controller('userOfficeController', function ($scope, $
         // document.getElementById('cssId1').href = 'styles/services.css';
         document.getElementById('cssId2').href = 'styles/services_responsive.css';
 
-
-        $scope.refreshMenu();
-
         // $('.home_linc').removeClass('active');
+
         // $('.about_linc').removeClass('active');
         // $('.services_linc').removeClass('active');
         // $('.blog_linc').removeClass('active');
@@ -86,6 +24,7 @@ angular.module('fitness').controller('userOfficeController', function ($scope, $
         // document.getElementById('a').style.backgroundImage="url(images/img.jpg)"; // specify the image path here
         jQuery(window).trigger('resize').trigger('scroll');
         document.getElementById('office_heading').style.backgroundImage="url(../images/contact.jpg)";
+        $scope.refreshUserMenu();
     };
 
     $scope.setOfficeOwner = function () {
@@ -95,11 +34,18 @@ angular.module('fitness').controller('userOfficeController', function ($scope, $
         };
     };
 
-    $scope.refreshMenu = async function () {
+    $scope.refreshUserMenu = async function () {
         let header = $('.lower_header_content');
 
+        let side = document.createElement('div');
+        side.classList.add('linc');
+        let sideLinc = document.createElement('a');
+        sideLinc.setAttribute('href', "#!/");
+        sideLinc.textContent = "Занятия";
+        side.append(sideLinc);
+
         let information = document.createElement('div');
-        information.classList.add('linc');
+        information.classList.add('linc active');
         let informationLinc = document.createElement('a');
         informationLinc.setAttribute('href', "#!/schedule");
         informationLinc.textContent = "Занятия";
@@ -120,6 +66,7 @@ angular.module('fitness').controller('userOfficeController', function ($scope, $
         info.append(infoLinc);
 
         await $scope.slow(header);
+
         for (let ch of header.children()) {
             ch.remove();
         }
@@ -127,20 +74,9 @@ angular.module('fitness').controller('userOfficeController', function ($scope, $
         header.append(information);
         header.append(services);
         header.append(info);
+        header.addClass('office_user_menu');
 
         $scope.slow(header);
-    };
-
-    $scope.slow = function (header) {
-        if (header.hasClass('visible')){
-            header.animate({"right":"-4000px"}, "slow").removeClass('visible');
-        } else {
-            header.animate({"right":"0px"}, "slow").addClass('visible');
-        }
-    };
-
-    $scope.test = function () {
-        $scope.refreshMenu();
     };
 
 
@@ -301,10 +237,14 @@ angular.module('fitness').controller('userOfficeController', function ($scope, $
     // };
 
     // $scope.loadMaintenance();
+    if(!$('.lower_header_content').hasClass('office_user_menu')){
+        $scope.refreshUserMenu().then();
+    }
+
     $scope.setStylesOffice();
     $scope.setOfficeOwner();
     // $scope.OwnerPath();
-    $scope.getRoleList();
-    $scope.loadUsers();
+    // $scope.getRoleList();
+    // $scope.loadUsers();
 
 });
