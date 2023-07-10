@@ -1,4 +1,4 @@
-angular.module('fitness').controller('userOfficeController', function ($scope, $http, $localStorage) {
+angular.module('fitness').controller('userOfficeController', function ($scope, $http, $localStorage, $compile, $element) {
     $scope.OfficeOwner = undefined;
     const contextPath = 'http://localhost:3881/fitness/api/v1/user';
     let number = 1;
@@ -37,33 +37,12 @@ angular.module('fitness').controller('userOfficeController', function ($scope, $
     $scope.refreshUserMenu = async function () {
         let header = $('.lower_header_content');
 
-        let side = document.createElement('div');
-        side.classList.add('linc');
-        let sideLinc = document.createElement('a');
-        sideLinc.setAttribute('href', "#!/");
-        sideLinc.textContent = "Занятия";
-        side.append(sideLinc);
-
-        let information = document.createElement('div');
-        information.classList.add('linc active');
-        let informationLinc = document.createElement('a');
-        informationLinc.setAttribute('href', "#!/schedule");
-        informationLinc.textContent = "Занятия";
-        information.append(informationLinc);
-
-        let services = document.createElement('div');
-        services.classList.add('linc');
-        let servicesLinc = document.createElement('a');
-        servicesLinc.setAttribute('href', "#!/");
-        servicesLinc.textContent = "Абонемент";
-        services.append(servicesLinc);
-
-        let info = document.createElement('div');
-        info.classList.add('linc');
-        let infoLinc = document.createElement('a');
-        infoLinc.setAttribute('href', "#!/");
-        infoLinc.textContent = "Информация";
-        info.append(infoLinc);
+        let side =$('<div class="linc" ng-click="goToSide()"><a href="#!/">На сайт</a></div>');
+        $compile(side)($scope);
+        side.appendTo($element);
+        let information =$('<div class="linc active"><a href="#!/schedule">Занятия</a></div>');
+        let services =$('<div class="linc"><a href="#!/schedule">Абонемент</a></div>');
+        let info =$('<div class="linc"><a href="#!/schedule">Информация</a></div>');
 
         await $scope.slow(header);
 
@@ -71,12 +50,17 @@ angular.module('fitness').controller('userOfficeController', function ($scope, $
             ch.remove();
         }
 
+        header.append(side);
         header.append(information);
         header.append(services);
         header.append(info);
         header.addClass('office_user_menu');
 
         $scope.slow(header);
+    };
+
+    $scope.goToSide = function () {
+        $scope.refreshSideMenu().then();
     };
 
 
