@@ -598,18 +598,11 @@ section
 }
 
 
-
 .lower_header_content.hidden
 {
 	left: 1500px;
 	opacity: 0;
 }
-
-
-.no-transition {
-	transition: none !important;
-}
-
 
 
 /*********************************
