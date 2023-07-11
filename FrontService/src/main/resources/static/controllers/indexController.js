@@ -119,7 +119,7 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
         header.append(services);
         header.append(blog);
         header.append(contact);
-        // $scope.setOfficeLinc();
+        $scope.setOfficeLinc();
         // header.addClass('side_menu');
     };
 
@@ -514,6 +514,6 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
     //     $scope.refreshSideMenu().then();
     // }
     $scope.refreshSideMenu();
-    $scope.setOfficeLinc();
+    // $scope.setOfficeLinc();
 });
 
