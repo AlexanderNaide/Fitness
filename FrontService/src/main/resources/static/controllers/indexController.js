@@ -54,9 +54,10 @@
                 // .state('user_office.schedule', {
                 .state('schedule', {
                     parent: 'user_office',
-                    // url: '/schedule',
-                    url: '/user_office',
-                    templateUrl: 'pages/user/user_schedule.html',
+                    url: '/schedule',
+                    // url: '/user_office',
+                    // templateUrl: 'pages/user/user_schedule.html',
+                    templateUrl: 'pages/super_office.html',
                     controller: 'userScheduleController'
                 })
 
