@@ -1,10 +1,5 @@
 (function () {
     angular
-            // .module('fitness', ['ui.router', 'ngRoute', 'ngStorage'])
-            // .config(config)
-            // .run(run);
-
-
         .module('fitness', ['ui.router', 'ngRoute', 'ngStorage'])
         .config(function($stateProvider, $urlRouterProvider, $locationProvider){
 
@@ -91,25 +86,15 @@
 angular.module('fitness').controller('indexController', function ($rootScope, $scope, $http, $location, $localStorage, $compile, $element) {
     const contextPath = 'http://localhost:3881/fitness';
     let header = $('.lower_header_content');
-    let pageClass = 'side_menu';
+    let sidePageClass = 'side_menu';
+    let userPageClass = 'user_menu';
 
-    // function createSideMenu(header) {
     $scope.createSideMenu = function (header) {
-        // let header = $('.lower_header_content');
         let home =$('<div class="linc home_linc active"><a href="#!/">Главная</a></div>');
         let about =$('<div class="linc about_linc"><a href="#!/about">О клубе</a></div>');
         let services =$('<div class="linc services_linc"><a href="#!/services">Сервисы и услуги</a></div>');
         let blog =$('<div class="linc blog_linc"><a href="#!/blog">Блог</a></div>');
         let contact =$('<div class="linc contact_linc"><a href="#!/contact">Контакты</a></div>');
-
-
-        // let home =$('<div class="linc home_linc active"><a sref="home" href="">Главная</a></div>');
-        // let about =$('<div class="linc about_linc"><a sref="about" href="">О клубе</a></div>');
-        // let services =$('<div class="linc services_linc"><a sref="services" href="">Сервисы и услуги</a></div>');
-        // let blog =$('<div class="linc blog_linc"><a sref="blog" href="">Блог</a></div>');
-        // let contact =$('<div class="linc contact_linc"><a sref="contact" href="">Контакты</a></div>');
-
-
 
         for (let ch of header.children()) {
             ch.remove();
@@ -120,127 +105,23 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
         header.append(blog);
         header.append(contact);
         $scope.setOfficeLinc();
-        // header.addClass('side_menu');
     };
 
     $scope.refreshSideMenu = function () {
-
-        // $scope.refreshMenu($scope.createSideMenu, pageClass);
-        $rootScope.$emit('refreshMenu', $scope.createSideMenu, pageClass);
-
-
-        // let header = $('.lower_header_content');
-
-        // let home =$('<div class="linc home_linc active"><a href="#!/">Главная</a></div>');
-        // let about =$('<div class="linc about_linc"><a href="#!/about">О клубе</a></div>');
-        // let services =$('<div class="linc services_linc"><a href="#!/services">Сервисы и услуги</a></div>');
-        // let blog =$('<div class="linc blog_linc"><a href="#!/blog">Блог</a></div>');
-        // let contact =$('<div class="linc contact_linc"><a href="#!/contact">Контакты</a></div>');
-
-        // let home = document.createElement('div');
-        // home.classList.add('linc home_linc');
-        // let homeLinc = document.createElement('a');
-        // homeLinc.setAttribute('href', "#!/");
-        // homeLinc.textContent = "Главная";
-        // home.append(homeLinc);
-
-        // let about = document.createElement('div');
-        // about.classList.add('linc about_linc');
-        // let aboutLinc = document.createElement('a');
-        // aboutLinc.setAttribute('href', "#!/about");
-        // aboutLinc.textContent = "О клубе";
-        // about.append(aboutLinc);
-
-        // let services = document.createElement('div');
-        // services.classList.add('linc services_linc');
-        // let servicesLinc = document.createElement('a');
-        // servicesLinc.setAttribute('href', "#!/services");
-        // servicesLinc.textContent = "Сервисы и услуги";
-        // services.append(servicesLinc);
-
-        // let blog = document.createElement('div');
-        // blog.classList.add('linc blog_linc');
-        // let blogLinc = document.createElement('a');
-        // blogLinc.setAttribute('href', "#!/blog");
-        // blogLinc.textContent = "Блог";
-        // blog.append(blogLinc);
-
-        // let contact = document.createElement('div');
-        // contact.classList.add('linc contact_linc');
-        // let contactLinc = document.createElement('a');
-        // contactLinc.setAttribute('href', "#!/contact");
-        // contactLinc.textContent = "Контакты";
-        // contact.append(contactLinc);
-
-        // await $scope.slow(header);
-        // await $scope.test1();
-
-        // Promise.resolve(header.animate({right: 3000}, {duration: 400, queue: false}).promise()).
-        // then(function () {
-        //     return () => {
-        //         for (let ch of header.children()) {
-        //             ch.remove();
-        //         }
-        //     };
-        // });
-
-
-        // for (let ch of header.children()) {
-        //     ch.remove();
-        // }
-
-        // header.append(home);
-        // header.append(about);
-        // header.append(services);
-        // header.append(blog);
-        // header.append(contact);
-        // $scope.setOfficeLinc();
-        // header.addClass('side_menu');
-        // $scope.slow(header);
+        $rootScope.$emit('refreshMenu', $scope.createSideMenu, sidePageClass);
     };
 
-    // $scope.refreshMenu = function (func, newPageClass){
-    //     if(!header.hasClass(pageClass)){
-    //         header.removeClass('visible');
-    //         header.addClass('hidden');
-    //         document.querySelector('.lower_header_content').addEventListener('transitionend', () => {
-    //             func();
-    //             header.removeClass('hidden');
-    //             header.removeClass(pageClass);
-    //             header.addClass(newPageClass);
-    //             header.addClass('visible');
-    //         }, { once: true });
-    //     }
-    // };
-
     $rootScope.$on('refreshMenu', function (event, func, newPageClass) {
-        console.log("start refreshMenu");
-        console.log(newPageClass);
-        console.log(header.hasClass(newPageClass));
         if(!header.hasClass(newPageClass)){
-            console.log("1");
             header.removeClass('visible');
             header.addClass('hidden');
-            console.log("2");
-            // console.log("3");
-            // func(header);
-            // header.removeClass('hidden');
-            // header.removeClass(pageClass);
-            // header.addClass(newPageClass);
-            // header.addClass('visible');
-            // console.log("4");
-
             document.querySelector('.lower_header_content').addEventListener('transitionend', () => {
-                console.log("3");
                 func(header);
                 header.removeClass('hidden');
-                header.removeClass(pageClass);
+                header.removeClass(newPageClass === sidePageClass ? userPageClass : sidePageClass);
                 header.addClass(newPageClass);
                 header.addClass('visible');
-                console.log("4");
             }, { once: true });
-
-
         }
     });
 
@@ -249,46 +130,6 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
         console.log(pageClass);
         newPage('callback page');
     });
-
-
-/*    $scope.slow = function (element) {
-        if (element.hasClass('visible')){
-            element.removeClass('visible');
-            element.addClass('hidden');
-        } else {
-            element.removeClass('hidden');
-            element.addClass('visible');
-        }
-
-        // let header = $('.lower_header_content');
-        header.removeClass('visible');
-        header.addClass('hidden');
-        document.querySelector('.lower_header_content').addEventListener('transitionend', () => {
-            header.removeClass('hidden');
-            header.addClass('visible');
-        }, { once: true });
-
-
-
-
-
-        // if (element.hasClass('visible')){
-        //     if (element.hasClass('side_menu')){
-        //         element.animate({"right":"4000px"}, "slow");
-        //     } else {
-        //         element.animate({"left":"4000px"}, "slow");
-        //     }
-        //     element.
-        //     removeClass('visible').
-        //     removeClass('side_menu');
-        // } else {
-        //     if (element.hasClass('side_menu')){
-        //         element.animate({"right":"0px"}, "slow").addClass('visible');
-        //     } else {
-        //         element.animate({"left":"0px"}, "slow").addClass('visible');
-        //     }
-        // }
-    };*/
 
     $scope.authentications = function () {
         $http.post(contextPath + '/auth', $scope.auth)
@@ -322,7 +163,6 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
             surname: response.data.surname,
             role: response.data.role
         };
-        // console.log($localStorage.officeOwner.role);
         $scope.goToOffice();
     }
 
@@ -335,7 +175,6 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
             $location.path('/trainer_office');
         } else {
             $location.path('/user_office');
-            // $scope.refreshUserMenu();
         }
     }
 

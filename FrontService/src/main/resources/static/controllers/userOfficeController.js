@@ -4,10 +4,6 @@ controller('userOfficeController', function ($rootScope, $scope, $http, $localSt
     const contextPath = 'http://localhost:3881/fitness/api/v1/user';
     let pageClass = 'user_menu';
 
-
-    let number = 1;
-    let totalNumber;
-
     if($localStorage.officeOwner.role !== "user"){
         $scope.goToOffice();
     }
@@ -46,20 +42,13 @@ controller('userOfficeController', function ($rootScope, $scope, $http, $localSt
     };
 
     function createUserMenu(header) {
-    // $scope.createUserMenu = function (header) {
-        // let header = $('.lower_header_content');
-        // header.removeClass('side_menu');
-        // let side =$('<div class="linc"><a href="#!/" ng-click="goToSide()">На сайт</a></div>');
-
-
-        console.log("start createUserMenu");
-        // let side =$('<div class="linc"><a href="#!/">На сайт</a></div>');
-        // $compile(side)($scope);
-        // side.appendTo($element);
-        let side =$('<div class="linc home_linc"><a href="/">На сайт</a></div>');
-        let information =$('<div class="linc active"><a href="/schedule">Занятия</a></div>');
-        let services =$('<div class="linc"><a href="/schedule">Абонемент</a></div>');
-        let info =$('<div class="linc"><a href="/schedule">Информация</a></div>');
+        let side =$('<div class="linc"><a href="#!/" ng-click="refreshSideMenu()">На сайт</a></div>');
+        $compile(side)($scope);
+        side.appendTo($element);
+        // let side =$('<div class="linc home_linc"><a href="/">На сайт</a></div>');
+        let information =$('<div class="linc active"><a href="#!/schedule">Занятия</a></div>');
+        let services =$('<div class="linc"><a href="#!/schedule">Абонемент</a></div>');
+        let info =$('<div class="linc"><a href="#!/schedule">Информация</a></div>');
         for (let ch of header.children()) {
             ch.remove();
         }
@@ -67,43 +56,10 @@ controller('userOfficeController', function ($rootScope, $scope, $http, $localSt
         header.append(information);
         header.append(services);
         header.append(info);
-
-
-        // header.addClass('office_user_menu');
     }
 
     $scope.refreshUserMenu = function () {
-        // $scope.$parent.refreshMenu($scope.createUserMenu, pageClass);
         $rootScope.$emit('refreshMenu', createUserMenu, pageClass);
-
-        // let header = $('.lower_header_content');
-        //
-        // let side =$('<div class="linc" ng-click="goToSide()"><a href="#!/">На сайт</a></div>');
-        // $compile(side)($scope);
-        // side.appendTo($element);
-        // let information =$('<div class="linc active"><a href="#!/schedule">Занятия</a></div>');
-        // let services =$('<div class="linc"><a href="#!/schedule">Абонемент</a></div>');
-        // let info =$('<div class="linc"><a href="#!/schedule">Информация</a></div>');
-        //
-        // await $scope.slow(header);
-        //
-        // for (let ch of header.children()) {
-        //     ch.remove();
-        // }
-        //
-        // header.append(side);
-        // header.append(information);
-        // header.append(services);
-        // header.append(info);
-        // header.addClass('office_user_menu');
-        //
-        // $scope.slow(header);
-    };
-
-    $scope.goToSide = function () {
-        // console.log("go");
-        // $location.path('/');
-        // $scope.refreshSideMenu();
     };
 
 
