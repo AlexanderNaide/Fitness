@@ -1,7 +1,7 @@
 package org.satal.backservice.services;
 
 import lombok.RequiredArgsConstructor;
-import org.satal.backservice.entities.Maintenance;
+import org.satal.backservice.entities.gridClasses.Maintenance;
 import org.satal.backservice.entities.users.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

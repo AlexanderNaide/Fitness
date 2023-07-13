@@ -1,4 +1,4 @@
-package org.satal.backservice.entities;
+package org.satal.backservice.entities.gridClasses;
 
 import jakarta.persistence.*;
 import jdk.jfr.Unsigned;

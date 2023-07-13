@@ -1,8 +1,7 @@
 package org.satal.backservice.services;
 
 import lombok.RequiredArgsConstructor;
-import org.satal.backservice.entities.Maintenance;
-import org.satal.backservice.entities.users.Role;
+import org.satal.backservice.entities.gridClasses.Maintenance;
 import org.satal.backservice.repositories.MaintenanceRepository;
 import org.springframework.stereotype.Service;
 

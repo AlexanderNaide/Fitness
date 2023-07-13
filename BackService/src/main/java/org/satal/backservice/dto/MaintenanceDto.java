@@ -1,7 +1,7 @@
 package org.satal.backservice.dto;
 
 import lombok.Data;
-import org.satal.backservice.entities.Maintenance;
+import org.satal.backservice.entities.gridClasses.Maintenance;
 
 @Data
 public class MaintenanceDto {

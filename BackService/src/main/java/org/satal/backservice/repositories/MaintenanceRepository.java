@@ -1,6 +1,6 @@
 package org.satal.backservice.repositories;
 
-import org.satal.backservice.entities.Maintenance;
+import org.satal.backservice.entities.gridClasses.Maintenance;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
