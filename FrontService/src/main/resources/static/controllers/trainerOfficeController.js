@@ -19,7 +19,7 @@ angular.module('fitness').controller('trainerOfficeController', function ($scope
             }
         } catch (e) {
         }
-    };
+    }
 
     // Преднастройки страницы
     $scope.setStylesOffice = function () {

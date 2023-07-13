@@ -29,7 +29,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-route.min.js"></script>
+<!--	<script src="https://angular-ui.github.io/ui-router/release/angular-ui-router.min.js"></script>-->
+	<script src="//unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
 	<!-- Main js -->
+	<script src="controllers/indexConfig.js"></script>
 	<script src="controllers/indexController.js"></script>
 	<script src="controllers/homeController.js"></script>
 	<script src="controllers/aboutController.js"></script>
@@ -40,6 +43,7 @@
 	<script src="controllers/trainerOfficeController.js"></script>
 	<script src="controllers/adminOfficeController.js"></script>
 	<script src="controllers/superOfficeController.js"></script>
+	<script src="controllers/user/userScheduleController.js"></script>
 
 
 
@@ -47,7 +51,8 @@
 <body>
 
 <div class="super_container" ng-controller="indexController">
-	
+<!--<div class="super_container" ng-controller="MainCtrl">-->
+
 	<!-- Header -->
 
 	<header class="header">
@@ -63,7 +68,7 @@
 							</a>
 						</div>
 						<div class="col-3">
-							<div class="phone d-flex flex-row align-items-center justify-content-start ml-auto">
+							<div class="phone d-flex flex-row align-items-center justify-content-start ml-auto" ng-click="test1()">
 								<i class="fa fa-phone" aria-hidden="true"></i>
 								<div>+7 (4712) 340-000</div>
 							</div>
@@ -90,18 +95,29 @@
 <!--					<div class="header_content d-flex flex-row align-items-center justify-content-start trans_400">-->
 <!--					<div class="lower_header_content d-flex flex-row align-items-center justify-content-start trans_400">-->
 					<div class="lower_header_content d-flex flex-row align-items-center justify-content-around trans_400 visible">
-							<div class="linc about_linc">
-								<a href="#!/about">О клубе</a>
-							</div>
-							<div class="linc services_linc">
-								<a href="#!/services">Сервисы и услуги</a>
-							</div>
-							<div class="linc blog_linc">
-								<a href="#!/blog">Блог</a>
-							</div>
-							<div class="linc contact_linc">
-								<a href="#!/contact">Контакты</a>
-							</div>
+<!--						<div class="linc home_linc">
+&lt;!&ndash;							<a href="#!/">Главная</a>&ndash;&gt;
+							<a href="/">Главная</a>
+						</div>
+						<div class="linc about_linc">
+&lt;!&ndash;							<a href="#!/about">О клубе</a>&ndash;&gt;
+							<a href="/about">О клубе</a>
+						</div>
+						<div class="linc services_linc">
+&lt;!&ndash;							<a href="#!/services">Сервисы и услуги</a>&ndash;&gt;
+							<a href="/services">Сервисы и услуги</a>
+						</div>
+						<div class="linc blog_linc">
+&lt;!&ndash;							<a href="#!/blog">Блог</a>&ndash;&gt;
+							<a href="/blog">Блог</a>
+						</div>
+						<div class="linc contact_linc">
+&lt;!&ndash;							<a href="#!/contact">Контакты</a>&ndash;&gt;
+							<a href="/contact">Контакты</a>
+						</div>-->
+<!--						<div class="linc contact_linc" ng-show="ownerIsEmpty()">-->
+<!--							<a href="#" ng-click="goToOffice()">Мой фитнес</a>-->
+<!--						</div>-->
 					</div>
 				</div>
 			</div>
@@ -143,8 +159,10 @@
 <!--		</div>-->
 	</div>
 
+<!--	<div ui-view="body"></div>-->
+	<ui-view></ui-view>
 
-	<ng-view></ng-view>
+<!--	<ng-view></ng-view>-->
 
 <!--	import-->
 <!--	/import-->
