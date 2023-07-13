@@ -32,6 +32,7 @@
 <!--	<script src="https://angular-ui.github.io/ui-router/release/angular-ui-router.min.js"></script>-->
 	<script src="//unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
 	<!-- Main js -->
+	<script src="controllers/indexConfig.js"></script>
 	<script src="controllers/indexController.js"></script>
 	<script src="controllers/homeController.js"></script>
 	<script src="controllers/aboutController.js"></script>
@@ -158,7 +159,8 @@
 <!--		</div>-->
 	</div>
 
-	<div ui-view></div>
+<!--	<div ui-view="body"></div>-->
+	<ui-view></ui-view>
 
 <!--	<ng-view></ng-view>-->
 

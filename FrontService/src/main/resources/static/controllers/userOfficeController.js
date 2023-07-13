@@ -134,6 +134,7 @@ controller('userOfficeController', function ($rootScope, $scope, $http, $localSt
         let information =$('<div class="linc active"><a href="#!/schedule">Занятия</a></div>');
         let services =$('<div class="linc"><a href="#!/schedule">Абонемент</a></div>');
         let info =$('<div class="linc"><a href="#!/schedule">Информация</a></div>');
+        // let info =$('<div class="linc"><a href="" ui-sref="schedule">Информация</a></div>');
         for (let ch of header.children()) {
             ch.remove();
         }
