@@ -1,5 +1,5 @@
 <script src="../controllers/userOfficeController.js"></script>
-<div>
+<script src="../controllers/user/userScheduleController.js"></script>
 	<!-- Home -->
 
 	<div class="home">
@@ -26,858 +26,861 @@
 
 	<H1 ng-click="test()">Кабинет пользователя</H1>
 
-	<!-- Content -->
+	<div ui-view="userPlace"></div>
 
+<!--	<ui-view name="userPlace"></ui-view>-->
+
+	<!-- Content -->
 
 	<!-- Тестовый контент -->
 
 	<!-- Timetable -->
 
-	<div class="timetable">
-		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="../images/timetable.jpg" data-speed="0.8"></div>
-		<div class="tt_overlay"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<div class="section_title_container">
-						<div class="section_subtitle">welcome to sportfit</div>
-						<div class="section_title">Classes Timetable</div>
-					</div>
-					<div class="timetable_filtering">
-						<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
-							<li class="active item_filter_btn" data-filter="*">All Classes</li>
-							<li class="item_filter_btn" data-filter=".weight_loss">Weight Loss</li>
-							<li class="item_filter_btn" data-filter=".aerobics">Aerobics</li>
-							<li class="item_filter_btn" data-filter=".crossfit">Crossfit</li>
-							<li class="item_filter_btn" data-filter=".fitness">Fitness</li>
-							<li class="item_filter_btn" data-filter=".yoga">Yoga</li>
-							<li class="item_filter_btn" data-filter=".pilates">Pilates</li>
-							<li class="item_filter_btn" data-filter=".stretching">Stretching</li>
-						</ul>
-					</div>
-					<div class="timetable_container d-flex flex-sm-row flex-column align-items-start justify-content-sm-between justify-content-start">
+<!--	<div class="timetable">-->
+<!--		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="../images/timetable.jpg" data-speed="0.8"></div>-->
+<!--		<div class="tt_overlay"></div>-->
+<!--		<div class="container">-->
+<!--			<div class="row">-->
+<!--				<div class="col">-->
+<!--					<div class="section_title_container">-->
+<!--						<div class="section_subtitle">welcome to sportfit</div>-->
+<!--						<div class="section_title">Classes Timetable</div>-->
+<!--					</div>-->
+<!--					<div class="timetable_filtering">-->
+<!--						<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">-->
+<!--							<li class="active item_filter_btn" data-filter="*">All Classes</li>-->
+<!--							<li class="item_filter_btn" data-filter=".weight_loss">Weight Loss</li>-->
+<!--							<li class="item_filter_btn" data-filter=".aerobics">Aerobics</li>-->
+<!--							<li class="item_filter_btn" data-filter=".crossfit">Crossfit</li>-->
+<!--							<li class="item_filter_btn" data-filter=".fitness">Fitness</li>-->
+<!--							<li class="item_filter_btn" data-filter=".yoga">Yoga</li>-->
+<!--							<li class="item_filter_btn" data-filter=".pilates">Pilates</li>-->
+<!--							<li class="item_filter_btn" data-filter=".stretching">Stretching</li>-->
+<!--						</ul>-->
+<!--					</div>-->
+<!--					<div class="timetable_container d-flex flex-sm-row flex-column align-items-start justify-content-sm-between justify-content-start">-->
 
-						<!-- Monday -->
-						<div class="tt_day">
-							<div class="tt_title">monday</div>
-							<div class="tt_day_content grid">
+<!--						&lt;!&ndash; Monday &ndash;&gt;-->
+<!--						<div class="tt_day">-->
+<!--							<div class="tt_title">monday</div>-->
+<!--							<div class="tt_day_content grid">-->
 
-								<!-- Class -->
-								<div class="tt_class grid-item weight_loss">
-									<div class="tt_class_title">Weight Loss</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">9:00</div>
-								</div>
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item weight_loss">-->
+<!--									<div class="tt_class_title">Weight Loss</div>-->
+<!--									<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--									<div class="tt_class_time">9:00</div>-->
+<!--								</div>-->
 
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">10:00</div>
-								</div>
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item aerobics">-->
+<!--									<div class="tt_class_title">Aerobics</div>-->
+<!--									<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--									<div class="tt_class_time">10:00</div>-->
+<!--								</div>-->
 
-								<!-- Class -->
-								<div class="tt_class empty grid-item">
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class empty grid-item">-->
 
-								</div>
+<!--								</div>-->
 
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">13:00</div>
-								</div>
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item aerobics">-->
+<!--									<div class="tt_class_title">Aerobics</div>-->
+<!--									<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--									<div class="tt_class_time">13:00</div>-->
+<!--								</div>-->
 
-							</div>
-						</div>
+<!--							</div>-->
+<!--						</div>-->
 
-						<!-- Tuesday -->
-						<div class="tt_day">
-							<div class="tt_title">tuesday</div>
-							<div class="tt_day_content grid">
+<!--						&lt;!&ndash; Tuesday &ndash;&gt;-->
+<!--						<div class="tt_day">-->
+<!--							<div class="tt_title">tuesday</div>-->
+<!--							<div class="tt_day_content grid">-->
 
-								<!-- Class -->
-								<div class="tt_class grid-item weight_loss">
-									<div class="tt_class_title">Weight Loss</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">8:00</div>
-								</div>
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item weight_loss">-->
+<!--									<div class="tt_class_title">Weight Loss</div>-->
+<!--									<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--									<div class="tt_class_time">8:00</div>-->
+<!--								</div>-->
 
-								<!-- Class -->
-								<div class="tt_class empty grid-item">
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class empty grid-item">-->
 
-								</div>
+<!--								</div>-->
 
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">12:00</div>
-								</div>
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item aerobics">-->
+<!--									<div class="tt_class_title">Aerobics</div>-->
+<!--									<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--									<div class="tt_class_time">12:00</div>-->
+<!--								</div>-->
 
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">13:00</div>
-								</div>
-							</div>
-						</div>
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item aerobics">-->
+<!--									<div class="tt_class_title">Aerobics</div>-->
+<!--									<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--									<div class="tt_class_time">13:00</div>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
 
-						<!-- Wednesday -->
-						<div class="tt_day">
-							<div class="tt_title">wednesday</div>
-							<div class="tt_day_content grid">
+<!--						&lt;!&ndash; Wednesday &ndash;&gt;-->
+<!--						<div class="tt_day">-->
+<!--							<div class="tt_title">wednesday</div>-->
+<!--							<div class="tt_day_content grid">-->
 
-								<!-- Class -->
-								<div class="tt_class grid-item crossfit">
-									<div class="tt_class_title">Crossfit</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">9:00</div>
-								</div>
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item crossfit">-->
+<!--									<div class="tt_class_title">Crossfit</div>-->
+<!--									<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--									<div class="tt_class_time">9:00</div>-->
+<!--								</div>-->
 
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">10:00</div>
-								</div>
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item aerobics">-->
+<!--									<div class="tt_class_title">Aerobics</div>-->
+<!--									<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--									<div class="tt_class_time">10:00</div>-->
+<!--								</div>-->
 
-								<!-- Class -->
-								<div class="tt_class empty grid-item">
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class empty grid-item">-->
 
-								</div>
+<!--								</div>-->
 
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">13:00</div>
-								</div>
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item aerobics">-->
+<!--									<div class="tt_class_title">Aerobics</div>-->
+<!--									<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--									<div class="tt_class_time">13:00</div>-->
+<!--								</div>-->
 
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">17:00</div>
-								</div>
-							</div>
-						</div>
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item aerobics">-->
+<!--									<div class="tt_class_title">Aerobics</div>-->
+<!--									<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--									<div class="tt_class_time">17:00</div>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
 
-						<!-- Thursday -->
-						<div class="tt_day">
-							<div class="tt_title">thursday</div>
-							<div class="tt_day_content grid">
+<!--						&lt;!&ndash; Thursday &ndash;&gt;-->
+<!--						<div class="tt_day">-->
+<!--							<div class="tt_title">thursday</div>-->
+<!--							<div class="tt_day_content grid">-->
 
-								<!-- Class -->
-								<div class="tt_class grid-item fitness">
-									<div class="tt_class_title">Fitness</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">9:00</div>
-								</div>
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item fitness">-->
+<!--									<div class="tt_class_title">Fitness</div>-->
+<!--									<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--									<div class="tt_class_time">9:00</div>-->
+<!--								</div>-->
 
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">10:00</div>
-								</div>
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item aerobics">-->
+<!--									<div class="tt_class_title">Aerobics</div>-->
+<!--									<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--									<div class="tt_class_time">10:00</div>-->
+<!--								</div>-->
 
-								<!-- Class -->
-								<div class="tt_class grid-item yoga">
-									<div class="tt_class_title">Yoga</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">12:00</div>
-								</div>
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item yoga">-->
+<!--									<div class="tt_class_title">Yoga</div>-->
+<!--									<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--									<div class="tt_class_time">12:00</div>-->
+<!--								</div>-->
 
-								<!-- Class -->
-								<div class="tt_class grid-item pilates">
-									<div class="tt_class_title">Pilates</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">13:00</div>
-								</div>
-							</div>
-						</div>
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item pilates">-->
+<!--									<div class="tt_class_title">Pilates</div>-->
+<!--									<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--									<div class="tt_class_time">13:00</div>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
 
-						<!-- Friday -->
-						<div class="tt_day">
-							<div class="tt_title">friday</div>
-							<div class="tt_day_content grid">
+<!--						&lt;!&ndash; Friday &ndash;&gt;-->
+<!--						<div class="tt_day">-->
+<!--							<div class="tt_title">friday</div>-->
+<!--							<div class="tt_day_content grid">-->
 
-								<!-- Class -->
-								<div class="tt_class grid-item yoga">
-									<div class="tt_class_title">Yoga</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">9:00</div>
-								</div>
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item yoga">-->
+<!--									<div class="tt_class_title">Yoga</div>-->
+<!--									<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--									<div class="tt_class_time">9:00</div>-->
+<!--								</div>-->
 
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">10:00</div>
-								</div>
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item aerobics">-->
+<!--									<div class="tt_class_title">Aerobics</div>-->
+<!--									<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--									<div class="tt_class_time">10:00</div>-->
+<!--								</div>-->
 
-								<!-- Class -->
-								<div class="tt_class empty grid-item">
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class empty grid-item">-->
 
-								</div>
+<!--								</div>-->
 
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">13:00</div>
-								</div>
-							</div>
-						</div>
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item aerobics">-->
+<!--									<div class="tt_class_title">Aerobics</div>-->
+<!--									<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--									<div class="tt_class_time">13:00</div>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
 
-						<!-- Saturday -->
-						<div class="tt_day">
-							<div class="tt_title">Saturday</div>
-							<div class="tt_day_content grid">
+<!--						&lt;!&ndash; Saturday &ndash;&gt;-->
+<!--						<div class="tt_day">-->
+<!--							<div class="tt_title">Saturday</div>-->
+<!--							<div class="tt_day_content grid">-->
 
-								<!-- Class -->
-								<div class="tt_class grid-item weight_loss">
-									<div class="tt_class_title">Weight Loss</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">9:00</div>
-								</div>
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item weight_loss">-->
+<!--									<div class="tt_class_title">Weight Loss</div>-->
+<!--									<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--									<div class="tt_class_time">9:00</div>-->
+<!--								</div>-->
 
-								<!-- Class -->
-								<div class="tt_class grid-item pilates">
-									<div class="tt_class_title">Pilates</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">10:00</div>
-								</div>
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item pilates">-->
+<!--									<div class="tt_class_title">Pilates</div>-->
+<!--									<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--									<div class="tt_class_time">10:00</div>-->
+<!--								</div>-->
 
-								<!-- Class -->
-								<div class="tt_class empty grid-item">
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class empty grid-item">-->
 
-								</div>
+<!--								</div>-->
 
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">13:00</div>
-								</div>
-							</div>
-						</div>
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item aerobics">-->
+<!--									<div class="tt_class_title">Aerobics</div>-->
+<!--									<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--									<div class="tt_class_time">13:00</div>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
 
-						<!-- Sunday -->
-						<div class="tt_day">
-							<div class="tt_title">Sunday</div>
-							<div class="tt_day_content grid">
+<!--						&lt;!&ndash; Sunday &ndash;&gt;-->
+<!--						<div class="tt_day">-->
+<!--							<div class="tt_title">Sunday</div>-->
+<!--							<div class="tt_day_content grid">-->
 
-								<!-- Class -->
-								<div class="tt_class grid-item stretching">
-									<div class="tt_class_title">Stretching</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">9:00</div>
-								</div>
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item stretching">-->
+<!--									<div class="tt_class_title">Stretching</div>-->
+<!--									<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--									<div class="tt_class_time">9:00</div>-->
+<!--								</div>-->
 
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">10:00</div>
-								</div>
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item aerobics">-->
+<!--									<div class="tt_class_title">Aerobics</div>-->
+<!--									<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--									<div class="tt_class_time">10:00</div>-->
+<!--								</div>-->
 
-								<!-- Class -->
-								<div class="tt_class empty grid-item">
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class empty grid-item">-->
 
-								</div>
+<!--								</div>-->
 
-								<!-- Class -->
-								<div class="tt_class empty grid-item">
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class empty grid-item">-->
 
-								</div>
-							</div>
-						</div>
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
 
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		</div>-->
+<!--	</div>-->
 
 
 
 	<!-- /Тестовый контент -->
 
-	<div class="container" style="min-height: 600px">
-<!--		<div class="tabs_container office-work-place">-->
-		<div class="office-work-place">
+<!--	<div class="container" style="min-height: 600px">-->
+<!--&lt;!&ndash;		<div class="tabs_container office-work-place">&ndash;&gt;-->
+<!--		<div class="office-work-place">-->
 
-			<div class="tabs_container">
+<!--			<div class="tabs_container">-->
 
-				<div class="tabs d-flex flex-row align-items-center justify-content-start flex-wrap">
-					<div class="tab active">Мои занятия</div>
-					<div class="tab">Мой абонемент и услуги</div>
-					<div class="tab">Личная информация</div>
-				</div>
+<!--				<div class="tabs d-flex flex-row align-items-center justify-content-start flex-wrap">-->
+<!--					<div class="tab active">Мои занятия</div>-->
+<!--					<div class="tab">Мой абонемент и услуги</div>-->
+<!--					<div class="tab">Личная информация</div>-->
+<!--				</div>-->
 
-				<div class="tab_panels">
-					<div class="tab_panel active">
-						<div class="tab_panel_content d-flex flex-row align-items-start justify-content-start">
-							<div class="tab_text">
+<!--				<div class="tab_panels">-->
+<!--					<div class="tab_panel active">-->
+<!--						<div class="tab_panel_content d-flex flex-row align-items-start justify-content-start">-->
+<!--							<div class="tab_text">-->
 
-								<!-- Timetable -->
+<!--								&lt;!&ndash; Timetable &ndash;&gt;-->
 
-								<div class="timetable">
-									<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="../images/timetable.jpg" data-speed="0.8"></div>
-									<div class="tt_overlay"></div>
-									<div class="container">
-										<div class="row">
-											<div class="col">
-												<div class="section_title_container">
-													<div class="section_subtitle">welcome to sportfit</div>
-													<div class="section_title">Classes Timetable</div>
-												</div>
-												<div class="timetable_filtering">
-													<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
-														<li class="active item_filter_btn" data-filter="*">All Classes</li>
-														<li class="item_filter_btn" data-filter=".weight_loss">Weight Loss</li>
-														<li class="item_filter_btn" data-filter=".aerobics">Aerobics</li>
-														<li class="item_filter_btn" data-filter=".crossfit">Crossfit</li>
-														<li class="item_filter_btn" data-filter=".fitness">Fitness</li>
-														<li class="item_filter_btn" data-filter=".yoga">Yoga</li>
-														<li class="item_filter_btn" data-filter=".pilates">Pilates</li>
-														<li class="item_filter_btn" data-filter=".stretching">Stretching</li>
-													</ul>
-												</div>
-												<div class="timetable_container d-flex flex-sm-row flex-column align-items-start justify-content-sm-between justify-content-start">
+<!--								<div class="timetable">-->
+<!--									<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="../images/timetable.jpg" data-speed="0.8"></div>-->
+<!--									<div class="tt_overlay"></div>-->
+<!--									<div class="container">-->
+<!--										<div class="row">-->
+<!--											<div class="col">-->
+<!--												<div class="section_title_container">-->
+<!--													<div class="section_subtitle">welcome to sportfit</div>-->
+<!--													<div class="section_title">Classes Timetable</div>-->
+<!--												</div>-->
+<!--												<div class="timetable_filtering">-->
+<!--													<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">-->
+<!--														<li class="active item_filter_btn" data-filter="*">All Classes</li>-->
+<!--														<li class="item_filter_btn" data-filter=".weight_loss">Weight Loss</li>-->
+<!--														<li class="item_filter_btn" data-filter=".aerobics">Aerobics</li>-->
+<!--														<li class="item_filter_btn" data-filter=".crossfit">Crossfit</li>-->
+<!--														<li class="item_filter_btn" data-filter=".fitness">Fitness</li>-->
+<!--														<li class="item_filter_btn" data-filter=".yoga">Yoga</li>-->
+<!--														<li class="item_filter_btn" data-filter=".pilates">Pilates</li>-->
+<!--														<li class="item_filter_btn" data-filter=".stretching">Stretching</li>-->
+<!--													</ul>-->
+<!--												</div>-->
+<!--												<div class="timetable_container d-flex flex-sm-row flex-column align-items-start justify-content-sm-between justify-content-start">-->
 
-													<!-- Monday -->
-													<div class="tt_day">
-														<div class="tt_title">monday</div>
-														<div class="tt_day_content grid">
+<!--													&lt;!&ndash; Monday &ndash;&gt;-->
+<!--													<div class="tt_day">-->
+<!--														<div class="tt_title">monday</div>-->
+<!--														<div class="tt_day_content grid">-->
 
-															<!-- Class -->
-															<div class="tt_class grid-item weight_loss">
-																<div class="tt_class_title">Weight Loss</div>
-																<div class="tt_class_instructor">Jessica Smith</div>
-																<div class="tt_class_time">9:00</div>
-															</div>
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class grid-item weight_loss">-->
+<!--																<div class="tt_class_title">Weight Loss</div>-->
+<!--																<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--																<div class="tt_class_time">9:00</div>-->
+<!--															</div>-->
 
-															<!-- Class -->
-															<div class="tt_class grid-item aerobics">
-																<div class="tt_class_title">Aerobics</div>
-																<div class="tt_class_instructor">Jessica Smith</div>
-																<div class="tt_class_time">10:00</div>
-															</div>
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class grid-item aerobics">-->
+<!--																<div class="tt_class_title">Aerobics</div>-->
+<!--																<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--																<div class="tt_class_time">10:00</div>-->
+<!--															</div>-->
 
-															<!-- Class -->
-															<div class="tt_class empty grid-item">
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class empty grid-item">-->
 
-															</div>
+<!--															</div>-->
 
-															<!-- Class -->
-															<div class="tt_class grid-item aerobics">
-																<div class="tt_class_title">Aerobics</div>
-																<div class="tt_class_instructor">Jessica Smith</div>
-																<div class="tt_class_time">13:00</div>
-															</div>
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class grid-item aerobics">-->
+<!--																<div class="tt_class_title">Aerobics</div>-->
+<!--																<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--																<div class="tt_class_time">13:00</div>-->
+<!--															</div>-->
 
-														</div>
-													</div>
+<!--														</div>-->
+<!--													</div>-->
 
-													<!-- Tuesday -->
-													<div class="tt_day">
-														<div class="tt_title">tuesday</div>
-														<div class="tt_day_content grid">
+<!--													&lt;!&ndash; Tuesday &ndash;&gt;-->
+<!--													<div class="tt_day">-->
+<!--														<div class="tt_title">tuesday</div>-->
+<!--														<div class="tt_day_content grid">-->
 
-															<!-- Class -->
-															<div class="tt_class grid-item weight_loss">
-																<div class="tt_class_title">Weight Loss</div>
-																<div class="tt_class_instructor">Jessica Smith</div>
-																<div class="tt_class_time">8:00</div>
-															</div>
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class grid-item weight_loss">-->
+<!--																<div class="tt_class_title">Weight Loss</div>-->
+<!--																<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--																<div class="tt_class_time">8:00</div>-->
+<!--															</div>-->
 
-															<!-- Class -->
-															<div class="tt_class empty grid-item">
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class empty grid-item">-->
 
-															</div>
+<!--															</div>-->
 
-															<!-- Class -->
-															<div class="tt_class grid-item aerobics">
-																<div class="tt_class_title">Aerobics</div>
-																<div class="tt_class_instructor">Jessica Smith</div>
-																<div class="tt_class_time">12:00</div>
-															</div>
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class grid-item aerobics">-->
+<!--																<div class="tt_class_title">Aerobics</div>-->
+<!--																<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--																<div class="tt_class_time">12:00</div>-->
+<!--															</div>-->
 
-															<!-- Class -->
-															<div class="tt_class grid-item aerobics">
-																<div class="tt_class_title">Aerobics</div>
-																<div class="tt_class_instructor">Jessica Smith</div>
-																<div class="tt_class_time">13:00</div>
-															</div>
-														</div>
-													</div>
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class grid-item aerobics">-->
+<!--																<div class="tt_class_title">Aerobics</div>-->
+<!--																<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--																<div class="tt_class_time">13:00</div>-->
+<!--															</div>-->
+<!--														</div>-->
+<!--													</div>-->
 
-													<!-- Wednesday -->
-													<div class="tt_day">
-														<div class="tt_title">wednesday</div>
-														<div class="tt_day_content grid">
+<!--													&lt;!&ndash; Wednesday &ndash;&gt;-->
+<!--													<div class="tt_day">-->
+<!--														<div class="tt_title">wednesday</div>-->
+<!--														<div class="tt_day_content grid">-->
 
-															<!-- Class -->
-															<div class="tt_class grid-item crossfit">
-																<div class="tt_class_title">Crossfit</div>
-																<div class="tt_class_instructor">Jessica Smith</div>
-																<div class="tt_class_time">9:00</div>
-															</div>
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class grid-item crossfit">-->
+<!--																<div class="tt_class_title">Crossfit</div>-->
+<!--																<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--																<div class="tt_class_time">9:00</div>-->
+<!--															</div>-->
 
-															<!-- Class -->
-															<div class="tt_class grid-item aerobics">
-																<div class="tt_class_title">Aerobics</div>
-																<div class="tt_class_instructor">Jessica Smith</div>
-																<div class="tt_class_time">10:00</div>
-															</div>
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class grid-item aerobics">-->
+<!--																<div class="tt_class_title">Aerobics</div>-->
+<!--																<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--																<div class="tt_class_time">10:00</div>-->
+<!--															</div>-->
 
-															<!-- Class -->
-															<div class="tt_class empty grid-item">
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class empty grid-item">-->
 
-															</div>
+<!--															</div>-->
 
-															<!-- Class -->
-															<div class="tt_class grid-item aerobics">
-																<div class="tt_class_title">Aerobics</div>
-																<div class="tt_class_instructor">Jessica Smith</div>
-																<div class="tt_class_time">13:00</div>
-															</div>
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class grid-item aerobics">-->
+<!--																<div class="tt_class_title">Aerobics</div>-->
+<!--																<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--																<div class="tt_class_time">13:00</div>-->
+<!--															</div>-->
 
-															<!-- Class -->
-															<div class="tt_class grid-item aerobics">
-																<div class="tt_class_title">Aerobics</div>
-																<div class="tt_class_instructor">Jessica Smith</div>
-																<div class="tt_class_time">17:00</div>
-															</div>
-														</div>
-													</div>
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class grid-item aerobics">-->
+<!--																<div class="tt_class_title">Aerobics</div>-->
+<!--																<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--																<div class="tt_class_time">17:00</div>-->
+<!--															</div>-->
+<!--														</div>-->
+<!--													</div>-->
 
-													<!-- Thursday -->
-													<div class="tt_day">
-														<div class="tt_title">thursday</div>
-														<div class="tt_day_content grid">
+<!--													&lt;!&ndash; Thursday &ndash;&gt;-->
+<!--													<div class="tt_day">-->
+<!--														<div class="tt_title">thursday</div>-->
+<!--														<div class="tt_day_content grid">-->
 
-															<!-- Class -->
-															<div class="tt_class grid-item fitness">
-																<div class="tt_class_title">Fitness</div>
-																<div class="tt_class_instructor">Jessica Smith</div>
-																<div class="tt_class_time">9:00</div>
-															</div>
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class grid-item fitness">-->
+<!--																<div class="tt_class_title">Fitness</div>-->
+<!--																<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--																<div class="tt_class_time">9:00</div>-->
+<!--															</div>-->
 
-															<!-- Class -->
-															<div class="tt_class grid-item aerobics">
-																<div class="tt_class_title">Aerobics</div>
-																<div class="tt_class_instructor">Jessica Smith</div>
-																<div class="tt_class_time">10:00</div>
-															</div>
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class grid-item aerobics">-->
+<!--																<div class="tt_class_title">Aerobics</div>-->
+<!--																<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--																<div class="tt_class_time">10:00</div>-->
+<!--															</div>-->
 
-															<!-- Class -->
-															<div class="tt_class grid-item yoga">
-																<div class="tt_class_title">Yoga</div>
-																<div class="tt_class_instructor">Jessica Smith</div>
-																<div class="tt_class_time">12:00</div>
-															</div>
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class grid-item yoga">-->
+<!--																<div class="tt_class_title">Yoga</div>-->
+<!--																<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--																<div class="tt_class_time">12:00</div>-->
+<!--															</div>-->
 
-															<!-- Class -->
-															<div class="tt_class grid-item pilates">
-																<div class="tt_class_title">Pilates</div>
-																<div class="tt_class_instructor">Jessica Smith</div>
-																<div class="tt_class_time">13:00</div>
-															</div>
-														</div>
-													</div>
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class grid-item pilates">-->
+<!--																<div class="tt_class_title">Pilates</div>-->
+<!--																<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--																<div class="tt_class_time">13:00</div>-->
+<!--															</div>-->
+<!--														</div>-->
+<!--													</div>-->
 
-													<!-- Friday -->
-													<div class="tt_day">
-														<div class="tt_title">friday</div>
-														<div class="tt_day_content grid">
+<!--													&lt;!&ndash; Friday &ndash;&gt;-->
+<!--													<div class="tt_day">-->
+<!--														<div class="tt_title">friday</div>-->
+<!--														<div class="tt_day_content grid">-->
 
-															<!-- Class -->
-															<div class="tt_class grid-item yoga">
-																<div class="tt_class_title">Yoga</div>
-																<div class="tt_class_instructor">Jessica Smith</div>
-																<div class="tt_class_time">9:00</div>
-															</div>
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class grid-item yoga">-->
+<!--																<div class="tt_class_title">Yoga</div>-->
+<!--																<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--																<div class="tt_class_time">9:00</div>-->
+<!--															</div>-->
 
-															<!-- Class -->
-															<div class="tt_class grid-item aerobics">
-																<div class="tt_class_title">Aerobics</div>
-																<div class="tt_class_instructor">Jessica Smith</div>
-																<div class="tt_class_time">10:00</div>
-															</div>
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class grid-item aerobics">-->
+<!--																<div class="tt_class_title">Aerobics</div>-->
+<!--																<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--																<div class="tt_class_time">10:00</div>-->
+<!--															</div>-->
 
-															<!-- Class -->
-															<div class="tt_class empty grid-item">
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class empty grid-item">-->
 
-															</div>
+<!--															</div>-->
 
-															<!-- Class -->
-															<div class="tt_class grid-item aerobics">
-																<div class="tt_class_title">Aerobics</div>
-																<div class="tt_class_instructor">Jessica Smith</div>
-																<div class="tt_class_time">13:00</div>
-															</div>
-														</div>
-													</div>
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class grid-item aerobics">-->
+<!--																<div class="tt_class_title">Aerobics</div>-->
+<!--																<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--																<div class="tt_class_time">13:00</div>-->
+<!--															</div>-->
+<!--														</div>-->
+<!--													</div>-->
 
-													<!-- Saturday -->
-													<div class="tt_day">
-														<div class="tt_title">Saturday</div>
-														<div class="tt_day_content grid">
+<!--													&lt;!&ndash; Saturday &ndash;&gt;-->
+<!--													<div class="tt_day">-->
+<!--														<div class="tt_title">Saturday</div>-->
+<!--														<div class="tt_day_content grid">-->
 
-															<!-- Class -->
-															<div class="tt_class grid-item weight_loss">
-																<div class="tt_class_title">Weight Loss</div>
-																<div class="tt_class_instructor">Jessica Smith</div>
-																<div class="tt_class_time">9:00</div>
-															</div>
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class grid-item weight_loss">-->
+<!--																<div class="tt_class_title">Weight Loss</div>-->
+<!--																<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--																<div class="tt_class_time">9:00</div>-->
+<!--															</div>-->
 
-															<!-- Class -->
-															<div class="tt_class grid-item pilates">
-																<div class="tt_class_title">Pilates</div>
-																<div class="tt_class_instructor">Jessica Smith</div>
-																<div class="tt_class_time">10:00</div>
-															</div>
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class grid-item pilates">-->
+<!--																<div class="tt_class_title">Pilates</div>-->
+<!--																<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--																<div class="tt_class_time">10:00</div>-->
+<!--															</div>-->
 
-															<!-- Class -->
-															<div class="tt_class empty grid-item">
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class empty grid-item">-->
 
-															</div>
+<!--															</div>-->
 
-															<!-- Class -->
-															<div class="tt_class grid-item aerobics">
-																<div class="tt_class_title">Aerobics</div>
-																<div class="tt_class_instructor">Jessica Smith</div>
-																<div class="tt_class_time">13:00</div>
-															</div>
-														</div>
-													</div>
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class grid-item aerobics">-->
+<!--																<div class="tt_class_title">Aerobics</div>-->
+<!--																<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--																<div class="tt_class_time">13:00</div>-->
+<!--															</div>-->
+<!--														</div>-->
+<!--													</div>-->
 
-													<!-- Sunday -->
-													<div class="tt_day">
-														<div class="tt_title">Sunday</div>
-														<div class="tt_day_content grid">
+<!--													&lt;!&ndash; Sunday &ndash;&gt;-->
+<!--													<div class="tt_day">-->
+<!--														<div class="tt_title">Sunday</div>-->
+<!--														<div class="tt_day_content grid">-->
 
-															<!-- Class -->
-															<div class="tt_class grid-item stretching">
-																<div class="tt_class_title">Stretching</div>
-																<div class="tt_class_instructor">Jessica Smith</div>
-																<div class="tt_class_time">9:00</div>
-															</div>
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class grid-item stretching">-->
+<!--																<div class="tt_class_title">Stretching</div>-->
+<!--																<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--																<div class="tt_class_time">9:00</div>-->
+<!--															</div>-->
 
-															<!-- Class -->
-															<div class="tt_class grid-item aerobics">
-																<div class="tt_class_title">Aerobics</div>
-																<div class="tt_class_instructor">Jessica Smith</div>
-																<div class="tt_class_time">10:00</div>
-															</div>
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class grid-item aerobics">-->
+<!--																<div class="tt_class_title">Aerobics</div>-->
+<!--																<div class="tt_class_instructor">Jessica Smith</div>-->
+<!--																<div class="tt_class_time">10:00</div>-->
+<!--															</div>-->
 
-															<!-- Class -->
-															<div class="tt_class empty grid-item">
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class empty grid-item">-->
 
-															</div>
+<!--															</div>-->
 
-															<!-- Class -->
-															<div class="tt_class empty grid-item">
+<!--															&lt;!&ndash; Class &ndash;&gt;-->
+<!--															<div class="tt_class empty grid-item">-->
 
-															</div>
-														</div>
-													</div>
+<!--															</div>-->
+<!--														</div>-->
+<!--													</div>-->
 
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-
+<!--												</div>-->
+<!--											</div>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--								</div>-->
 
 
 
 
 
-							</div>
-						</div>
-					</div>
-					<div class="tab_panel">
-						<div class="tab_panel_content">
-							<div class="tab_text">
-								<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
-							</div>
-						</div>
-					</div>
-					<div class="tab_panel">
-						<div class="tab_panel_content">
-							<div class="tab_text">
-								<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
-							</div>
-						</div>
-					</div>
-				</div>
 
-			</div>
-		</div>
-	</div>
+
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--					<div class="tab_panel">-->
+<!--						<div class="tab_panel_content">-->
+<!--							<div class="tab_text">-->
+<!--								<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--					<div class="tab_panel">-->
+<!--						<div class="tab_panel_content">-->
+<!--							<div class="tab_text">-->
+<!--								<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+
+<!--			</div>-->
+<!--		</div>-->
+<!--	</div>-->
 
 	<!-- Elements -->
 
-	<div class="elements">
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					
-					<!-- Buttons -->
-					<div class="buttons">
-						<div class="elements_title">Buttons</div>
-						<div class="buttons_container d-flex flex-row align-items-start justify-content-start flex-wrap">
-							<div class="button button_1"><a href="#">Send</a></div>
-							<div class="button button_2 trans_200"><a href="#">Send</a></div>
-							<div class="button button_3 trans_200"><a href="#">Send</a></div>
-							<div class="button button_4"><a href="#">Send</a></div>
-						</div>
-					</div>
+<!--	<div class="elements">-->
+<!--		<div class="container">-->
+<!--			<div class="row">-->
+<!--				<div class="col">-->
+<!--					-->
+<!--					&lt;!&ndash; Buttons &ndash;&gt;-->
+<!--					<div class="buttons">-->
+<!--						<div class="elements_title">Buttons</div>-->
+<!--						<div class="buttons_container d-flex flex-row align-items-start justify-content-start flex-wrap">-->
+<!--							<div class="button button_1"><a href="#">Send</a></div>-->
+<!--							<div class="button button_2 trans_200"><a href="#">Send</a></div>-->
+<!--							<div class="button button_3 trans_200"><a href="#">Send</a></div>-->
+<!--							<div class="button button_4"><a href="#">Send</a></div>-->
+<!--						</div>-->
+<!--					</div>-->
 
-					<!-- Accordions & Tabs -->
+<!--					&lt;!&ndash; Accordions & Tabs &ndash;&gt;-->
 
-					<div class="accordions_and_tabs">
-						<div class="elements_title">Accordions & Tabs</div>
+<!--					<div class="accordions_and_tabs">-->
+<!--						<div class="elements_title">Accordions & Tabs</div>-->
 
-						<div class="row accordidons_and_tabs_row">
+<!--						<div class="row accordidons_and_tabs_row">-->
 
-							<!-- Accordions -->
-							<div class="col-lg-6">
-								<div class="accordions">
-									
-									<!-- Accordion -->
-									<div class="accordion_container">
-										<div class="accordion d-flex flex-row align-items-center active"><div>Etiam commodo justo nec aliquam feugiat.</div></div>
-										<div class="accordion_panel">
-											<div>
-												<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
-											</div>
-										</div>
-									</div>
-									
-									<!-- Accordion -->
-									<div class="accordion_container">
-										<div class="accordion d-flex flex-row align-items-center"><div>Commodo justo nec aliquam feugiat. </div></div>
-										<div class="accordion_panel">
-											<div>
-												<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
-											</div>
-										</div>
-									</div>
+<!--							&lt;!&ndash; Accordions &ndash;&gt;-->
+<!--							<div class="col-lg-6">-->
+<!--								<div class="accordions">-->
+<!--									-->
+<!--									&lt;!&ndash; Accordion &ndash;&gt;-->
+<!--									<div class="accordion_container">-->
+<!--										<div class="accordion d-flex flex-row align-items-center active"><div>Etiam commodo justo nec aliquam feugiat.</div></div>-->
+<!--										<div class="accordion_panel">-->
+<!--											<div>-->
+<!--												<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>-->
+<!--											</div>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--									-->
+<!--									&lt;!&ndash; Accordion &ndash;&gt;-->
+<!--									<div class="accordion_container">-->
+<!--										<div class="accordion d-flex flex-row align-items-center"><div>Commodo justo nec aliquam feugiat. </div></div>-->
+<!--										<div class="accordion_panel">-->
+<!--											<div>-->
+<!--												<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>-->
+<!--											</div>-->
+<!--										</div>-->
+<!--									</div>-->
 
-									<!-- Accordion -->
-									<div class="accordion_container">
-										<div class="accordion d-flex flex-row align-items-center"><div>Phasellus mattis erat a ante laoreet sodales</div></div>
-										<div class="accordion_panel">
-											<div>
-												<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
-											</div>
-										</div>
-									</div>
+<!--									&lt;!&ndash; Accordion &ndash;&gt;-->
+<!--									<div class="accordion_container">-->
+<!--										<div class="accordion d-flex flex-row align-items-center"><div>Phasellus mattis erat a ante laoreet sodales</div></div>-->
+<!--										<div class="accordion_panel">-->
+<!--											<div>-->
+<!--												<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>-->
+<!--											</div>-->
+<!--										</div>-->
+<!--									</div>-->
 
-								</div>
-							</div>
+<!--								</div>-->
+<!--							</div>-->
 
-							<!-- Tabs -->
-							<div class="col-lg-6 tabs_col">
-								<div class="tabs_container">
+<!--							&lt;!&ndash; Tabs &ndash;&gt;-->
+<!--							<div class="col-lg-6 tabs_col">-->
+<!--								<div class="tabs_container">-->
 
-									<div class="tabs d-flex flex-row align-items-center justify-content-start flex-wrap">
-										<div class="tab active">Etiam commodo</div>
-										<div class="tab">Commodo justo</div>
-										<div class="tab">Phasellus mat</div>
-									</div>
-									<div class="tab_panels">
-										<div class="tab_panel active">
-											<div class="tab_panel_content d-flex flex-row align-items-start justify-content-start">
-												<div class="tab_text">
-													<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
-												</div>
-											</div>
-										</div>
-										<div class="tab_panel">
-											<div class="tab_panel_content">
-												<div class="tab_text">
-													<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
-												</div>
-											</div>
-										</div>
-										<div class="tab_panel">
-											<div class="tab_panel_content">
-												<div class="tab_text">
-													<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
-												</div>
-											</div>
-										</div>
-									</div>
+<!--									<div class="tabs d-flex flex-row align-items-center justify-content-start flex-wrap">-->
+<!--										<div class="tab active">Etiam commodo</div>-->
+<!--										<div class="tab">Commodo justo</div>-->
+<!--										<div class="tab">Phasellus mat</div>-->
+<!--									</div>-->
+<!--									<div class="tab_panels">-->
+<!--										<div class="tab_panel active">-->
+<!--											<div class="tab_panel_content d-flex flex-row align-items-start justify-content-start">-->
+<!--												<div class="tab_text">-->
+<!--													<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>-->
+<!--												</div>-->
+<!--											</div>-->
+<!--										</div>-->
+<!--										<div class="tab_panel">-->
+<!--											<div class="tab_panel_content">-->
+<!--												<div class="tab_text">-->
+<!--													<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>-->
+<!--												</div>-->
+<!--											</div>-->
+<!--										</div>-->
+<!--										<div class="tab_panel">-->
+<!--											<div class="tab_panel_content">-->
+<!--												<div class="tab_text">-->
+<!--													<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>-->
+<!--												</div>-->
+<!--											</div>-->
+<!--										</div>-->
+<!--									</div>-->
 
-								</div>
-							</div>
-						</div>
-					</div>
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
 
-					<!-- Loaders -->
-					<div class="loaders">
-						<div class="elements_title">Loaders</div>
-						<div class="row loaders_row">
+<!--					&lt;!&ndash; Loaders &ndash;&gt;-->
+<!--					<div class="loaders">-->
+<!--						<div class="elements_title">Loaders</div>-->
+<!--						<div class="row loaders_row">-->
 
-							<!-- Loader -->
-							<div class="col-xl-3 col-md-6 loader_col">
-								<!-- Loader -->
-								<div class="loader_container text-center">
-									<div class="loader text-center" data-perc="1.00"></div>
-									<div class="loader_content">
-										<div class="loader_title">Team Work</div>
-									</div>
-								</div>
-							</div>
+<!--							&lt;!&ndash; Loader &ndash;&gt;-->
+<!--							<div class="col-xl-3 col-md-6 loader_col">-->
+<!--								&lt;!&ndash; Loader &ndash;&gt;-->
+<!--								<div class="loader_container text-center">-->
+<!--									<div class="loader text-center" data-perc="1.00"></div>-->
+<!--									<div class="loader_content">-->
+<!--										<div class="loader_title">Team Work</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 
-							<!-- Loader -->
-							<div class="col-xl-3 col-md-6 loader_col">
-								<!-- Loader -->
-								<div class="loader_container text-center">
-									<div class="loader text-center" data-perc="0.75"></div>
-									<div class="loader_content">
-										<div class="loader_title">Fitness</div>
-									</div>
-								</div>
-							</div>
+<!--							&lt;!&ndash; Loader &ndash;&gt;-->
+<!--							<div class="col-xl-3 col-md-6 loader_col">-->
+<!--								&lt;!&ndash; Loader &ndash;&gt;-->
+<!--								<div class="loader_container text-center">-->
+<!--									<div class="loader text-center" data-perc="0.75"></div>-->
+<!--									<div class="loader_content">-->
+<!--										<div class="loader_title">Fitness</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 
-							<!-- Loader -->
-							<div class="col-xl-3 col-md-6 loader_col">
-								<!-- Loader -->
-								<div class="loader_container text-center">
-									<div class="loader text-center" data-perc="0.90"></div>
-									<div class="loader_content">
-										<div class="loader_title">Aerobics</div>
-									</div>
-								</div>
-							</div>
+<!--							&lt;!&ndash; Loader &ndash;&gt;-->
+<!--							<div class="col-xl-3 col-md-6 loader_col">-->
+<!--								&lt;!&ndash; Loader &ndash;&gt;-->
+<!--								<div class="loader_container text-center">-->
+<!--									<div class="loader text-center" data-perc="0.90"></div>-->
+<!--									<div class="loader_content">-->
+<!--										<div class="loader_title">Aerobics</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 
-							<!-- Loader -->
-							<div class="col-xl-3 col-md-6 loader_col">
-								<!-- Loader -->
-								<div class="loader_container text-center">
-									<div class="loader text-center" data-perc="0.60"></div>
-									<div class="loader_content">
-										<div class="loader_title">Pilates</div>
-									</div>
-								</div>
-							</div>
+<!--							&lt;!&ndash; Loader &ndash;&gt;-->
+<!--							<div class="col-xl-3 col-md-6 loader_col">-->
+<!--								&lt;!&ndash; Loader &ndash;&gt;-->
+<!--								<div class="loader_container text-center">-->
+<!--									<div class="loader text-center" data-perc="0.60"></div>-->
+<!--									<div class="loader_content">-->
+<!--										<div class="loader_title">Pilates</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 
-						</div>
-					</div>
+<!--						</div>-->
+<!--					</div>-->
 
-					<!-- Milestones -->
-					<div class="milestones">
-						<div class="elements_title">Milestones</div>
-						<div class="row milestones_row">
-							
-							<!-- Milestone -->
-							<div class="col-xl-3 col-md-6 milestone_col">
-								<div class="milestone d-flex flex-row align-items-center justify-content-start">
-									<div><div class="milestone_icon d-flex flex-column align-items-start justify-content-center"><img src="images/icon_10.png" alt=""></div></div>
-									<div class="milestone_content">
-										<div class="milestone_counter" data-end-value="1273">0</div>
-										<div class="milestone_text">Clients</div>
-									</div>
-								</div>
-							</div>
+<!--					&lt;!&ndash; Milestones &ndash;&gt;-->
+<!--					<div class="milestones">-->
+<!--						<div class="elements_title">Milestones</div>-->
+<!--						<div class="row milestones_row">-->
+<!--							-->
+<!--							&lt;!&ndash; Milestone &ndash;&gt;-->
+<!--							<div class="col-xl-3 col-md-6 milestone_col">-->
+<!--								<div class="milestone d-flex flex-row align-items-center justify-content-start">-->
+<!--									<div><div class="milestone_icon d-flex flex-column align-items-start justify-content-center"><img src="images/icon_10.png" alt=""></div></div>-->
+<!--									<div class="milestone_content">-->
+<!--										<div class="milestone_counter" data-end-value="1273">0</div>-->
+<!--										<div class="milestone_text">Clients</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 
-							<!-- Milestone -->
-							<div class="col-xl-3 col-md-6 milestone_col">
-								<div class="milestone d-flex flex-row align-items-center justify-content-start">
-									<div><div class="milestone_icon d-flex flex-column align-items-start justify-content-center"><img src="images/icon_11.png" alt=""></div></div>
-									<div class="milestone_content">
-										<div class="milestone_counter" data-end-value="25" data-sign-after="k">0</div>
-										<div class="milestone_text">Calories burned</div>
-									</div>
-								</div>
-							</div>
+<!--							&lt;!&ndash; Milestone &ndash;&gt;-->
+<!--							<div class="col-xl-3 col-md-6 milestone_col">-->
+<!--								<div class="milestone d-flex flex-row align-items-center justify-content-start">-->
+<!--									<div><div class="milestone_icon d-flex flex-column align-items-start justify-content-center"><img src="images/icon_11.png" alt=""></div></div>-->
+<!--									<div class="milestone_content">-->
+<!--										<div class="milestone_counter" data-end-value="25" data-sign-after="k">0</div>-->
+<!--										<div class="milestone_text">Calories burned</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 
-							<!-- Milestone -->
-							<div class="col-xl-3 col-md-6 milestone_col">
-								<div class="milestone d-flex flex-row align-items-center justify-content-start">
-									<div><div class="milestone_icon d-flex flex-column align-items-start justify-content-center"><img src="images/icon_12.png" alt=""></div></div>
-									<div class="milestone_content">
-										<div class="milestone_counter" data-end-value="30">0</div>
-										<div class="milestone_text">Minutes / day</div>
-									</div>
-									
-								</div>
-							</div>
+<!--							&lt;!&ndash; Milestone &ndash;&gt;-->
+<!--							<div class="col-xl-3 col-md-6 milestone_col">-->
+<!--								<div class="milestone d-flex flex-row align-items-center justify-content-start">-->
+<!--									<div><div class="milestone_icon d-flex flex-column align-items-start justify-content-center"><img src="images/icon_12.png" alt=""></div></div>-->
+<!--									<div class="milestone_content">-->
+<!--										<div class="milestone_counter" data-end-value="30">0</div>-->
+<!--										<div class="milestone_text">Minutes / day</div>-->
+<!--									</div>-->
+<!--									-->
+<!--								</div>-->
+<!--							</div>-->
 
-							<!-- Milestone -->
-							<div class="col-xl-3 col-md-6 milestone_col">
-								<div class="milestone d-flex flex-row align-items-center justify-content-start">
-									<div><div class="milestone_icon d-flex flex-column align-items-start justify-content-center"><img src="images/icon_13.png" alt=""></div></div>
-									<div class="milestone_content">
-										<div class="milestone_counter" data-end-value="120" data-sign-after="k">0</div>
-										<div class="milestone_text">Km ran</div>
-									</div>
-								</div>
-							</div>
+<!--							&lt;!&ndash; Milestone &ndash;&gt;-->
+<!--							<div class="col-xl-3 col-md-6 milestone_col">-->
+<!--								<div class="milestone d-flex flex-row align-items-center justify-content-start">-->
+<!--									<div><div class="milestone_icon d-flex flex-column align-items-start justify-content-center"><img src="images/icon_13.png" alt=""></div></div>-->
+<!--									<div class="milestone_content">-->
+<!--										<div class="milestone_counter" data-end-value="120" data-sign-after="k">0</div>-->
+<!--										<div class="milestone_text">Km ran</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 
-						</div>
-					</div>
+<!--						</div>-->
+<!--					</div>-->
 
-					<!-- Icon Boxes -->
-					<div class="icon_boxes">
-						<div class="elements_title">Milestones</div>
-						<div class="row services_row">
-							
-							<!-- Service -->
-							<div class="col-xl-4 col-md-6 service_col">
-								<div class="service">
-									<div class="service_title_container d-flex flex-row align-items-center justify-content-start">
-										<div><div class="service_icon"><img src="images/icon_4.png" alt=""></div></div>
-										<div class="service_title">Weight Loss Class</div>
-									</div>
-									<div class="service_text">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum.</p>
-									</div>
-								</div>
-							</div>
+<!--					&lt;!&ndash; Icon Boxes &ndash;&gt;-->
+<!--					<div class="icon_boxes">-->
+<!--						<div class="elements_title">Milestones</div>-->
+<!--						<div class="row services_row">-->
+<!--							-->
+<!--							&lt;!&ndash; Service &ndash;&gt;-->
+<!--							<div class="col-xl-4 col-md-6 service_col">-->
+<!--								<div class="service">-->
+<!--									<div class="service_title_container d-flex flex-row align-items-center justify-content-start">-->
+<!--										<div><div class="service_icon"><img src="images/icon_4.png" alt=""></div></div>-->
+<!--										<div class="service_title">Weight Loss Class</div>-->
+<!--									</div>-->
+<!--									<div class="service_text">-->
+<!--										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum.</p>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 
-							<!-- Service -->
-							<div class="col-xl-4 col-md-6 service_col">
-								<div class="service">
-									<div class="service_title_container d-flex flex-row align-items-center justify-content-start">
-										<div><div class="service_icon"><img src="images/icon_5.png" alt=""></div></div>
-										<div class="service_title">Yoga Classes</div>
-									</div>
-									<div class="service_text">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum.</p>
-									</div>
-								</div>
-							</div>
+<!--							&lt;!&ndash; Service &ndash;&gt;-->
+<!--							<div class="col-xl-4 col-md-6 service_col">-->
+<!--								<div class="service">-->
+<!--									<div class="service_title_container d-flex flex-row align-items-center justify-content-start">-->
+<!--										<div><div class="service_icon"><img src="images/icon_5.png" alt=""></div></div>-->
+<!--										<div class="service_title">Yoga Classes</div>-->
+<!--									</div>-->
+<!--									<div class="service_text">-->
+<!--										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum.</p>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 
-							<!-- Service -->
-							<div class="col-xl-4 col-md-6 service_col">
-								<div class="service">
-									<div class="service_title_container d-flex flex-row align-items-center justify-content-start">
-										<div><div class="service_icon"><img src="images/icon_6.png" alt=""></div></div>
-										<div class="service_title">Spinning Class</div>
-									</div>
-									<div class="service_text">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum.</p>
-									</div>
-								</div>
-							</div>
-							
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<!--							&lt;!&ndash; Service &ndash;&gt;-->
+<!--							<div class="col-xl-4 col-md-6 service_col">-->
+<!--								<div class="service">-->
+<!--									<div class="service_title_container d-flex flex-row align-items-center justify-content-start">-->
+<!--										<div><div class="service_icon"><img src="images/icon_6.png" alt=""></div></div>-->
+<!--										<div class="service_title">Spinning Class</div>-->
+<!--									</div>-->
+<!--									<div class="service_text">-->
+<!--										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum.</p>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--							-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		</div>-->
+<!--	</div>-->
 
 	<script src="../js/jquery-3.2.1.min.js"></script>
 	<script src="../styles/bootstrap-4.1.2/popper.js"></script>

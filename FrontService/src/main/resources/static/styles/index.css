@@ -588,6 +588,23 @@ section
 	margin-top: 1px;
 }
 
+.lower_header_content.visible
+{
+	left: 0;
+	opacity: 1;
+	transition: left, opacity;
+	transition-duration: 600ms;
+
+}
+
+
+.lower_header_content.hidden
+{
+	left: 1500px;
+	opacity: 0;
+}
+
+
 /*********************************
 4. Menu
 *********************************/
