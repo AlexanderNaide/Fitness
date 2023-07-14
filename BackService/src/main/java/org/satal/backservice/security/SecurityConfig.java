@@ -48,6 +48,8 @@ public class SecurityConfig {
 
     private final AuthService authService;
 
+    private final AppProperties appProperties;
+
     @Bean
     public SecurityFilterChain filterChain(MainFilter filter, HttpSecurity http) throws Exception{
 
@@ -114,7 +116,8 @@ public class SecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://www.localhost:3880")
+                        .allowedOrigins(appProperties.getCors())
+//                        .allowedOrigins("http://www.localhost:3880")
 //                        .allowedOrigins("http://localhost:3880")
                         .allowedMethods("*");
             }

@@ -24,3 +24,6 @@ server:
   port: 3881
   servlet:
     context-path: /fitness
+
+security:
+  cors: http://www.localhost:3880

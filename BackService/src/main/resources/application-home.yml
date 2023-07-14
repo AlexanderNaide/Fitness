@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    password: 312808895 # дом
+
+security:
+  cors: http://localhost:3880

@@ -2,6 +2,7 @@ package org.satal.backservice.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.satal.backservice.dto.users.UserDto;
+import org.satal.backservice.dto.worcouts.WorkoutFullDto;
 import org.satal.backservice.dto.worcouts.WorkoutGridDto;
 import org.satal.backservice.services.RoleService;
 import org.satal.backservice.services.SpecializationService;
@@ -28,9 +29,14 @@ public class WorkoutController {
 
 
 
+//    @GetMapping("/week")
+//    public List<WorkoutGridDto> upAllUsers(@RequestParam(required = false, defaultValue = "0") Integer delta, Principal principal){
+//        return workoutService.findCurrentWeek(delta, principal.getName()).stream().map(WorkoutGridDto::new).toList();
+//    }
+
     @GetMapping("/week")
-    public List<WorkoutGridDto> upAllUsers(@RequestParam(required = false, defaultValue = "0") Integer delta, Principal principal){
-        return workoutService.findCurrentWeek(delta, principal.getName()).stream().map(WorkoutGridDto::new).toList();
+    public WorkoutFullDto upAllUsers(@RequestParam(required = false, defaultValue = "0") Integer delta, Principal principal){
+        return new WorkoutFullDto(delta, workoutService.findCurrentWeek(delta, principal.getName()));
     }
 
 
