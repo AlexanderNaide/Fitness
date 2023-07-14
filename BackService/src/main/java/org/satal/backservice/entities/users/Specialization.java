@@ -6,6 +6,8 @@ import jdk.jfr.Unsigned;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.satal.backservice.entities.gridClasses.Workout;
+import org.satal.backservice.entities.gridClasses.ClubService;
 
 import java.util.List;
 
@@ -28,5 +30,14 @@ public class Specialization {
     @OneToMany(mappedBy = "specialization")
     @JsonBackReference(value = "specializationList")
     private List<User> specializationList;
+
+    @ManyToOne
+    @JoinColumn(name = "club_service_id")
+    @Unsigned
+    private ClubService clubService;
+
+    @OneToMany(mappedBy = "specialization")
+    @JsonBackReference(value = "workouts")
+    private List<Workout> workouts;
 
 }

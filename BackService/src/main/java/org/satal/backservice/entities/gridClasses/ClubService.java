@@ -1,13 +1,17 @@
 package org.satal.backservice.entities.gridClasses;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jdk.jfr.Unsigned;
 import lombok.Data;
+import org.satal.backservice.entities.users.Specialization;
+
+import java.util.List;
 
 @Data
 @Entity
-@Table(name = "maintenance")
-public class Maintenance {
+@Table(name = "club_service")
+public class ClubService {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,5 +27,9 @@ public class Maintenance {
 
     @Column(name = "ico", nullable = false)
     private String ico;
+
+    @OneToMany(mappedBy = "clubService")
+    @JsonBackReference(value = "specializations") // без этой аннотации jackson тянет все объекты по цепочки, аналог lazyInitialization
+    private List<Specialization> specializations;
 
 }

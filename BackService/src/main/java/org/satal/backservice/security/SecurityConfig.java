@@ -86,6 +86,7 @@ public class SecurityConfig {
                                  .requestMatchers("/api/v1/admin/**").hasAuthority("admin")
                                  .requestMatchers("/api/v1/trainer/**").hasAuthority("trainer")
                                  .requestMatchers("/api/v1/user/**").hasAuthority("user")
+                                 .requestMatchers("/api/v1/workout/**").authenticated()
                                  .requestMatchers("/auth/**").permitAll()
                  )
                  .sessionManagement(sm ->

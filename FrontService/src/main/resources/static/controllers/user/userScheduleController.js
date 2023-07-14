@@ -1,5 +1,5 @@
 angular.module('fitness').controller('userScheduleController', function ($scope, $http, $localStorage) {
-    const contextPath = 'http://localhost:3881/fitness/api/v1/user';
+    const contextPath = 'http://localhost:3881/fitness/api/v1/workout';
 
     // Преднастройки страницы
     $scope.setStylesOffice = function () {
@@ -21,18 +21,14 @@ angular.module('fitness').controller('userScheduleController', function ($scope,
     $scope.loadSchedule = function () {
         //TODO тут пересмотреть на необязательную отправку номера недели
         $http({
-            url: contextPath + "/schedule",
+            url: contextPath + "/week",
             method: 'GET'
         }).then(function (response) {
-            // console.log(response.data)
+            console.log(response.data)
 
             $scope.schedule = response.data;
         });
     };
-
-
-
-
 
     $scope.loadSchedule();
 
