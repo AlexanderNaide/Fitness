@@ -11,258 +11,58 @@
 						<div class="section_subtitle">welcome to sportfit</div>
 						<div class="section_title">Classes Timetable</div>
 					</div>
-					<div class="timetable_filtering">
-						<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
-							<li class="active item_filter_btn" data-filter="*">All Classes</li>
-							<li class="item_filter_btn" data-filter=".weight_loss">Weight Loss</li>
-							<li class="item_filter_btn" data-filter=".aerobics">Aerobics</li>
-							<li class="item_filter_btn" data-filter=".crossfit">Crossfit</li>
-							<li class="item_filter_btn" data-filter=".fitness">Fitness</li>
-							<li class="item_filter_btn" data-filter=".yoga">Yoga</li>
-							<li class="item_filter_btn" data-filter=".pilates">Pilates</li>
-							<li class="item_filter_btn" data-filter=".stretching">Stretching</li>
-						</ul>
-					</div>
-					<div class="timetable_container d-flex flex-sm-row flex-column align-items-start justify-content-sm-between justify-content-start">
+<!--					<div class="timetable_filtering">-->
+<!--						<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">-->
+<!--&lt;!&ndash;						<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap" ng-repeat="type in schedule.classType">&ndash;&gt;-->
+<!--							<li class="active item_filter_btn" data-filter="*">All Classes</li>-->
+<!--&lt;!&ndash;							<li class="item_filter_btn" data-filter=".{{type}}">{{type}}</li>&ndash;&gt;-->
+<!--							<li class="item_filter_btn" data-filter=".functional">functional</li>-->
+<!--							<li class="item_filter_btn" data-filter=".weight_loss">Weight Loss</li>-->
+<!--&lt;!&ndash;							<li class="item_filter_btn" data-filter=".aerobics">Aerobics</li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li class="item_filter_btn" data-filter=".crossfit">Crossfit</li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li class="item_filter_btn" data-filter=".fitness">Fitness</li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li class="item_filter_btn" data-filter=".yoga">Yoga</li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li class="item_filter_btn" data-filter=".pilates">Pilates</li>&ndash;&gt;-->
+<!--&lt;!&ndash;							<li class="item_filter_btn" data-filter=".functional">functional</li>&ndash;&gt;-->
+<!--						</ul>-->
+<!--					</div>-->
 
-						<!-- Monday -->
-						<div class="tt_day">
-							<div class="tt_title">monday</div>
+
+<!--					https://codepen.io/desandro/pen/eYNEpQ-->
+
+
+										<div class="timetable_filtering">
+											<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
+												<li class="active item_filter_btn" data-filter="*">All Classes</li>
+												<li class="item_filter_btn" data-filter=".functional">functional</li>
+												<li class="item_filter_btn" data-filter=".aerobics">Aerobics</li>
+												<li class="item_filter_btn" data-filter=".crossfit">Crossfit</li>
+												<li class="item_filter_btn" data-filter=".fitness">Fitness</li>
+												<li class="item_filter_btn" data-filter=".yoga">Yoga</li>
+												<li class="item_filter_btn" data-filter=".pilates">Pilates</li>
+												<li class="item_filter_btn" data-filter=".stretching">Stretching</li>
+											</ul>
+										</div>
+<!--					<div class="timetable_container d-flex flex-sm-row flex-column align-items-start justify-content-sm-between justify-content-start" >-->
+					<div class="timetable_container d-flex flex-sm-row flex-column align-items-start justify-content-sm-between justify-content-start" >
+
+							<!-- Day -->
+
+						<div class="tt_day" ng-repeat="week in schedule.week">
+							<div class="tt_title">{{week.dayOfWeek}}</div>
 							<div class="tt_day_content grid">
 
 								<!-- Class -->
-								<div class="tt_class grid-item weight_loss">
-									<div class="tt_class_title">Weight Loss</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">9:00</div>
-								</div>
-
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">10:00</div>
-								</div>
-
-								<!-- Class -->
-								<!--								<div class="tt_class empty grid-item">-->
-
-								<!--								</div>-->
-
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">13:00</div>
+<!--								<div class="tt_class grid-item weight_loss {{class.specialization}}" ng-repeat="class in week.day">-->
+								<div class="tt_class grid-item weight_loss functional" ng-repeat="class in week.day">
+									<div class="tt_class_title">{{class.specialization}}</div>
+									<div class="tt_class_instructor">{{class.trainer}}</div>
+									<div class="tt_class_time">{{class.time}}</div>
 								</div>
 
 							</div>
 						</div>
 
-						<!-- Tuesday -->
-						<div class="tt_day">
-							<div class="tt_title">tuesday</div>
-							<div class="tt_day_content grid">
-
-								<!-- Class -->
-								<div class="tt_class grid-item weight_loss">
-									<div class="tt_class_title">Weight Loss</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">8:00</div>
-								</div>
-
-								<!-- Class -->
-								<!--								<div class="tt_class empty grid-item">-->
-
-								<!--								</div>-->
-
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">12:00</div>
-								</div>
-
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">13:00</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Wednesday -->
-						<div class="tt_day">
-							<div class="tt_title">wednesday</div>
-							<div class="tt_day_content grid">
-
-								<!-- Class -->
-								<div class="tt_class grid-item crossfit">
-									<div class="tt_class_title">Crossfit</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">9:00</div>
-								</div>
-
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">10:00</div>
-								</div>
-
-								<!-- Class -->
-								<!--								<div class="tt_class empty grid-item">-->
-
-								<!--								</div>-->
-
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">13:00</div>
-								</div>
-
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">17:00</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Thursday -->
-						<div class="tt_day">
-							<div class="tt_title">thursday</div>
-							<div class="tt_day_content grid">
-
-								<!-- Class -->
-								<div class="tt_class grid-item fitness">
-									<div class="tt_class_title">Fitness</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">9:00</div>
-								</div>
-
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">10:00</div>
-								</div>
-
-								<!-- Class -->
-								<div class="tt_class grid-item yoga">
-									<div class="tt_class_title">Yoga</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">12:00</div>
-								</div>
-
-								<!-- Class -->
-								<div class="tt_class grid-item pilates">
-									<div class="tt_class_title">Pilates</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">13:00</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Friday -->
-						<div class="tt_day">
-							<div class="tt_title">friday</div>
-							<div class="tt_day_content grid">
-
-								<!-- Class -->
-								<div class="tt_class grid-item yoga">
-									<div class="tt_class_title">Yoga</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">9:00</div>
-								</div>
-
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">10:00</div>
-								</div>
-
-								<!-- Class -->
-								<!--								<div class="tt_class empty grid-item">-->
-
-								<!--								</div>-->
-
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">13:00</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Saturday -->
-						<div class="tt_day">
-							<div class="tt_title">Saturday</div>
-							<div class="tt_day_content grid">
-
-								<!-- Class -->
-								<div class="tt_class grid-item weight_loss">
-									<div class="tt_class_title">Weight Loss</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">9:00</div>
-								</div>
-
-								<!-- Class -->
-								<div class="tt_class grid-item pilates">
-									<div class="tt_class_title">Pilates</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">10:00</div>
-								</div>
-
-								<!-- Class -->
-								<!--								<div class="tt_class empty grid-item">-->
-
-								<!--								</div>-->
-
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">13:00</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- Sunday -->
-						<div class="tt_day">
-							<div class="tt_title">Sunday</div>
-							<div class="tt_day_content grid">
-
-								<!-- Class -->
-								<div class="tt_class grid-item stretching">
-									<div class="tt_class_title">Stretching</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">9:00</div>
-								</div>
-
-								<!-- Class -->
-								<div class="tt_class grid-item aerobics">
-									<div class="tt_class_title">Aerobics</div>
-									<div class="tt_class_instructor">Jessica Smith</div>
-									<div class="tt_class_time">10:00</div>
-								</div>
-
-								<!-- Class -->
-								<!--								<div class="tt_class empty grid-item">-->
-
-								<!--								</div>-->
-
-								<!-- Class -->
-								<!--								<div class="tt_class empty grid-item">-->
-
-								<!--								</div>-->
-							</div>
-						</div>
 
 					</div>
 				</div>
@@ -270,6 +70,16 @@
 		</div>
 	</div>
 
+
+
+
+
+
+
+
+
+
+	<!-- Тестовый контент -->
 
 	<!-- Timetable -->
 
@@ -556,7 +366,8 @@
 	<script src="../../plugins/parallax-js-master/parallax.min.js"></script>
 <!--	<script src="../../plugins/progressbar/progressbar.min.js"></script>-->
 	<script src="../../plugins/colorbox/jquery.colorbox-min.js"></script>
-	<script src="../../plugins/Isotope/isotope.pkgd.min.js"></script>
+	<script src="../../plugins/Isotope/isotope.pkgd.js"></script>
+<!--	<script src="../../plugins/Isotope/isotope.pkgd.min.js"></script>-->
 	<script src="../../js/services.js"></script>
 </div>
 
