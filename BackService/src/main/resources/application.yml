@@ -26,4 +26,5 @@ server:
     context-path: /fitness
 
 security:
-  cors: http://www.localhost:3880
+  cors: http://www.localhost:3880 http://localhost:3880
+#  cors: http://localhost:3880

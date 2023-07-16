@@ -116,9 +116,10 @@ public class SecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins(appProperties.getCors())
+//                        .allowedOrigins(appProperties.getCors())
 //                        .allowedOrigins("http://www.localhost:3880")
 //                        .allowedOrigins("http://localhost:3880")
+                        .allowedOrigins("http://localhost:3880", "http://www.localhost:3880")
                         .allowedMethods("*");
             }
         };
