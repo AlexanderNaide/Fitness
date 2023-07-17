@@ -4,14 +4,13 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 @Data
 public class WorkoutFullDto {
     private String period;
-    private List<String> classType;
+//    private List<String> classType;
+    private Map<String, String> classType;
     private List<WorkoutWeekDto> week;
 
     public WorkoutFullDto(Integer delta, List<String> list) {
@@ -30,7 +29,7 @@ public class WorkoutFullDto {
                 new WorkoutWeekDto("Saturday"),
                 new WorkoutWeekDto("Sunday")
         );
-        this.classType = new ArrayList<>();
+/*        this.classType = new ArrayList<>();
 
         for (String s : list) {
             String[] split = s.split(",");
@@ -40,6 +39,19 @@ public class WorkoutFullDto {
             WorkoutWeekDto w = week.stream().filter(e -> e.getDayOfWeek().equals(split[1])).findFirst().orElse(null);
             assert w != null;
             w.getDay().add(new WorkoutGridDto(s));
+        }*/
+
+        this.classType = new TreeMap<>();
+        classType.put("All Classes", "");
+
+        for (String s : list) {
+            String[] split = s.split(",");
+            classType.put(split[2], "." + split[2]);
+            WorkoutWeekDto w = week.stream().filter(e -> e.getDayOfWeek().equals(split[1])).findFirst().orElse(null);
+            assert w != null;
+            w.getDay().add(new WorkoutGridDto(s));
         }
+
+
     }
 }

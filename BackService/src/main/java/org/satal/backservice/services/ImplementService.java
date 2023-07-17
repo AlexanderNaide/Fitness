@@ -186,7 +186,7 @@ public class ImplementService {
 
         Workout workout1 = new Workout();
         workout1.setGroup(true);
-        workout1.setTime(LocalDateTime.of(2023, 7, 14, 16, 0));
+        workout1.setTime(LocalDateTime.of(2023, 7, 21, 16, 0));
         workout1.setTrainer(trainer1);
         workout1.setSpecialization(functional);
         workout1.setCustomers(List.of(user0));
@@ -194,15 +194,15 @@ public class ImplementService {
 
         Workout workout2 = new Workout();
         workout2.setGroup(true);
-        workout2.setTime(LocalDateTime.of(2023, 7, 14, 20, 0));
+        workout2.setTime(LocalDateTime.of(2023, 7, 21, 20, 0));
         workout2.setTrainer(trainer1);
-        workout2.setSpecialization(functional);
+        workout2.setSpecialization(water);
         workout2.setCustomers(List.of(user0));
         workoutService.save(workout2);
 
         Workout workout3 = new Workout();
         workout3.setGroup(true);
-        workout3.setTime(LocalDateTime.of(2023, 7, 13, 18, 0));
+        workout3.setTime(LocalDateTime.of(2023, 7, 20, 18, 0));
         workout3.setTrainer(trainer1);
         workout3.setSpecialization(functional);
         workout3.setCustomers(List.of(user0));
@@ -210,7 +210,7 @@ public class ImplementService {
 
         Workout workout4 = new Workout();
         workout4.setGroup(true);
-        workout4.setTime(LocalDateTime.of(2023, 7, 12, 16, 0));
+        workout4.setTime(LocalDateTime.of(2023, 7, 19, 16, 0));
         workout4.setTrainer(trainer1);
         workout4.setSpecialization(functional);
         workout4.setCustomers(List.of(user0));
@@ -218,7 +218,7 @@ public class ImplementService {
 
         Workout workout5 = new Workout();
         workout5.setGroup(true);
-        workout5.setTime(LocalDateTime.of(2023, 7, 11, 16, 0));
+        workout5.setTime(LocalDateTime.of(2023, 7, 18, 16, 0));
         workout5.setTrainer(trainer1);
         workout5.setSpecialization(functional);
         workout5.setCustomers(List.of(user0));
@@ -227,15 +227,15 @@ public class ImplementService {
 
         Workout workout6 = new Workout();
         workout6.setGroup(true);
-        workout6.setTime(LocalDateTime.of(2023, 7, 11, 20, 0));
+        workout6.setTime(LocalDateTime.of(2023, 7, 18, 20, 0));
         workout6.setTrainer(trainer1);
-        workout6.setSpecialization(functional);
+        workout6.setSpecialization(water);
         workout6.setCustomers(List.of(user0));
         workoutService.save(workout6);
 
         Workout workout7 = new Workout();
         workout7.setGroup(true);
-        workout7.setTime(LocalDateTime.of(2023, 7, 6, 16, 0));
+        workout7.setTime(LocalDateTime.of(2023, 7, 13, 16, 0));
         workout7.setTrainer(trainer1);
         workout7.setSpecialization(functional);
         workout7.setCustomers(List.of(user0));
@@ -243,7 +243,7 @@ public class ImplementService {
 
         Workout workout8 = new Workout();
         workout8.setGroup(true);
-        workout8.setTime(LocalDateTime.of(2023, 7, 4, 16, 0));
+        workout8.setTime(LocalDateTime.of(2023, 7, 11, 16, 0));
         workout8.setTrainer(trainer1);
         workout8.setSpecialization(functional);
         workout8.setCustomers(List.of(user0));
