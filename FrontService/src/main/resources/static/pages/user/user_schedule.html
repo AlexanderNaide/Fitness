@@ -12,25 +12,9 @@
 						<div class="section_title">Classes Timetable</div>
 					</div>
 <!--					https://codepen.io/desandro/pen/eYNEpQ-->
-<!--						<div class="timetable_filtering">-->
-<!--							<ul class="button-group d-flex flex-row align-items-start justify-content-start flex-wrap" data-filter-group="specialization">-->
-<!--								<li class="item_filter_btn active" data-filter="">All Classes</li>-->
-<!--								<li class="item_filter_btn" data-filter=".functional">functional</li>-->
-<!--								<li class="item_filter_btn" data-filter=".aerobics">Aerobics</li>-->
-<!--								<li class="item_filter_btn" data-filter=".crossfit">Crossfit</li>-->
-<!--								<li class="item_filter_btn" data-filter=".fitness">Fitness</li>-->
-<!--								<li class="item_filter_btn" data-filter=".yoga">Yoga</li>-->
-<!--								<li class="item_filter_btn" data-filter=".pilates">Pilates</li>-->
-<!--								<li class="item_filter_btn" data-filter=".stretching">Stretching</li>-->
-<!--							</ul>-->
-<!--						</div>-->
 
 					<div class="timetable_filtering">
 						<ul class="button-group d-flex flex-row align-items-start justify-content-start flex-wrap" data-filter-group="specialization">
-<!--						<ul class="button-group d-flex flex-row align-items-start justify-content-start flex-wrap" data-filter-group="specialization">-->
-<!--							<li class="item_filter_btn active" data-filter="">All Classes</li>-->
-<!--							<li class="item_filter_btn" data-filter=".functional">functional</li>-->
-<!--							<li class="item_filter_btn" data-filter=".water">water</li>-->
 							<li class="item_filter_btn" ng-repeat="(key, val) in schedule.classType" data-filter="{{val}}">{{key}}</li>
 						</ul>
 					</div>

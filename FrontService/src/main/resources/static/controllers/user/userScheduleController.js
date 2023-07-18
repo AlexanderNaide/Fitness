@@ -48,13 +48,11 @@ angular.module('fitness').controller('userScheduleController', function ($scope,
             method: 'GET'
         }).then(function (response) {
             // console.log(response.data);
-
             $scope.schedule = response.data;
             gridCount = 0;
             for (const k of $scope.schedule.week) {
                 gridCount += Object.keys(k.day).length;
             }
-            $scope.initIsotope();
         });
     };
 
@@ -95,59 +93,50 @@ angular.module('fitness').controller('userScheduleController', function ($scope,
     //     return value;
     // }
 
-    // пока тоже работает
+    // работает
     $scope.initIsotope = function (){
-        // console.log(gridCount);
-        let gridL = document.getElementsByClassName('grid');
-        // console.log(gridL.length);
-        setTimeout(100);
-
-        // while (gridL.length !== gridCount){
-        //
-        // };
-
-    	if(gridL.length){
-            console.log("Вошли");
-            console.log(gridL.length);
-            const grid = $('.grid').isotope({
-                itemSelector: '.grid-item',
-                percentPosition: true,
-                masonry:
-                    {
-                        horizontalOrder: true
+        const grid = $('.grid').isotope({
+            itemSelector: '.grid-item',
+            percentPosition: true,
+            masonry:
+                {
+                    horizontalOrder: true
+                },
+            getSortData:
+                {
+                    price: function (itemElement) {
+                        const priceEle = $(itemElement).find('.product_price').text().replace('$', '');
+                        return parseFloat(priceEle);
                     },
-                getSortData:
-                    {
-                        price: function (itemElement) {
-                            const priceEle = $(itemElement).find('.product_price').text().replace('$', '');
-                            return parseFloat(priceEle);
-                        },
-                        name: '.tt_class_title'
-                    }
-            });
+                    name: '.tt_class_title'
+                }
+        });
 
-            // Filtering
-            $('.item_filter_btn').on('click', function()
-            {
-                const buttons = $('.item_filter_btn');
-                buttons.removeClass('active');
-            	$(this).addClass('active');
-                const filterValue = $(this).attr('data-filter');
-                grid.isotope({ filter: filterValue });
-            });
-            $('[data-filter = ""]').addClass("active");
-    	} else {
-            setTimeout(() => {
-                // console.log("Delayed for 1 second.");
-                gridL = document.getElementsByClassName('grid');
-            }, 1000);
-        }
+        // Filtering
+        $('.item_filter_btn').on('click', function()
+        {
+            const buttons = $('.item_filter_btn');
+            buttons.removeClass('active');
+            $(this).addClass('active');
+            const filterValue = $(this).attr('data-filter');
+            grid.isotope({ filter: filterValue });
+        });
+        $('[data-filter = ""]').addClass("active");
     };
-    console.log("контроллер");
 
-    // запуск изотоп
-    // $scope.initIsotope();
+    $scope.waitIsotope = function (){
+        let gridItem = document.getElementsByClassName('grid-item');
+        const interval = setInterval(function () {
+            if (gridCount === gridItem.length) {
+                clearInterval(interval);
+                $scope.initIsotope();
+            }
+        }, 50);
+    };
 
     $scope.loadSchedule();
+
+    //отложенный запуск изотоп
+    $scope.waitIsotope();
 
 });
