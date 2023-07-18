@@ -1,5 +1,6 @@
 angular.module('fitness').controller('userScheduleController', function ($scope, $http, $localStorage) {
     const contextPath = 'http://localhost:3881/fitness/api/v1/workout';
+    let currentWeek;
     let gridCount;
 
     // Преднастройки страницы
@@ -41,18 +42,23 @@ angular.module('fitness').controller('userScheduleController', function ($scope,
 
 
 
-    $scope.loadSchedule = function () {
-        //TODO тут пересмотреть на необязательную отправку номера недели
+    $scope.loadSchedule = function (delta) {
+        delta = currentWeek === undefined ? null : currentWeek + delta;
         $http({
             url: contextPath + "/week",
-            method: 'GET'
+            method: 'GET',
+            params: {
+                delta: delta
+            }
         }).then(function (response) {
             // console.log(response.data);
             $scope.schedule = response.data;
+            currentWeek = response.data.currentWeek;
             gridCount = 0;
-            for (const k of $scope.schedule.week) {
+            for (const k of response.data.week) {
                 gridCount += Object.keys(k.day).length;
             }
+            $scope.waitIsotope();
         });
     };
 

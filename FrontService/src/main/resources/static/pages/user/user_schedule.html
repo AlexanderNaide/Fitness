@@ -11,12 +11,19 @@
 						<div class="section_subtitle">welcome to sportfit</div>
 						<div class="section_title">Classes Timetable</div>
 					</div>
+
 <!--					https://codepen.io/desandro/pen/eYNEpQ-->
 
 					<div class="timetable_filtering">
 						<ul class="button-group d-flex flex-row align-items-start justify-content-start flex-wrap" data-filter-group="specialization">
 							<li class="item_filter_btn" ng-repeat="(key, val) in schedule.classType" data-filter="{{val}}">{{key}}</li>
 						</ul>
+					</div>
+
+					<div class="section_subtitle d-flex justify-content-center period-line">
+						<div class="cursor-pointer" ng-click="loadSchedule(-1)"><<<</div>
+						<div>{{schedule.period}}</div>
+						<div class="cursor-pointer" ng-click="loadSchedule(1)">>>></div>
 					</div>
 
 					<div class="timetable_container d-flex flex-sm-row flex-column align-items-start justify-content-sm-between justify-content-start" >

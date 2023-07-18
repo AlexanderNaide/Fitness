@@ -9,6 +9,7 @@ import java.util.*;
 @Data
 public class WorkoutFullDto {
     private String period;
+    private Integer currentWeek;
 //    private List<String> classType;
     private Map<String, String> classType;
     private List<WorkoutWeekDto> week;
@@ -19,6 +20,7 @@ public class WorkoutFullDto {
         LocalDate firstDay = newDate.minusDays(newDate.getDayOfWeek().getValue() - 1);
         LocalDate secondDay = newDate.plusDays(7 - newDate.getDayOfWeek().getValue());
         DateTimeFormatter df = DateTimeFormatter.ofPattern("dd.MM");
+        this.currentWeek = delta;
         this.period = df.format(firstDay) + " - " + df.format(secondDay);
         this.week = List.of(
                 new WorkoutWeekDto("Monday"),
