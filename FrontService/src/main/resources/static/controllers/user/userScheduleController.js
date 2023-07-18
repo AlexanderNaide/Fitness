@@ -1,5 +1,6 @@
 angular.module('fitness').controller('userScheduleController', function ($scope, $http, $localStorage) {
     const contextPath = 'http://localhost:3881/fitness/api/v1/workout';
+    let gridCount;
 
     // Преднастройки страницы
     $scope.setStylesOffice = function () {
@@ -16,7 +17,29 @@ angular.module('fitness').controller('userScheduleController', function ($scope,
         // document.getElementById('a').style.backgroundImage="url(images/img.jpg)"; // specify the image path here
         jQuery(window).trigger('resize').trigger('scroll');
         document.getElementById('office_heading').style.backgroundImage="url(../images/contact.jpg)";
+
+        // const header = $('.header');
+        // const hamburgerBar = $('.hamburger_bar');
+        // const hamburger = $('.hamburger');
+
+        // setHeader();
+        //
+        // function setHeader()
+        // {
+        //     if($(window).scrollTop() > 91)
+        //     {
+        //         header.addClass('scrolled');
+        //         hamburgerBar.addClass('scrolled');
+        //     }
+        //     else
+        //     {
+        //         header.removeClass('scrolled');
+        //         hamburgerBar.removeClass('scrolled');
+        //     }
+        // }
     };
+
+
 
     $scope.loadSchedule = function () {
         //TODO тут пересмотреть на необязательную отправку номера недели
@@ -24,41 +47,45 @@ angular.module('fitness').controller('userScheduleController', function ($scope,
             url: contextPath + "/week",
             method: 'GET'
         }).then(function (response) {
-            console.log(response.data)
+            // console.log(response.data);
 
             $scope.schedule = response.data;
+            gridCount = 0;
+            for (const k of $scope.schedule.week) {
+                gridCount += Object.keys(k.day).length;
+            }
+            $scope.initIsotope();
         });
     };
 
 
 
 
-
-    // const $grid = $('.grid').isotope({
-    //     itemSelector: '.grid-item'
-    // });
-    //
-    // const filters = {};
-    //
-    // $('.filters').on('click', '.button', function (event){
-    //     const $button = $(event.currentTarget);
-    //     const $buttonGroup = $button.parents('.button-group');
-    //     const filterGroup = $buttonGroup.attr('data-filter-group');
-    //     filters[filterGroup] = $button.attr('data-filter');
-    //     const filterValue = concatValues(filters);
-    //     // console.log(filterValue);
-    //     $grid.isotope({filter: filterValue});
-    // });
-    //
-    // $('.button-group').each(function (i, buttonGroup){
-    //     const $buttonGroup = $(buttonGroup);
-    //     $buttonGroup.on('click', 'li', function (event) {
-    //         $buttonGroup.find('.is-checked').removeClass('is-checked');
-    //         const $button = $(event.currentTarget);
-    //         // console.log($button);
-    //         $button.addClass('is-checked');
+    // это работает.
+    // window.onload = function() {
+    //     // let $grid;
+    //     const filters = {};
+    //     const $grid = $('.grid').isotope({
+    //         itemSelector: '.grid-item'
     //     });
-    // });
+    //     $('.timetable_filtering').on('click', '.item_filter_btn', function (event){
+    //         const $button = $(event.currentTarget);
+    //         const $buttonGroup = $button.parents('.button-group');
+    //         const filterGroup = $buttonGroup.attr('data-filter-group');
+    //         filters[filterGroup] = $button.attr('data-filter');
+    //         const filterValue = concatValues(filters);
+    //         $grid.isotope({filter: filterValue});
+    //     });
+    //     $('.button-group').each(function (i, buttonGroup){
+    //         const $buttonGroup = $(buttonGroup);
+    //         $buttonGroup.on('click', 'li', function (event) {
+    //             $buttonGroup.find('.active').removeClass('active');
+    //             const $button = $(event.currentTarget);
+    //             $button.addClass('active');
+    //         });
+    //     });
+    //     $('[data-filter = ""]').addClass("active");
+    // };
     //
     // function concatValues( obj ) {
     //     let value = '';
@@ -68,42 +95,58 @@ angular.module('fitness').controller('userScheduleController', function ($scope,
     //     return value;
     // }
 
+    // пока тоже работает
+    $scope.initIsotope = function (){
+        // console.log(gridCount);
+        let gridL = document.getElementsByClassName('grid');
+        // console.log(gridL.length);
+        setTimeout(100);
 
+        // while (gridL.length !== gridCount){
+        //
+        // };
 
-
-
-    window.onload = function() {
-        // let $grid;
-        const filters = {};
-        const $grid = $('.grid').isotope({
-            itemSelector: '.grid-item'
-        });
-        $('.timetable_filtering').on('click', '.item_filter_btn', function (event){
-            const $button = $(event.currentTarget);
-            const $buttonGroup = $button.parents('.button-group');
-            const filterGroup = $buttonGroup.attr('data-filter-group');
-            filters[filterGroup] = $button.attr('data-filter');
-            const filterValue = concatValues(filters);
-            $grid.isotope({filter: filterValue});
-        });
-        $('.button-group').each(function (i, buttonGroup){
-            const $buttonGroup = $(buttonGroup);
-            $buttonGroup.on('click', 'li', function (event) {
-                $buttonGroup.find('.active').removeClass('active');
-                const $button = $(event.currentTarget);
-                $button.addClass('active');
+    	if(gridL.length){
+            console.log("Вошли");
+            console.log(gridL.length);
+            const grid = $('.grid').isotope({
+                itemSelector: '.grid-item',
+                percentPosition: true,
+                masonry:
+                    {
+                        horizontalOrder: true
+                    },
+                getSortData:
+                    {
+                        price: function (itemElement) {
+                            const priceEle = $(itemElement).find('.product_price').text().replace('$', '');
+                            return parseFloat(priceEle);
+                        },
+                        name: '.tt_class_title'
+                    }
             });
-        });
-        $('[data-filter = ""]').addClass("active");
-    };
 
-    function concatValues( obj ) {
-        let value = '';
-        for (const prop in obj ) {
-            value += obj[ prop ];
+            // Filtering
+            $('.item_filter_btn').on('click', function()
+            {
+                const buttons = $('.item_filter_btn');
+                buttons.removeClass('active');
+            	$(this).addClass('active');
+                const filterValue = $(this).attr('data-filter');
+                grid.isotope({ filter: filterValue });
+            });
+            $('[data-filter = ""]').addClass("active");
+    	} else {
+            setTimeout(() => {
+                // console.log("Delayed for 1 second.");
+                gridL = document.getElementsByClassName('grid');
+            }, 1000);
         }
-        return value;
-    }
+    };
+    console.log("контроллер");
+
+    // запуск изотоп
+    // $scope.initIsotope();
 
     $scope.loadSchedule();
 
