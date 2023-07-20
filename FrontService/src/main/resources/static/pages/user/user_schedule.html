@@ -26,6 +26,7 @@
 						<div class="cursor-pointer" ng-click="loadSchedule(1)">>>></div>
 					</div>
 
+<!--					Все в одним repeat-->
 					<div class="timetable_container d-flex flex-sm-row flex-column align-items-start justify-content-sm-between justify-content-start" >
 						<div class="tt_day" ng-repeat="week in schedule.week">
 							<div class="tt_title">{{week.dayOfWeek}}</div>
@@ -40,6 +41,105 @@
 
 							</div>
 						</div>
+					</div>
+
+					<!--					Дни заранее созданы-->
+<!--					<div class="timetable_container d-flex flex-sm-row flex-column align-items-start justify-content-sm-between justify-content-start" >-->
+
+<!--						<div class="tt_day">-->
+<!--							<div class="tt_title">MONDAY</div>-->
+<!--							<div class="tt_day_content grid">-->
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item {{class.specialization}}" ng-repeat="class in schedule.week[0].day">-->
+<!--									<div class="tt_class_title">{{class.specialization}}</div>-->
+<!--									<div class="tt_class_instructor">{{class.trainer}}</div>-->
+<!--									<div class="tt_class_time">{{class.time}}</div>-->
+<!--								</div>-->
+
+<!--							</div>-->
+<!--						</div>-->
+
+<!--						<div class="tt_day">-->
+<!--							<div class="tt_title">TUESDAY</div>-->
+<!--							<div class="tt_day_content grid">-->
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item {{class.specialization}}" ng-repeat="class in schedule.week[1].day">-->
+<!--									<div class="tt_class_title">{{class.specialization}}</div>-->
+<!--									<div class="tt_class_instructor">{{class.trainer}}</div>-->
+<!--									<div class="tt_class_time">{{class.time}}</div>-->
+<!--								</div>-->
+
+<!--							</div>-->
+<!--						</div>-->
+
+<!--						<div class="tt_day">-->
+<!--							<div class="tt_title">WEDNESDAY</div>-->
+<!--							<div class="tt_day_content grid">-->
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item {{class.specialization}}" ng-repeat="class in schedule.week[2].day">-->
+<!--									<div class="tt_class_title">{{class.specialization}}</div>-->
+<!--									<div class="tt_class_instructor">{{class.trainer}}</div>-->
+<!--									<div class="tt_class_time">{{class.time}}</div>-->
+<!--								</div>-->
+
+<!--							</div>-->
+<!--						</div>-->
+
+<!--						<div class="tt_day">-->
+<!--							<div class="tt_title">THURSDAY</div>-->
+<!--							<div class="tt_day_content grid">-->
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item {{class.specialization}}" ng-repeat="class in schedule.week[3].day">-->
+<!--									<div class="tt_class_title">{{class.specialization}}</div>-->
+<!--									<div class="tt_class_instructor">{{class.trainer}}</div>-->
+<!--									<div class="tt_class_time">{{class.time}}</div>-->
+<!--								</div>-->
+
+<!--							</div>-->
+<!--						</div>-->
+
+<!--						<div class="tt_day">-->
+<!--							<div class="tt_title">FRIDAY</div>-->
+<!--							<div class="tt_day_content grid">-->
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item {{class.specialization}}" ng-repeat="class in schedule.week[4].day">-->
+<!--									<div class="tt_class_title">{{class.specialization}}</div>-->
+<!--									<div class="tt_class_instructor">{{class.trainer}}</div>-->
+<!--									<div class="tt_class_time">{{class.time}}</div>-->
+<!--								</div>-->
+
+<!--							</div>-->
+<!--						</div>-->
+
+<!--						<div class="tt_day">-->
+<!--							<div class="tt_title">SATURDAY</div>-->
+<!--							<div class="tt_day_content grid">-->
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item {{class.specialization}}" ng-repeat="class in schedule.week[5].day">-->
+<!--									<div class="tt_class_title">{{class.specialization}}</div>-->
+<!--									<div class="tt_class_instructor">{{class.trainer}}</div>-->
+<!--									<div class="tt_class_time">{{class.time}}</div>-->
+<!--								</div>-->
+
+<!--							</div>-->
+<!--						</div>-->
+
+<!--						<div class="tt_day">-->
+<!--							<div class="tt_title">SUNDAY</div>-->
+<!--							<div class="tt_day_content grid">-->
+<!--								&lt;!&ndash; Class &ndash;&gt;-->
+<!--								<div class="tt_class grid-item {{class.specialization}}" ng-repeat="class in schedule.week[6].day">-->
+<!--									<div class="tt_class_title">{{class.specialization}}</div>-->
+<!--									<div class="tt_class_instructor">{{class.trainer}}</div>-->
+<!--									<div class="tt_class_time">{{class.time}}</div>-->
+<!--								</div>-->
+
+<!--							</div>-->
+<!--						</div>-->
+
+
+
+
 					</div>
 
 

@@ -51,7 +51,7 @@ angular.module('fitness').controller('userScheduleController', function ($scope,
                 delta: delta
             }
         }).then(function (response) {
-            // console.log(response.data);
+            console.log(response.data);
             $scope.schedule = response.data;
             currentWeek = response.data.currentWeek;
             gridCount = 0;
