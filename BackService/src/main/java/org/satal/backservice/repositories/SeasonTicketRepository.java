@@ -1,6 +1,5 @@
 package org.satal.backservice.repositories;
 
-import org.satal.backservice.entities.users.Role;
 import org.satal.backservice.entities.users.SeasonTicket;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

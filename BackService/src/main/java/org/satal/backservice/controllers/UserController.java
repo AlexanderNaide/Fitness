@@ -20,5 +20,12 @@ public class UserController {
     private final SpecializationService specializationService;
     private final UserService userService;
 
+    //TODO тут пересмотреть на необязательное получение номера недели
+    @GetMapping("/schedule")
+    public SpecializationDto getSchedule(@RequestParam Long id){
+        Optional<Specialization> specializationOptional = specializationService.findById(id);
+        return specializationOptional.map(SpecializationDto::new).orElseGet(() -> new SpecializationDto(null, "Специализация с id:" + id + " не найдена."));
+    }
+
 
 }

@@ -45,6 +45,8 @@ public class AuthController {
         return new AuthResponse(token, userService.findByLogin(request.getLogin()).orElse(null));
     }
 
+    //TODO посмотреть про кастомную валидацию на https://www.baeldung.com/spring-mvc-custom-validator
+
     @PostMapping("/reg")
     public AuthResponse register(@RequestBody AuthRequest request){
         log.info("Request registration from: {}", request.getLogin());

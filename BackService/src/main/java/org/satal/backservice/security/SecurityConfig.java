@@ -48,6 +48,8 @@ public class SecurityConfig {
 
     private final AuthService authService;
 
+    private final AppProperties appProperties;
+
     @Bean
     public SecurityFilterChain filterChain(MainFilter filter, HttpSecurity http) throws Exception{
 
@@ -86,6 +88,7 @@ public class SecurityConfig {
                                  .requestMatchers("/api/v1/admin/**").hasAuthority("admin")
                                  .requestMatchers("/api/v1/trainer/**").hasAuthority("trainer")
                                  .requestMatchers("/api/v1/user/**").hasAuthority("user")
+                                 .requestMatchers("/api/v1/workout/**").authenticated()
                                  .requestMatchers("/auth/**").permitAll()
                  )
                  .sessionManagement(sm ->
@@ -113,8 +116,8 @@ public class SecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://www.localhost:3880")
-//                        .allowedOrigins("http://localhost:3880")
+//                        .allowedOrigins(appProperties.getCors())
+                        .allowedOrigins("http://localhost:3880", "http://www.localhost:3880")
                         .allowedMethods("*");
             }
         };

@@ -7,12 +7,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.satal.backservice.entities.gridClasses.Workout;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 @Data
@@ -79,5 +78,9 @@ public class User {
 
     @Column(name = "background")
     private String background;
+
+    @OneToMany(mappedBy = "trainer")
+    @JsonBackReference(value = "workouts") // без этой аннотации jackson тянет все объекты по цепочки, аналог lazyInitialization
+    private List<Workout> workouts;
 
 }

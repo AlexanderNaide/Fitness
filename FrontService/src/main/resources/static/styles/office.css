@@ -598,7 +598,7 @@
 }
 .timetable_container
 {
-	margin-top: 62px;
+	margin-top: 18px;
 	width: calc(100% + 156px);
 	left: -78px;
 }
@@ -663,4 +663,19 @@
 	color: #ff9711;
 	line-height: 0.75;
 	margin-top: 28px;
+}
+.period-line div {
+	padding-left: 30px;
+	padding-right: 30px;
+	font-size: initial;
+}
+
+.period-line div {
+	padding-left: 30px;
+	padding-right: 30px;
+	font-size: initial;
+}
+
+.cursor-pointer{
+	cursor: pointer;
 }

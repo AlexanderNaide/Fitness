@@ -1,13 +1,12 @@
 angular.module('fitness').controller('userScheduleController', function ($scope, $http, $localStorage) {
-    const contextPath = 'http://localhost:3881/fitness/api/v1/user';
+    const contextPath = 'http://localhost:3881/fitness/api/v1/workout';
+    let currentWeek;
+    let gridCount;
 
     // Преднастройки страницы
     $scope.setStylesOffice = function () {
-        document.getElementById('cssId1').href = 'styles/office.css';
-        // document.getElementById('cssId2').href = 'styles/elements_responsive.css';
-        // document.getElementById('cssId1').href = 'styles/services.css';
-        document.getElementById('cssId2').href = 'styles/services_responsive.css';
-
+        document.getElementById('cssId1').href = '../../styles/services.css';
+        document.getElementById('cssId2').href = '../../styles/services_responsive.css';
 
         // $scope.refreshMenu();
 
@@ -19,218 +18,131 @@ angular.module('fitness').controller('userScheduleController', function ($scope,
         // document.getElementById('a').style.backgroundImage="url(images/img.jpg)"; // specify the image path here
         jQuery(window).trigger('resize').trigger('scroll');
         document.getElementById('office_heading').style.backgroundImage="url(../images/contact.jpg)";
+
+        // const header = $('.header');
+        // const hamburgerBar = $('.hamburger_bar');
+        // const hamburger = $('.hamburger');
+
+        // setHeader();
+        //
+        // function setHeader()
+        // {
+        //     if($(window).scrollTop() > 91)
+        //     {
+        //         header.addClass('scrolled');
+        //         hamburgerBar.addClass('scrolled');
+        //     }
+        //     else
+        //     {
+        //         header.removeClass('scrolled');
+        //         hamburgerBar.removeClass('scrolled');
+        //     }
+        // }
     };
 
-    // $scope.refreshMenu = async function () {
-    //     let header = $('.lower_header_content');
+
+
+    $scope.loadSchedule = function (delta) {
+        delta = currentWeek === undefined ? null : currentWeek + delta;
+        $http({
+            url: contextPath + "/week",
+            method: 'GET',
+            params: {
+                delta: delta
+            }
+        }).then(function (response) {
+            console.log(response.data);
+            $scope.schedule = response.data;
+            currentWeek = response.data.currentWeek;
+            gridCount = 0;
+            for (const k of response.data.week) {
+                gridCount += Object.keys(k.day).length;
+            }
+            $scope.waitIsotope();
+        });
+    };
+
+
+
+
+    // это работает.
+    // window.onload = function() {
+    //     // let $grid;
+    //     const filters = {};
+    //     const $grid = $('.grid').isotope({
+    //         itemSelector: '.grid-item'
+    //     });
+    //     $('.timetable_filtering').on('click', '.item_filter_btn', function (event){
+    //         const $button = $(event.currentTarget);
+    //         const $buttonGroup = $button.parents('.button-group');
+    //         const filterGroup = $buttonGroup.attr('data-filter-group');
+    //         filters[filterGroup] = $button.attr('data-filter');
+    //         const filterValue = concatValues(filters);
+    //         $grid.isotope({filter: filterValue});
+    //     });
+    //     $('.button-group').each(function (i, buttonGroup){
+    //         const $buttonGroup = $(buttonGroup);
+    //         $buttonGroup.on('click', 'li', function (event) {
+    //             $buttonGroup.find('.active').removeClass('active');
+    //             const $button = $(event.currentTarget);
+    //             $button.addClass('active');
+    //         });
+    //     });
+    //     $('[data-filter = ""]').addClass("active");
+    // };
     //
-    //     let information = document.createElement('div');
-    //     information.classList.add('linc');
-    //     let informationLinc = document.createElement('a');
-    //     informationLinc.setAttribute('href', "yourlink.htm");
-    //     informationLinc.textContent = "Занятия";
-    //     information.append(informationLinc);
-    //
-    //     let services = document.createElement('div');
-    //     services.classList.add('linc');
-    //     let servicesLinc = document.createElement('a');
-    //     servicesLinc.setAttribute('href', "yourlink.htm");
-    //     servicesLinc.textContent = "Абонемент";
-    //     services.append(servicesLinc);
-    //
-    //     let info = document.createElement('div');
-    //     info.classList.add('linc');
-    //     let infoLinc = document.createElement('a');
-    //     infoLinc.setAttribute('href', "yourlink.htm");
-    //     infoLinc.textContent = "Информация";
-    //     info.append(infoLinc);
-    //
-    //     await $scope.slow(header);
-    //     for (let ch of header.children()) {
-    //         ch.remove();
+    // function concatValues( obj ) {
+    //     let value = '';
+    //     for (const prop in obj ) {
+    //         value += obj[ prop ];
     //     }
-    //
-    //     header.append(information);
-    //     header.append(services);
-    //     header.append(info);
-    //
-    //     $scope.slow(header);
-    // };
+    //     return value;
+    // }
 
-    // $scope.slow = function (header) {
-    //     if (header.hasClass('visible')){
-    //         header.animate({"right":"-4000px"}, "slow").removeClass('visible');
-    //     } else {
-    //         header.animate({"right":"0px"}, "slow").addClass('visible');
-    //     }
-    // };
+    // работает
+    $scope.initIsotope = function (){
+        const grid = $('.grid').isotope({
+            itemSelector: '.grid-item',
+            percentPosition: true,
+            masonry:
+                {
+                    horizontalOrder: true
+                },
+            getSortData:
+                {
+                    price: function (itemElement) {
+                        const priceEle = $(itemElement).find('.product_price').text().replace('$', '');
+                        return parseFloat(priceEle);
+                    },
+                    name: '.tt_class_title'
+                }
+        });
 
-    // $scope.test = function () {
-    //     $scope.refreshMenu();
-    // };
+        // Filtering
+        $('.item_filter_btn').on('click', function()
+        {
+            const buttons = $('.item_filter_btn');
+            buttons.removeClass('active');
+            $(this).addClass('active');
+            const filterValue = $(this).attr('data-filter');
+            grid.isotope({ filter: filterValue });
+        });
+        $('[data-filter = ""]').addClass("active");
+    };
 
+    $scope.waitIsotope = function (){
+        let gridItem = document.getElementsByClassName('grid-item');
+        const interval = setInterval(function () {
+            if (gridCount === gridItem.length) {
+                clearInterval(interval);
+                $scope.initIsotope();
+            }
+        }, 50);
+    };
 
-    /***********************************
-     * Управление таблицей пользователей
-     ***********************************/
+    $scope.loadSchedule();
 
-    // $scope.loadUsers = function () {
-    //     $http({
-    //         url: contextPath + "/list",
-    //         method: 'GET'
-    //     }).then(function (response) {
-    //         // console.log(response.data)
-    //         number = 1;
-    //         $scope.pagination(response);
-    //         $scope.UserList = response.data.content;
-    //     });
-    // };
-
-    // $scope.updateUsers = function () {
-    //     $http({
-    //         url: contextPath + "/updates",
-    //         method: 'POST',
-    //         params: {
-    //             val: $scope.value !== null ? $scope.value : null,
-    //             role: $scope.filter.role !== null ? $scope.filter.role.id : null,
-    //             specialization: $scope.filter.specialization !== undefined ? $scope.filter.specialization.id : null,
-    //             page: number
-    //         }
-    //     }).then(function (response) {
-    //         $scope.pagination(response);
-    //         $scope.UserList = response.data.content;
-    //         // console.log(response.data)
-    //     });
-    // };
-
-    // $scope.pagination = function (response) {
-    //     totalNumber = response.data.totalPages;
-    //     $scope.totalNumber = response.data.totalPages;
-    //     $scope.first = response.data.first === true ? 'pagination_non_active' : 'pagination_active';
-    //     $scope.first10 = response.data.number < 10 ? 'pagination_non_active' : 'pagination_active';
-    //     $scope.page1 = response.data.number + 1;
-    //     $scope.last10 = response.data.number > totalNumber - 11 ? 'pagination_non_active' : 'pagination_active';
-    //     $scope.last = response.data.last === true ? 'pagination_non_active' : 'pagination_active';
-    // };
-    //
-    // $scope.pageClick = function (delta) {
-    //     number = number + delta;
-    //     $scope.updateUsers();
-    // };
-    //
-    // $scope.pageStart = function () {
-    //     number = 1;
-    //     $scope.updateUsers();
-    // };
-    //
-    // $scope.pageFinish = function () {
-    //     number = totalNumber;
-    //     $scope.updateUsers();
-    // };
-
-    // $scope.getRoleList = function () {
-    //     $http({
-    //         url: contextPath + "/role_list",
-    //         method: 'POST'
-    //     }).then(function (response) {
-    //         $scope.RoleList = response.data;
-    //     });
-    // };
-
-    // $scope.roleChange = function () {
-    //     if($scope.filter.role === null){
-    //         $scope.filter.specialization = undefined;
-    //     } else {
-    //         if($scope.filter.role.containsSpecializations){
-    //             $('#spec').prop('disabled', false);
-    //             $http({
-    //                 url: contextPath + "/specialization_list",
-    //                 method: 'POST',
-    //             }).then(function (response) {
-    //                 if(response.data.length === 0){
-    //                     $scope.SpecializationList = null;
-    //                     $('#spec').prop( 'disabled', true);
-    //                 } else {
-    //                     $scope.SpecializationList = response.data;
-    //                 }
-    //             });
-    //         } else {
-    //             $scope.filter.specialization = undefined;
-    //             $scope.SpecializationList = null;
-    //             $('#spec').prop( 'disabled', true);
-    //         }
-    //         $scope.resetAndUpdateUsers();
-    //     }
-    // };
-
-    // $scope.specializationChange = function () {
-    //     if($scope.filter.specialization === null){
-    //         $scope.filter.specialization = undefined;
-    //     }
-    //     $scope.resetAndUpdateUsers();
-    // };
-
-    // $scope.resetAndUpdateUsers = function () {
-    //     number = 1;
-    //     $scope.updateUsers();
-    // };
-
-
-    /***********************************
-     * Управление таблицей специализаций
-     ***********************************/
-
-    // $scope.loadSpecializations = function (pageNumber) {
-    //     number = pageNumber;
-    //     $http({
-    //         url: contextPath + "/spec_list",
-    //         method: 'POST',
-    //         params: {
-    //             page: pageNumber
-    //         }
-    //     }).then(function (response) {
-    //         // console.log(response);
-    //         $scope.pagination(response);
-    //         $scope.SpecializationList = response.data.content;
-    //     });
-    // };
-
-    // $scope.pageSpecClick = function (delta) {
-    //     $scope.loadSpecializations(number + delta);
-    // };
-
-    // $scope.getSpecializations = function (id) {
-    //     $http({
-    //         url: contextPath + "/spec_one",
-    //         method: 'POST',
-    //         params: {
-    //             id: id
-    //         }
-    //     }).then(function (response) {
-    //         // $scope.SpecializationList = response.data.content;
-    //         $scope.Specialization = response.data;
-    //     });
-    // };
-
-
-
-
-    // $scope.loadMaintenance = function () {
-    //     $http({
-    //         url: contextPathMaintenance + "/maintenance",
-    //         method: 'POST'
-    //     }).then(function (response) {
-    //         // $scope.MaintenanceList = response.data.content;
-    //         $scope.MaintenanceList = response.data;
-    //         console.log(response.data)
-    //     });
-    // };
-
-    // $scope.loadMaintenance();
-    // $scope.setStylesOffice();
-    // $scope.setOfficeOwner();
-    // $scope.OwnerPath();
-    // $scope.getRoleList();
-    // $scope.loadUsers();
+    //отложенный запуск изотоп
+    $scope.waitIsotope();
 
 });
