@@ -89,6 +89,8 @@ controller('userOfficeController', function ($rootScope, $scope, $http, $localSt
     const contextPath = 'http://localhost:3881/fitness/api/v1/user';
     let pageClass = 'user_menu';
 
+    // $location.path('/schedule');
+
     if($localStorage.officeOwner.role !== "user"){
         $scope.goToOffice();
     }

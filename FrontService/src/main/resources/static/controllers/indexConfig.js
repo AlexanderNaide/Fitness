@@ -1,7 +1,7 @@
 (function () {
     angular
         .module('fitness', ['ui.router', 'ngRoute', 'ngStorage'])
-        .config(function($stateProvider, $urlRouterProvider, $locationProvider){
+        .config(function($stateProvider, $urlRouterProvider, $locationProvider ){
 
             $urlRouterProvider.otherwise("/");
 
@@ -31,7 +31,9 @@
                     templateUrl: 'pages/contact.html',
                     controller: 'contactController'
                 })
-                .state('user_office', {
+
+                // работает
+/*                .state('user_office', {
                     url: '/user_office',
                     views: {
                         // the main template will be placed here (relatively named)
@@ -48,6 +50,21 @@
                             controller: 'userScheduleController'
                         }
                     }
+                })*/
+
+            // https://itexpertsconsultant.wordpress.com/2016/01/25/routeprovider-vs-stateprovider-in-angularjs/
+
+                .state('user_office', {
+                    url: '/user_office',
+                    templateUrl: 'pages/user_office.html',
+                    controller: 'userOfficeController',
+                })
+
+                .state('user_office.schedule', {
+                    // parent: 'user_office',
+                    url: '/schedule',
+                    templateUrl: 'pages/user/user_schedule.html',
+                    controller: 'userScheduleController'
                 })
 
                 // хер работает
@@ -80,10 +97,33 @@
                     templateUrl: 'pages/trainer_office.html',
                     controller: 'trainerOfficeController'
                 })
+                // .state('admin_office', {
+                //     url: '/admin_office',
+                //     templateUrl: 'pages/admin_office.html',
+                //     controller: 'adminOfficeController'
+                // })
                 .state('admin_office', {
                     url: '/admin_office',
-                    templateUrl: 'pages/admin_office.html',
-                    controller: 'adminOfficeController'
+                    views: {
+                        // the main template will be placed here (relatively named)
+                        '': {
+                            templateUrl: 'pages/admin_office.html',
+                            controller: 'adminOfficeController'
+                        },
+
+
+                        // the child views will be defined here (absolutely named)
+                        'adminPlace@admin_office': {
+                            url: '/schedule',
+                            templateUrl: 'pages/user/user_schedule.html',
+                            controller: 'userScheduleController'
+                        },
+                        'adminPlace@admin_office': {
+                            url: '/schedule',
+                            templateUrl: 'pages/user/user_schedule.html',
+                            controller: 'userScheduleController'
+                        }
+                    }
                 })
                 .state('super_office', {
                     url: '/super_office',

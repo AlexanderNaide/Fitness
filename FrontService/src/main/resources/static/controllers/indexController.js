@@ -90,6 +90,7 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
             $location.path('/trainer_office');
         } else {
             $location.path('/user_office');
+            // $location.path('/schedule');
         }
     }
 
@@ -98,6 +99,7 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
         $http.defaults.headers.common.Authorization = '';
         $location.path('/');
         $scope.deleteOfficeLinc();
+        $scope.refreshSideMenu();
     };
 
     $scope.test1 = function () {
