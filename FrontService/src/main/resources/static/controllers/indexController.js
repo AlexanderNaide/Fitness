@@ -89,8 +89,8 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
         } else if ($localStorage.officeOwner.role === "trainer") {
             $location.path('/trainer_office');
         } else {
-            $location.path('/user_office');
-            // $location.path('/schedule');
+            // $location.path('/user_office');
+            $location.path("/user_office/schedule");
         }
     }
 
@@ -254,6 +254,7 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
         if ($scope.ownerIsEmpty()){
             // let header = $('.lower_header_content');
             let myFitness =$('<div class="linc my_fitness_linc"><a href="" ng-click="goToOffice()">Мой фитнес</a></div>');
+            // let myFitness =$('<div class="linc my_fitness_linc" ui-sref="user_office.schedule"><a href="" >Мой фитнес</a></div>');
             $compile(myFitness)($scope);
             myFitness.appendTo($element);
             header.append(myFitness);
