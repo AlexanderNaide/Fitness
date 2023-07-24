@@ -25,13 +25,14 @@ angular.module('fitness').controller('adminOfficeController', function ($rootSco
     $scope.setStylesOffice = function () {
         document.getElementById('cssId1').href = 'styles/office.css';
         document.getElementById('cssId2').href = 'styles/elements_responsive.css';
-        $('.home_linc').removeClass('active');
-        $('.about_linc').removeClass('active');
-        $('.services_linc').removeClass('active');
-        $('.blog_linc').removeClass('active');
-        $('.contact_linc').removeClass('active');
+        // $('.home_linc').removeClass('active');
+        // $('.about_linc').removeClass('active');
+        // $('.services_linc').removeClass('active');
+        // $('.blog_linc').removeClass('active');
+        // $('.contact_linc').removeClass('active');
         // document.getElementById('a').style.backgroundImage="url(images/img.jpg)"; // specify the image path here
         jQuery(window).trigger('resize').trigger('scroll');
+        $('.header').addClass('scrolled');
         // document.getElementById('office_heading').style.backgroundImage="url(../images/contact.jpg)";
     };
 
@@ -40,9 +41,9 @@ angular.module('fitness').controller('adminOfficeController', function ($rootSco
         $compile(side)($scope);
         side.appendTo($element);
         // let side =$('<div class="linc home_linc"><a href="/">На сайт</a></div>');
-        let clients =$('<div class="linc active"><a href="#!/clients">Клиенты</a></div>');
-        let personal =$('<div class="linc"><a href="#!/personal">Персонал</a></div>');
-        let schedule =$('<div class="linc"><a href="#!/schedule">Расписания</a></div>');
+        let clients =$('<div class="linc active"><a href="#!/admin_office/clients">Клиенты</a></div>');
+        let personal =$('<div class="linc"><a href="#!/admin_office/personal">Персонал</a></div>');
+        let schedule =$('<div class="linc"><a href="#!/admin_office/schedule">Расписания</a></div>');
         // let info =$('<div class="linc"><a href="" ui-sref="schedule">Информация</a></div>');
         for (let ch of header.children()) {
             ch.remove();
@@ -51,9 +52,16 @@ angular.module('fitness').controller('adminOfficeController', function ($rootSco
         header.append(clients);
         header.append(personal);
         header.append(schedule);
+
+        header.children().on('click', function(){
+            const buttons = $('.linc');
+            buttons.removeClass('active');
+            $(this).addClass('active');
+        });
     }
 
     $scope.refreshAdminMenu = function () {
+        console.log("refreshAdminMenu");
         $rootScope.$emit('refreshMenu', createAdminMenu, pageClass);
     };
 

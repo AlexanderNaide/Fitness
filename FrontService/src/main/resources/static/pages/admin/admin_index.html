@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="admin" lang="en">
+	<head>
+		<title>Администрирование</title>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="SportFIT template project">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="../../styles/bootstrap-4.1.2/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../../styles/admin/adminIndex.css">
+<!--		<link id="cssId1" rel="stylesheet" type="text/css" href="../../styles/main_styles.css">-->
+<!--		<link id="cssId2" rel="stylesheet" type="text/css" href="../../styles/responsive.css">-->
+		<link rel="stylesheet" type="text/css" href="../../styles/elements_responsive.css">
+		<script src="../../js/jquery-3.7.0.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+		<!-- Angular-js -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-route.min.js"></script>
+		<script src="https://cdn.bootcss.com/angular-ui-router/1.0.0-rc.1/angular-ui-router.min.js"></script>
+
+
+		<script src="../../controllers/admin/adminIndexConfig.js"></script>
+		<script src="../../controllers/admin/adminIndexController.js"></script>
+		<script src="../../controllers/admin/adminClientsController.js"></script>
+		<script src="../../controllers/admin/adminScheduleController.js"></script>
+	</head>
+	<body>
+		<div class="container" ng-controller="adminIndexController" ng-init="">
+			<button ng-click ="openFullscreen()">Open Fullscreen</button>
+			<button ng-click ="closeFullscreen()">Close Fullscreen</button>
+			<button ng-click ="fullScreen()">Fullscreen</button>
+			<h1>Кабинет администратора</h1>
+			<ui-view></ui-view>
+		</div>
+	</body>
+</html>

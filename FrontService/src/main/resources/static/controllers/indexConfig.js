@@ -1,3 +1,4 @@
+/*
 const fitness = angular.module("fitness", ["ui.router", 'ngStorage']);
 
 fitness.config(function ($stateProvider, $urlRouterProvider) {
@@ -63,8 +64,8 @@ fitness.run(($rootScope, $http, $localStorage, $location) => {
         }
     }
 });
+*/
 
-/*
 (function () {
     angular
         .module('fitness', ['ui.router', 'ngRoute', 'ngStorage'])
@@ -100,7 +101,7 @@ fitness.run(($rootScope, $http, $localStorage, $location) => {
                 })
 
                 // работает
-/!*                .state('user_office', {
+/*                .state('user_office', {
                     url: '/user_office',
                     views: {
                         // the main template will be placed here (relatively named)
@@ -117,7 +118,7 @@ fitness.run(($rootScope, $http, $localStorage, $location) => {
                             controller: 'userScheduleController'
                         }
                     }
-                })*!/
+                })*/
 
             // https://itexpertsconsultant.wordpress.com/2016/01/25/routeprovider-vs-stateprovider-in-angularjs/
 
@@ -126,72 +127,52 @@ fitness.run(($rootScope, $http, $localStorage, $location) => {
                     templateUrl: 'pages/user_office.html',
                     controller: 'userOfficeController',
                 })
-
                 .state('user_office.schedule', {
                     // parent: 'user_office',
                     url: '/schedule',
                     templateUrl: 'pages/user/user_schedule.html',
                     controller: 'userScheduleController'
                 })
+                .state('user_office.tickets', {
+                    // parent: 'user_office',
+                    url: '/tickets',
+                    templateUrl: 'pages/user/user_tickets.html'
+                    // controller: 'userScheduleController'
+                })
+                .state('user_office.info', {
+                    // parent: 'user_office',
+                    url: '/info',
+                    templateUrl: 'pages/user/user_info.html'
+                    // controller: 'userScheduleController'
+                })
 
-                // хер работает
-                // .state('user_office', {
-                //     url: '/user_office',
-                //     templateUrl: 'pages/user_office.html',
-                //     controller: 'userOfficeController'
-                // })
-                // .state('user_office.schedule', {
-                //
-                // // .state('schedule', {
-                // //     parent: 'user_office',
-                //     url: '/schedule',
-                //     views: {
-                //         'userPlace@user_office': {
-                //             // url: '/schedule',
-                //             // url: '/user_office',
-                //             templateUrl: 'pages/user/user_schedule.html',
-                //             // templateUrl: 'pages/super_office.html',
-                //             controller: 'userScheduleController'
-                //         }
-                //     }
-                // })
-
-
-
+                .state('admin_office', {
+                    url: '/admin_office',
+                    templateUrl: 'pages/admin_office.html',
+                    controller: 'adminOfficeController'
+                })
+                .state('admin_office.clients', {
+                    url: '/clients',
+                    templateUrl: 'pages/admin/admin_clients.html',
+                    controller: 'adminClientsController'
+                })
+                .state('admin_office.personal', {
+                    url: '/personal',
+                    templateUrl: 'pages/admin/admin_personal.html',
+                    // controller: 'adminOfficeController'
+                })
+                .state('admin_office.schedule', {
+                    url: '/schedule',
+                    templateUrl: 'pages/admin/admin_schedule.html',
+                    // controller: 'adminOfficeController'
+                })
 
                 .state('trainer_office', {
                     url: '/trainer_office',
                     templateUrl: 'pages/trainer_office.html',
                     controller: 'trainerOfficeController'
                 })
-                // .state('admin_office', {
-                //     url: '/admin_office',
-                //     templateUrl: 'pages/admin_office.html',
-                //     controller: 'adminOfficeController'
-                // })
-                .state('admin_office', {
-                    url: '/admin_office',
-                    views: {
-                        // the main template will be placed here (relatively named)
-                        '': {
-                            templateUrl: 'pages/admin_office.html',
-                            controller: 'adminOfficeController'
-                        },
 
-
-                        // the child views will be defined here (absolutely named)
-                        'adminPlace@admin_office': {
-                            url: '/schedule',
-                            templateUrl: 'pages/user/user_schedule.html',
-                            controller: 'userScheduleController'
-                        },
-                        'adminPlace@admin_office': {
-                            url: '/schedule',
-                            templateUrl: 'pages/user/user_schedule.html',
-                            controller: 'userScheduleController'
-                        }
-                    }
-                })
                 .state('super_office', {
                     url: '/super_office',
                     templateUrl: 'pages/super_office.html',
@@ -284,4 +265,4 @@ fitness.run(($rootScope, $http, $localStorage, $location) => {
             }
         }
     }
-})();*/
+})();

@@ -8,11 +8,11 @@ angular.module('fitness').controller('servicesController', function ($scope, $ht
 
         jQuery(window).trigger('resize').trigger('scroll');
 
-        $('.home_linc').removeClass('active');
-        $('.about_linc').removeClass('active');
-        $('.services_linc').addClass('active');
-        $('.blog_linc').removeClass('active');
-        $('.contact_linc').removeClass('active');
+        // $('.home_linc').removeClass('active');
+        // $('.about_linc').removeClass('active');
+        // $('.services_linc').addClass('active');
+        // $('.blog_linc').removeClass('active');
+        // $('.contact_linc').removeClass('active');
 
         // console.log(window.location.href);
     };

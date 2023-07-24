@@ -48,18 +48,19 @@
 	<script src="controllers/adminOfficeController.js"></script>
 	<script src="controllers/superOfficeController.js"></script>
 	<script src="controllers/user/userScheduleController.js"></script>
+	<script src="controllers/admin/adminClientsController.js"></script>
 
 
 
 </head>
 <body>
 
-<div class="super_container" ng-controller="indexController">
+<div class="super_container d-flex flex-column" ng-controller="indexController">
 <!--<div class="super_container" ng-controller="MainCtrl">-->
 
 	<!-- Header -->
 
-	<header class="header">
+	<header class="header p-2">
 		<div class="container">
 			<div class="row">
 				<div class="col">
@@ -163,7 +164,7 @@
 <!--		</div>-->
 	</div>
 
-<!--	<div ui-view="body"></div>-->
+<!--	<div class="" ui-view></div>-->
 	<ui-view></ui-view>
 
 <!--	<div data-ui-view=""></div>-->
@@ -177,7 +178,7 @@
 
 	<!-- Footer -->
 
-	<footer class="footer">
+	<footer class="footer p-2">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2">
