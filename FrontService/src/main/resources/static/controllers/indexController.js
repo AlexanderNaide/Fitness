@@ -1,3 +1,4 @@
+
 angular.module('fitness').controller('indexController', function ($rootScope, $scope, $http, $location, $localStorage, $compile, $element) {
     const contextPath = 'http://localhost:3881/fitness';
     let header = $('.lower_header_content');
@@ -95,7 +96,8 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
         } else if ($localStorage.officeOwner.role === "admin") {
             // $location.path('/admin_office/clients');
             // $location.replace('../pages/admin/admin_index.html');
-            $location.replace('http://localhost:3880/pages/admin/admin_index.html');
+            // $location.replace('http://localhost:3880/pages/admin/admin_index.html');
+            window.location.replace('http://localhost:3880/pages/admin/admin_index.html');
         } else if ($localStorage.officeOwner.role === "trainer") {
             $location.path('/trainer_office');
         } else {

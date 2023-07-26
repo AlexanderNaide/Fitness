@@ -1,40 +1,44 @@
+
 angular.module('admin').controller('adminIndexController', function ($rootScope, $scope, $http, $location, $localStorage, $compile, $element) {
     const contextPath = 'http://localhost:3881/fitness';
     console.log('adminIndexController');
+    let isFullscreen = false;
     // let header = $('.lower_header_content');
     // let headerClasses = [];
     // let sidePageClass = 'side_menu';
     // headerClasses.push(sidePageClass);
 
-    $scope.openFullscreen = function () {
-        console.log("open");
 
-        const elem = document.documentElement;
-        if (elem.requestFullscreen) {
-            elem.requestFullscreen();
-        } else if (elem.webkitRequestFullscreen) { /* Safari */
-            elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) { /* IE11 */
-            elem.msRequestFullscreen();
-        }
-    };
+    // $scope.fullScreen = function () {
+    //     if (!document.fullscreenElement &&    // alternative standard method
+    //         !document.mozFullScreenElement && !document.webkitFullscreenElement) {  // current working methods
+    //         if (document.documentElement.requestFullscreen) {
+    //             document.documentElement.requestFullscreen();
+    //         } else if (document.documentElement.mozRequestFullScreen) {
+    //             document.documentElement.mozRequestFullScreen();
+    //         } else if (document.documentElement.webkitRequestFullscreen) {
+    //             document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+    //         }
+    //         isFullscreen = true;
+    //     } else {
+    //         if (document.cancelFullScreen) {
+    //             document.cancelFullScreen();
+    //         } else if (document.mozCancelFullScreen) {
+    //             document.mozCancelFullScreen();
+    //         } else if (document.webkitCancelFullScreen) {
+    //             document.webkitCancelFullScreen();
+    //         }
+    //         isFullscreen = false;
+    //     }
+    // };
 
-    $scope.closeFullscreen = function () {
+    $('.header').children().on('click', function(){
+        const buttons = $('.menuButton');
+        buttons.removeClass('active');
+        $(this).addClass('active');
+    });
 
-        console.log("close");
-
-        const elem = document.documentElement;
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) { /* Safari */
-            document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) { /* IE11 */
-            document.msExitFullscreen();
-        }
-    };
-
-
-    $scope.fullScreen = function () {
+    $scope.fullScreenOn = function () {
         if (!document.fullscreenElement &&    // alternative standard method
             !document.mozFullScreenElement && !document.webkitFullscreenElement) {  // current working methods
             if (document.documentElement.requestFullscreen) {
@@ -44,7 +48,11 @@ angular.module('admin').controller('adminIndexController', function ($rootScope,
             } else if (document.documentElement.webkitRequestFullscreen) {
                 document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
             }
-        } else {
+            isFullscreen = true;
+        }
+    };
+
+    $scope.fullScreenOff = function () {
             if (document.cancelFullScreen) {
                 document.cancelFullScreen();
             } else if (document.mozCancelFullScreen) {
@@ -52,14 +60,35 @@ angular.module('admin').controller('adminIndexController', function ($rootScope,
             } else if (document.webkitCancelFullScreen) {
                 document.webkitCancelFullScreen();
             }
-        }
+            isFullscreen = false;
     };
 
+    $scope.clearOffice = function (){
+        delete $localStorage.officeOwner;
+        $http.defaults.headers.common.Authorization = '';
+        $location.path('/');
+        $scope.deleteOfficeLinc();
+        $scope.refreshSideMenu();
+    };
 
+    $scope.refreshSideMenu = function () {
+        $rootScope.$emit('refreshMenu', $scope.createSideMenu, sidePageClass);
+    };
 
-    // $scope.refreshSideMenu = function () {
-    //     $rootScope.$emit('refreshMenu', $scope.createSideMenu, sidePageClass);
-    // };
+    $scope.goToSide = function (){
+        if(isFullscreen){
+            $scope.fullScreenOff();
+        }
+        // $location.path('/');
+        // $location.replace("http://localhost:3880/index.html");
+        window.location.replace("http://localhost:3880/index.html");
+        // $location = "http://localhost:3880/index.html";
+    };
+
+    $scope.fullScreenButton = function (){
+        return isFullscreen;
+    };
+
 
     // $rootScope.$on('refreshMenu', function (event, func, newPageClass) {
     //     if(!header.hasClass(newPageClass)){

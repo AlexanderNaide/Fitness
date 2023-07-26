@@ -3,7 +3,7 @@ angular.module('fitness').controller('userScheduleController', function ($scope,
     let currentWeek;
     let gridCount;
 
-    console.log("запрос");
+    // console.log("запрос");
 
     // Преднастройки страницы
     $scope.setStylesOffice = function () {
