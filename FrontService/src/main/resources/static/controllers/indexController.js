@@ -1,8 +1,10 @@
+
 angular.module('fitness').controller('indexController', function ($rootScope, $scope, $http, $location, $localStorage, $compile, $element) {
     const contextPath = 'http://localhost:3881/fitness';
     let header = $('.lower_header_content');
+    let headerClasses = [];
     let sidePageClass = 'side_menu';
-    let userPageClass = 'user_menu';
+    headerClasses.push(sidePageClass);
 
     $scope.createSideMenu = function (header) {
         let home =$('<div class="linc home_linc active"><a href="#!/">Главная</a></div>');
@@ -20,6 +22,12 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
         header.append(blog);
         header.append(contact);
         $scope.setOfficeLinc();
+
+        header.children().on('click', function(){
+            const buttons = $('.linc');
+            buttons.removeClass('active');
+            $(this).addClass('active');
+        });
     };
 
     $scope.refreshSideMenu = function () {
@@ -33,7 +41,8 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
             document.querySelector('.lower_header_content').addEventListener('transitionend', () => {
                 func(header);
                 header.removeClass('hidden');
-                header.removeClass(newPageClass === sidePageClass ? userPageClass : sidePageClass);
+                header.removeClass(headerClasses);
+                headerClasses.push(newPageClass);
                 header.addClass(newPageClass);
                 header.addClass('visible');
             }, { once: true });
@@ -85,11 +94,14 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
         if($localStorage.officeOwner.role === "super"){
             $location.path('/super_office');
         } else if ($localStorage.officeOwner.role === "admin") {
-            $location.path('/admin_office');
+            // $location.path('/admin_office/clients');
+            // $location.replace('../pages/admin/admin_index.html');
+            // $location.replace('http://localhost:3880/pages/admin/admin_index.html');
+            window.location.replace('http://localhost:3880/pages/admin/admin_index.html');
         } else if ($localStorage.officeOwner.role === "trainer") {
             $location.path('/trainer_office');
         } else {
-            $location.path('/user_office');
+            $location.path("/user_office/schedule");
         }
     }
 
@@ -98,6 +110,7 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
         $http.defaults.headers.common.Authorization = '';
         $location.path('/');
         $scope.deleteOfficeLinc();
+        $scope.refreshSideMenu();
     };
 
     $scope.test1 = function () {
@@ -252,6 +265,7 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
         if ($scope.ownerIsEmpty()){
             // let header = $('.lower_header_content');
             let myFitness =$('<div class="linc my_fitness_linc"><a href="" ng-click="goToOffice()">Мой фитнес</a></div>');
+            // let myFitness =$('<div class="linc my_fitness_linc" ui-sref="user_office.schedule"><a href="" >Мой фитнес</a></div>');
             $compile(myFitness)($scope);
             myFitness.appendTo($element);
             header.append(myFitness);

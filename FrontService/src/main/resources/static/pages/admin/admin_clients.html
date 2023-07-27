@@ -1,0 +1,131 @@
+<!--<script src="../../controllers/admin/adminClientsController.js"></script>-->
+<div>
+	<div class="userCard row">
+		<div class="col-4">
+			<div class="avatar exmpl">
+				<img src="../../images/plug/m.jpg" alt="avatar">
+			</div>
+
+		</div>
+		<div class="col-8">
+
+			<form id="userForm" novalidate>
+				<div>
+					<label></label>
+				</div>
+				<div class="">
+					<div class="">
+						<h5 class="">{{User.name}} {{User.surname}} {{User.middleName}}</h5>
+						<label>Тел: {{User.email}}</label>
+						<h6>Email: {{User.email}}</h6>
+						<label>Дата рождения: {{User.birthday}}</label>
+					</div>
+					<div class="form-group mb-3">
+<!--						<h6>Описание:</h6>-->
+<!--						<div ng-repeat="l in ProductDescription">{{l}} <br></div>-->
+					</div>
+				</div>
+				<div class="">
+<!--					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>-->
+				</div>
+			</form>
+
+		</div>
+
+
+	</div>
+
+	<div >
+		<table class="table table-hover" style="table-layout: fixed">
+<!--			<thead>-->
+<!--			<tr>-->
+<!--				<th style="width: 10%">ID</th>-->
+<!--				<th style="width: 30%">Имя</th>-->
+<!--				<th style="width: 30%">Фамилия</th>-->
+<!--				<th style="width: 20%">Роль</th>-->
+<!--				<th style="width: 10%"></th>-->
+<!--			</tr>-->
+<!--			</thead>-->
+			<tbody>
+			<tr ng-repeat="u in UserList">
+				<td ng-click="getUser(u.id)">{{u.id}}</td>
+				<td ng-click="getUser(u.id)">{{u.name}}</td>
+				<td ng-click="getUser(u.id)">{{u.surname}}</td>
+				<td ng-click="getUser(u.id)">{{u.middleName}}</td>
+				<td ng-click="getUser(u.id)">{{u.birthday}}</td>
+				<td ng-click="getUser(u.id)">{{u.phone}}</td>
+				<td ng-click="getUser(u.id)">{{u.email}}</td>
+			</tr>
+			</tbody>
+		</table>
+
+		<nav aria-label="...">
+			<ul class="pagination">
+				<li class="{{first}}"><a href="" hng-click="pageStart()">1<<<</a></li>
+				<li class="{{first10}}"><a href="" ng-click="pageClick(-10)">-10<<</a></li>
+				<li class="{{first}}"><a href="" ng-click="pageClick(-1)">-1<</a></li>
+				<li class="page-item active"><a href="">{{page1}}</a></li>
+				<li class="{{last}}"><a href="" ng-click="pageClick(+1)">>+1</a></li>
+				<li class="{{last10}}"><a href="" ng-click="pageClick(+10)">>>+10</a></li>
+				<li class="{{last}}"><a href="" ng-click="pageFinish()">>>>{{totalNumber}}</a></li>
+			</ul>
+		</nav>
+	</div>
+
+</div>
+
+<!-- Окно юзера (для правки) -->
+<!--<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<form id="form" novalidate>
+				<div class="modal-header">
+					<label class="modal-title" id="exampleModalCenterTitle">Информация о товаре</label>
+				</div>
+				<div class="modal-body">
+					<div class="form-group mb-3">
+						<h5 class="modal-title">{{.}}</h5>
+						<label>: {{.}}</label>
+						<h6>: {{.}}</h6>
+						<label>: {{.}}</label>
+					</div>
+					<div class="form-group mb-3">
+						<h6>:</h6>
+						<div ng-repeat="l in ProductDescription">{{l}} <br></div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>-->
+
+<!-- Окно специализации -->
+<!--
+<div class="modal fade" id="modalSpecializationWindow" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			&lt;!&ndash;			<form id="form" novalidate>&ndash;&gt;
+			<form novalidate>
+				<div class="modal-header">
+					&lt;!&ndash;					<label class="modal-title" id="exampleModalCenterTitle">Информация о товаре</label>&ndash;&gt;
+					<label class="modal-title">{{Specialization.message}}</label>
+				</div>
+				<div class="modal-body">
+					<div class="form-group mb-3">
+						<h5 class="modal-title">{{Specialization.message}}</h5>
+						<label>Id:</label>
+						<h6>{{Specialization.id}}</h6>
+						<label>Специализация:</label>
+						<h6>{{Specialization.specializationTitle}}</h6>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>-->

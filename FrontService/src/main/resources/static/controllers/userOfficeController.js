@@ -89,6 +89,9 @@ controller('userOfficeController', function ($rootScope, $scope, $http, $localSt
     const contextPath = 'http://localhost:3881/fitness/api/v1/user';
     let pageClass = 'user_menu';
 
+    // $location.path("schedule");
+
+
     if($localStorage.officeOwner.role !== "user"){
         $scope.goToOffice();
     }
@@ -131,9 +134,9 @@ controller('userOfficeController', function ($rootScope, $scope, $http, $localSt
         $compile(side)($scope);
         side.appendTo($element);
         // let side =$('<div class="linc home_linc"><a href="/">На сайт</a></div>');
-        let information =$('<div class="linc active"><a href="#!/schedule">Занятия</a></div>');
-        let services =$('<div class="linc"><a href="#!/schedule">Абонемент</a></div>');
-        let info =$('<div class="linc"><a href="#!/schedule">Информация</a></div>');
+        let information =$('<div class="linc active"><a href="#!/user_office/schedule">Занятия</a></div>');
+        let services =$('<div class="linc"><a href="#!/user_office/tickets">Абонемент</a></div>');
+        let info =$('<div class="linc"><a href="#!/user_office/info">Информация</a></div>');
         // let info =$('<div class="linc"><a href="" ui-sref="schedule">Информация</a></div>');
         for (let ch of header.children()) {
             ch.remove();
@@ -142,6 +145,13 @@ controller('userOfficeController', function ($rootScope, $scope, $http, $localSt
         header.append(information);
         header.append(services);
         header.append(info);
+
+        header.children().on('click', function(){
+            const buttons = $('.linc');
+            buttons.removeClass('active');
+            $(this).addClass('active');
+        });
+
     }
 
     $scope.refreshUserMenu = function () {

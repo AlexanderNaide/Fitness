@@ -13,11 +13,11 @@ angular.module('fitness').controller('homeController', function ($scope, $http, 
 
         jQuery(window).trigger('resize').trigger('scroll');
 
-        $('.home_linc').addClass('active');
-        $('.about_linc').removeClass('active');
-        $('.services_linc').removeClass('active');
-        $('.blog_linc').removeClass('active');
-        $('.contact_linc').removeClass('active');
+        // $('.home_linc').addClass('active');
+        // $('.about_linc').removeClass('active');
+        // $('.services_linc').removeClass('active');
+        // $('.blog_linc').removeClass('active');
+        // $('.contact_linc').removeClass('active');
 
         // console.log(window.location.href);
     };

@@ -1,12 +1,10 @@
-angular.module('fitness').controller('userScheduleController', function ($scope, $http, $localStorage) {
+angular.module('admin').controller('adminScheduleController', function ($scope, $http, $localStorage) {
     const contextPath = 'http://localhost:3881/fitness/api/v1/workout';
     let currentWeek;
     let gridCount;
 
-    // console.log("запрос");
-
     // Преднастройки страницы
-    $scope.setStylesOffice = function () {
+    /*$scope.setStylesOffice = function () {
         document.getElementById('cssId1').href = '../../styles/services.css';
         document.getElementById('cssId2').href = '../../styles/services_responsive.css';
 
@@ -40,29 +38,29 @@ angular.module('fitness').controller('userScheduleController', function ($scope,
         //         hamburgerBar.removeClass('scrolled');
         //     }
         // }
-    };
+    };*/
 
 
 
-    $scope.loadSchedule = function (delta) {
-        delta = currentWeek === undefined ? null : currentWeek + delta;
-        $http({
-            url: contextPath + "/week",
-            method: 'GET',
-            params: {
-                delta: delta
-            }
-        }).then(function (response) {
-            console.log(response.data);
-            $scope.schedule = response.data;
-            currentWeek = response.data.currentWeek;
-            gridCount = 0;
-            for (const k of response.data.week) {
-                gridCount += Object.keys(k.day).length;
-            }
-            $scope.waitIsotope();
-        });
-    };
+    // $scope.loadSchedule = function (delta) {
+    //     delta = currentWeek === undefined ? null : currentWeek + delta;
+    //     $http({
+    //         url: contextPath + "/week",
+    //         method: 'GET',
+    //         params: {
+    //             delta: delta
+    //         }
+    //     }).then(function (response) {
+    //         console.log(response.data);
+    //         $scope.schedule = response.data;
+    //         currentWeek = response.data.currentWeek;
+    //         gridCount = 0;
+    //         for (const k of response.data.week) {
+    //             gridCount += Object.keys(k.day).length;
+    //         }
+    //         $scope.waitIsotope();
+    //     });
+    // };
 
 
 
@@ -102,49 +100,49 @@ angular.module('fitness').controller('userScheduleController', function ($scope,
     // }
 
     // работает
-    $scope.initIsotope = function (){
-        const grid = $('.grid').isotope({
-            itemSelector: '.grid-item',
-            percentPosition: true,
-            masonry:
-                {
-                    horizontalOrder: true
-                },
-            getSortData:
-                {
-                    price: function (itemElement) {
-                        const priceEle = $(itemElement).find('.product_price').text().replace('$', '');
-                        return parseFloat(priceEle);
-                    },
-                    name: '.tt_class_title'
-                }
-        });
+    // $scope.initIsotope = function (){
+    //     const grid = $('.grid').isotope({
+    //         itemSelector: '.grid-item',
+    //         percentPosition: true,
+    //         masonry:
+    //             {
+    //                 horizontalOrder: true
+    //             },
+    //         getSortData:
+    //             {
+    //                 price: function (itemElement) {
+    //                     const priceEle = $(itemElement).find('.product_price').text().replace('$', '');
+    //                     return parseFloat(priceEle);
+    //                 },
+    //                 name: '.tt_class_title'
+    //             }
+    //     });
+    //
+    //     // Filtering
+    //     $('.item_filter_btn').on('click', function()
+    //     {
+    //         const buttons = $('.item_filter_btn');
+    //         buttons.removeClass('active');
+    //         $(this).addClass('active');
+    //         const filterValue = $(this).attr('data-filter');
+    //         grid.isotope({ filter: filterValue });
+    //     });
+    //     $('[data-filter = ""]').addClass("active");
+    // };
 
-        // Filtering
-        $('.item_filter_btn').on('click', function()
-        {
-            const buttons = $('.item_filter_btn');
-            buttons.removeClass('active');
-            $(this).addClass('active');
-            const filterValue = $(this).attr('data-filter');
-            grid.isotope({ filter: filterValue });
-        });
-        $('[data-filter = ""]').addClass("active");
-    };
+    // $scope.waitIsotope = function (){
+    //     let gridItem = document.getElementsByClassName('grid-item');
+    //     const interval = setInterval(function () {
+    //         if (gridCount === gridItem.length) {
+    //             clearInterval(interval);
+    //             $scope.initIsotope();
+    //         }
+    //     }, 50);
+    // };
 
-    $scope.waitIsotope = function (){
-        let gridItem = document.getElementsByClassName('grid-item');
-        const interval = setInterval(function () {
-            if (gridCount === gridItem.length) {
-                clearInterval(interval);
-                $scope.initIsotope();
-            }
-        }, 50);
-    };
-
-    $scope.loadSchedule();
+    // $scope.loadSchedule();
 
     //отложенный запуск изотоп
-    $scope.waitIsotope();
+    // $scope.waitIsotope();
 
 });
