@@ -7,9 +7,12 @@ import org.satal.backservice.repositories.UserRepository;
 import org.satal.backservice.repositories.UserSpecifications;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -73,6 +76,13 @@ public class UserService {
             spec = spec.and(UserSpecifications.nameLike(value)).or(UserSpecifications.surnameLike(value));
         }
 
-        return userRepository.findAll(spec, PageRequest.of(page - 1, 15));
+        return userRepository.findAll(spec, PageRequest.of(page - 1, 10));
+    }
+
+    public Page<User> findListUsers(){
+        Pageable pageable = PageRequest.of(0, 5, Sort.by(Sort.Direction.DESC, "id"));
+        StringBuilder parameters = new StringBuilder();
+        parameters.append(" and phone like '%5%'");
+        return userRepository.findListUsers(parameters.toString(), pageable);
     }
 }

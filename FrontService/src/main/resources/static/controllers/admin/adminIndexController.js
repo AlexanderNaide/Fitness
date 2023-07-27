@@ -32,7 +32,7 @@ angular.module('admin').controller('adminIndexController', function ($rootScope,
     //     }
     // };
 
-    $('.header').children().on('click', function(){
+    $('.clickLinc').children().on('click', function(){
         const buttons = $('.menuButton');
         buttons.removeClass('active');
         $(this).addClass('active');
