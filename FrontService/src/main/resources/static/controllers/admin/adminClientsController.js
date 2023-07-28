@@ -22,6 +22,19 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
     };*/
 
     $scope.updateUsers = function () {
+        let name = null;
+        let surname = null;
+        let login = null;
+        let phone = null;
+        let email = null;
+        if ($scope.User !== null){
+            name = $scope.User.name !== undefined ? $scope.User.name : null;
+            surname = $scope.User.surname !== undefined ? $scope.User.surname : null;
+            login = $scope.User.login !== undefined ? $scope.User.login : null;
+            phone = $scope.User.phone !== undefined ? $scope.User.phone : null;
+            email = $scope.User.email !== undefined ? $scope.User.email : null;
+        }
+
         $http({
             url: contextPath + "/users",
             method: 'POST',
@@ -29,11 +42,26 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
                 // role: $scope.filter.role !== null ? $scope.filter.role.id : null,
                 // specialization: $scope.filter.specialization !== undefined ? $scope.filter.specialization.id : null,
                 page: number,
-                name: 'User1',
-                surname: '1',
-                login: '',
-                phone: '',
-                email: ''
+                // name: $scope.User.name !== undefined ? $scope.User.name : null,
+                // name: $scope.User.name,
+                name: name,
+                // name: '',
+                // surname: $scope.User.surname !== undefined ? $scope.User.surname : null,
+                // surname: $scope.User.surname,
+                surname: surname,
+                // surname: '',
+                // login: $scope.User.login !== undefined ? $scope.User.login : null,
+                // login: $scope.User.login,
+                login: login,
+                // login: '',
+                // phone: $scope.User.phone !== undefined ? $scope.User.phone : null,
+                // phone: $scope.User.phone,
+                phone: phone,
+                // phone: '',
+                // email: $scope.User.email !== undefined ? $scope.User.email : null,
+                // email: $scope.User.email
+                email: email
+                // email: ''
             }
         }).then(function (response) {
             $scope.pagination(response);
@@ -76,6 +104,22 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
 
     $scope.pageFinish = function () {
         number = totalNumber;
+        $scope.updateUsers();
+    };
+
+    $scope.changes = function () {
+        number = 1;
+        $scope.updateUsers();
+    };
+
+    $scope.resetChanges = function () {
+        $scope.User.key = '';
+        $scope.User.name = '';
+        $scope.User.surname = '';
+        $scope.User.phone = '';
+        $scope.User.email = '';
+        // $scope.User.birthday = '';
+        number = 1;
         $scope.updateUsers();
     };
 

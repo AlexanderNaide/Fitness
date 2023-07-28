@@ -4,6 +4,7 @@ import org.satal.backservice.entities.gridClasses.Workout;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,9 +24,9 @@ public interface WorkoutRepository extends CrudRepository<Workout, Long> {
                     "on w.specialization_id = s.id\n" +
                     "inner join fitness.users as u\n" +
                     "on uc.user_id = u.id\n" +
-                    "where yearweek(w.time) = concat(year(curdate()), week(curdate(), 1) + ?1)\n" +
-                    "and u.login = ?2\n" +
+                    "where yearweek(w.time) = concat(year(curdate()), week(curdate(), 1) + :delta)\n" +
+                    "and u.login = :username\n" +
                     "order by dayofweek(w.time);")
-    List<String> getScheduleForWeek(Integer delta, String username);
+    List<String> getScheduleForWeek(@Param("delta") Integer delta, @Param("username") String username);
 
 }
