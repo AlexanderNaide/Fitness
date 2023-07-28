@@ -79,10 +79,13 @@ public class UserService {
         return userRepository.findAll(spec, PageRequest.of(page - 1, 10));
     }
 
-    public Page<User> findListUsers(){
-        Pageable pageable = PageRequest.of(0, 5, Sort.by(Sort.Direction.DESC, "id"));
-        StringBuilder parameters = new StringBuilder();
-        parameters.append(" and phone like '%5%'");
-        return userRepository.findListUsers(parameters.toString(), pageable);
+//    public Page<User> findListUsers(){
+//        Pageable pageable = PageRequest.of(0, 10, Sort.by(Sort.Direction.DESC, "id"));
+//        return userRepository.findListUsers("%User1%", "%%", "%%", "%5%", "%%", pageable);
+//    }
+
+    public Page<User> findListUsers(Integer page, String name, String surname, String login, String phone, String email){
+        Pageable pageable = PageRequest.of(page - 1, 10, Sort.by(Sort.Direction.DESC, "id"));
+        return userRepository.findListUsers("%" + name + "%", "%" + surname + "%", "%" + login + "%", "%" + phone + "%", "%" + email + "%", pageable);
     }
 }

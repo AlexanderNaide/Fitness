@@ -9,7 +9,7 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
      * ”правление таблицей пользователей
      ***********************************/
 
-    $scope.loadUsers = function () {
+/*    $scope.loadUsers = function () {
         $http({
             url: contextPath + "/list",
             method: 'GET'
@@ -19,24 +19,28 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
             $scope.pagination(response);
             $scope.UserList = response.data.content;
         });
-    };
+    };*/
 
-    // $scope.updateUsers = function () {
-    //     $http({
-    //         url: contextPath + "/updates",
-    //         method: 'POST',
-    //         params: {
-    //             val: $scope.value !== null ? $scope.value : null,
-    //             role: $scope.filter.role !== null ? $scope.filter.role.id : null,
-    //             specialization: $scope.filter.specialization !== undefined ? $scope.filter.specialization.id : null,
-    //             page: number
-    //         }
-    //     }).then(function (response) {
-    //         $scope.pagination(response);
-    //         $scope.UserList = response.data.content;
-    //         // console.log(response.data)
-    //     });
-    // };
+    $scope.updateUsers = function () {
+        $http({
+            url: contextPath + "/users",
+            method: 'POST',
+            params: {
+                // role: $scope.filter.role !== null ? $scope.filter.role.id : null,
+                // specialization: $scope.filter.specialization !== undefined ? $scope.filter.specialization.id : null,
+                page: 1,
+                name: 'User1',
+                surname: '1',
+                login: '',
+                phone: '',
+                email: ''
+            }
+        }).then(function (response) {
+            $scope.pagination(response);
+            $scope.UserList = response.data.content;
+            // console.log(response.data)
+        });
+    };
 
     $scope.pagination = function (response) {
         totalNumber = response.data.totalPages;
@@ -166,6 +170,6 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
     // $scope.setOfficeOwner();
     // $scope.OwnerPath();
     // $scope.getRoleList();
-    $scope.loadUsers();
+    $scope.updateUsers();
 
 });

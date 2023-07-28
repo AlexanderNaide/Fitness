@@ -21,34 +21,18 @@ public interface UserRepository extends CrudRepository<User, Long>, JpaSpecifica
     Optional<User> findUserByLoginAndPassword (String login, String password);
     Long countAllByIdIsNotNull ();
 
-/*    @Modifying
-    @Query(nativeQuery = true,
-            value =
-            "SELECT * FROM fitness.users\n" +
-                    "where name like '%User1%'\n" +
-                    "and surname like '%1%'\n" +
-                    "and login like '%%'\n" +
-                    "and phone like '%5%';",
-            countQuery = "SELECT count(*) FROM fitness.users\n" +
-                    "where name like '%User1%'\n" +
-                    "and surname like '%1%'\n" +
-                    "and login like '%%'\n" +
-                    "and phone like '%5%';")
-//    List<User> findListUsers ();
-    Page<User> findListUsers (Pageable pageable);*/
-
-
-    // Вот так огонь
-/*    SELECT * FROM fitness.users
-    where name like '%User1%'
-    and surname like '%1%'
-    and login like '%%'
-    and COALESCE (phone, '') LIKE '%5%';*/
-
     @Query(nativeQuery = true,
             value = "SELECT * FROM fitness.users\n" +
-                            "where name like '%User1%'\n" +
-                            "and surname like '%1%'\n" +
-                            "and login like '%%' :param")
-    Page<User> findListUsers (@Param("param") String parameters, Pageable pageable);
+                    "where role_id = 4\n" +
+                    "and COALESCE (name, '') LIKE :name\n" +
+                    "and COALESCE (surname, '') LIKE :surname\n" +
+                    "and COALESCE (login, '') LIKE :login\n" +
+                    "and COALESCE (phone, '') LIKE :phone\n" +
+                    "and COALESCE (email, '') LIKE :email")
+    Page<User> findListUsers (@Param("name") String name,
+                              @Param("surname") String surname,
+                              @Param("login") String login,
+                              @Param("phone") String phone,
+                              @Param("email") String email,
+                              Pageable pageable);
 }
