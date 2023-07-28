@@ -28,7 +28,7 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
             params: {
                 // role: $scope.filter.role !== null ? $scope.filter.role.id : null,
                 // specialization: $scope.filter.specialization !== undefined ? $scope.filter.specialization.id : null,
-                page: 1,
+                page: number,
                 name: 'User1',
                 surname: '1',
                 login: '',
@@ -52,20 +52,32 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
         $scope.last = response.data.last === true ? 'page-item disabled' : 'page-item';
     };
 
-    // $scope.pageClick = function (delta) {
-    //     number = number + delta;
-    //     $scope.updateUsers();
-    // };
+    $scope.getUser = function (id) {
+        $http({
+            url: contextPath + "/user",
+            method: 'POST',
+            params: {
+                id: id
+            }
+        }).then(function (response) {
+            $scope.User = response.data;
+        });
+    };
 
-    // $scope.pageStart = function () {
-    //     number = 1;
-    //     $scope.updateUsers();
-    // };
+    $scope.pageClick = function (delta) {
+        number = number + delta;
+        $scope.updateUsers();
+    };
 
-    // $scope.pageFinish = function () {
-    //     number = totalNumber;
-    //     $scope.updateUsers();
-    // };
+    $scope.pageStart = function () {
+        number = 1;
+        $scope.updateUsers();
+    };
+
+    $scope.pageFinish = function () {
+        number = totalNumber;
+        $scope.updateUsers();
+    };
 
     // $scope.getRoleList = function () {
     //     $http({
@@ -138,18 +150,7 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
     //     $scope.loadSpecializations(number + delta);
     // };
 
-    // $scope.getSpecializations = function (id) {
-    //     $http({
-    //         url: contextPath + "/spec_one",
-    //         method: 'POST',
-    //         params: {
-    //             id: id
-    //         }
-    //     }).then(function (response) {
-    //         // $scope.SpecializationList = response.data.content;
-    //         $scope.Specialization = response.data;
-    //     });
-    // };
+
 
 
 
