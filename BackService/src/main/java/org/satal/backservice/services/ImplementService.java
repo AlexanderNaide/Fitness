@@ -1,6 +1,7 @@
 package org.satal.backservice.services;
 
 import lombok.RequiredArgsConstructor;
+import org.satal.backservice.entities.enums.Gender;
 import org.satal.backservice.entities.gridClasses.Workout;
 import org.satal.backservice.entities.gridClasses.ClubService;
 import org.satal.backservice.entities.users.*;
@@ -139,8 +140,11 @@ public class ImplementService {
 //        user0.setPassword("123");
         user0.setPassword(passwordEncoder.encode("123"));
         user0.setRole(userRole);
+        user0.setGender(Gender.MAN);
         user0.setName("User0_Name");
         user0.setSurname("User0_Surname");
+        user0.setPhone("8-927-683-2723");
+        user0.setEmail("use0@gmail.com");
         userService.save(user0);
 
         for (int i = 1; i < 50; i++) {
@@ -149,8 +153,15 @@ public class ImplementService {
 //            user.setPassword("123");
             user.setPassword(passwordEncoder.encode("123"));
             user.setRole(userRole);
+            if (i % 2 == 0){
+                user.setGender(Gender.MAN);
+            } else {
+                user.setGender(Gender.WOMAN);
+            }
             user.setName("User" + i + "_Name");
             user.setSurname("User" + i + "_Surname");
+            user.setPhone("8-927-683-" + (2723 + i));
+            user.setEmail("use" + i + "@gmail.com");
             userService.save(user);
         }
 

@@ -3,6 +3,8 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
     console.log('adminClientsController');
     let number = 1;
     let totalNumber;
+    $scope.searchStatus = false;
+        // let searchDone = false;
     $scope.User = {
         name: '',
         surname: '',
@@ -43,6 +45,11 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
         }).then(function (response) {
             $scope.pagination(response);
             $scope.UserList = response.data.content;
+            if ($scope.UserList.length === 1){
+                // searchDone = true;
+                $scope.searchStatus = true;
+                $scope.getUser($scope.UserList[0].id);
+            }
             // console.log(response.data)
         }).catch(function (response) {
             $scope.message = response.data.message;
@@ -61,6 +68,8 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
     };
 
     $scope.getUser = function (id) {
+        // searchDone = true;
+        $scope.searchStatus = true;
         $http({
             url: contextPath + "/user",
             method: 'POST',
@@ -97,6 +106,8 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
     };
 
     $scope.resetChanges = function () {
+        // searchDone = false;
+        $scope.searchStatus = false;
         $scope.User.key = '';
         $scope.User.name = '';
         $scope.User.surname = '';
@@ -112,6 +123,10 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
         $('.formMessage').removeClass('alarmMessage');
         $scope.message = 'Введите данные';
     };
+
+    // $scope.searchStatus = function () {
+    //     return searchDone;
+    // };
 
     // $scope.getRoleList = function () {
     //     $http({

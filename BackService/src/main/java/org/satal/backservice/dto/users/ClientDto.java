@@ -21,6 +21,8 @@ public class ClientDto implements UserDto {
     private LocalDate birthday;
     private List<Ticket> ticketList;
 
+//    private String createdAt;
+
 
     public ClientDto(User user) {
         this.id = user.getId();
@@ -33,5 +35,6 @@ public class ClientDto implements UserDto {
         this.middleName = user.getMiddleName();
         this.birthday = user.getBirthday();
         this.ticketList = user.getTicketList();
+//        this.createdAt = user.getCreatedAt().getDayOfMonth() + " " + user.getCreatedAt().getMonth().name() + " " + user.getCreatedAt().getYear();
     }
 }
