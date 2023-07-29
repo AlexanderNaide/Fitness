@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.satal.backservice.entities.enums.Gender;
 import org.satal.backservice.entities.gridClasses.Workout;
 
 import java.time.LocalDate;
@@ -30,6 +31,9 @@ public class User {
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    @Column(name = "gender")
+    private Gender gender;
 
 //    @Column(name = "name", nullable = false)
     @Column(name = "name")

@@ -175,3 +175,7 @@ button:hover
 .alarmMessage{
 	color: red;
 }
+
+.info-label{
+	padding: 4px 12px 3px 12px;
+}

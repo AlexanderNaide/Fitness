@@ -45,7 +45,12 @@ public class AdminController {
         if(page < 1){
             page = 1;
         }
-        return userService.findListUsers(page, name, surname, login, phone, email).map(ClientDto::new);
+        Page<User> result = userService.findListUsers(page, name, surname, login, phone, email);
+        if(result.getTotalElements() == 0){
+            throw new ResourceNotFoundException("Пользователь с такими данными не найден");
+        }
+//        return userService.findListUsers(page, name, surname, login, phone, email).map(ClientDto::new);
+        return result.map(ClientDto::new);
     }
 
     @PostMapping("/user")
