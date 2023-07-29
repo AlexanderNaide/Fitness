@@ -3,10 +3,17 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
     console.log('adminClientsController');
     let number = 1;
     let totalNumber;
+    $scope.User = {
+        name: '',
+        surname: '',
+        key: '',
+        phone: '',
+        email: ''
+    };
 
 
     /***********************************
-     * Управление таблицей пользователей
+     * РЈРїСЂР°РІР»РµРЅРёРµ С‚Р°Р±Р»РёС†РµР№ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
      ***********************************/
 
 /*    $scope.loadUsers = function () {
@@ -26,19 +33,20 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
             url: contextPath + "/users",
             method: 'POST',
             params: {
-                // role: $scope.filter.role !== null ? $scope.filter.role.id : null,
-                // specialization: $scope.filter.specialization !== undefined ? $scope.filter.specialization.id : null,
                 page: number,
-                name: 'User1',
-                surname: '1',
-                login: '',
-                phone: '',
-                email: ''
+                name: $scope.User.name,
+                surname: $scope.User.surname,
+                login: $scope.User.key,
+                phone: $scope.User.phone,
+                email: $scope.User.email
             }
         }).then(function (response) {
             $scope.pagination(response);
             $scope.UserList = response.data.content;
             // console.log(response.data)
+        }).catch(function (response) {
+            $scope.message = response.data.message;
+            $('.formMessage').addClass('alarmMessage');
         });
     };
 
@@ -61,6 +69,9 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
             }
         }).then(function (response) {
             $scope.User = response.data;
+        }).catch(function (response) {
+            $scope.message = response.data.message;
+            $('.formMessage').addClass('alarmMessage');
         });
     };
 
@@ -77,6 +88,29 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
     $scope.pageFinish = function () {
         number = totalNumber;
         $scope.updateUsers();
+    };
+
+    $scope.changes = function () {
+        number = 1;
+        $scope.setMessage();
+        $scope.updateUsers();
+    };
+
+    $scope.resetChanges = function () {
+        $scope.User.key = '';
+        $scope.User.name = '';
+        $scope.User.surname = '';
+        $scope.User.phone = '';
+        $scope.User.email = '';
+        // $scope.User.birthday = '';
+        number = 1;
+        $scope.setMessage();
+        $scope.updateUsers();
+    };
+
+    $scope.setMessage = function () {
+        $('.formMessage').removeClass('alarmMessage');
+        $scope.message = 'Р’РІРµРґРёС‚Рµ РґР°РЅРЅС‹Рµ';
     };
 
     // $scope.getRoleList = function () {
@@ -128,7 +162,7 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
 
 
     /***********************************
-     * Управление таблицей специализаций
+     * РЈРїСЂР°РІР»РµРЅРёРµ С‚Р°Р±Р»РёС†РµР№ СЃРїРµС†РёР°Р»РёР·Р°С†РёР№
      ***********************************/
 
     // $scope.loadSpecializations = function (pageNumber) {
@@ -171,6 +205,7 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
     // $scope.setOfficeOwner();
     // $scope.OwnerPath();
     // $scope.getRoleList();
+    $scope.setMessage();
     $scope.updateUsers();
 
 });
