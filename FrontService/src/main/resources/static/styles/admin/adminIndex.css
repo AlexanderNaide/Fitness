@@ -171,3 +171,7 @@ button:hover
 	height: 100%;
 	width: auto;
 }
+
+.alarmMessage{
+	color: red;
+}

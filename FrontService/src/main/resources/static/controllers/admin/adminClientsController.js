@@ -3,10 +3,17 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
     console.log('adminClientsController');
     let number = 1;
     let totalNumber;
+    $scope.User = {
+        name: '',
+        surname: '',
+        key: '',
+        phone: '',
+        email: ''
+    };
 
 
     /***********************************
-     * Управление таблицей пользователей
+     * РЈРїСЂР°РІР»РµРЅРёРµ С‚Р°Р±Р»РёС†РµР№ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
      ***********************************/
 
 /*    $scope.loadUsers = function () {
@@ -22,51 +29,24 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
     };*/
 
     $scope.updateUsers = function () {
-        let name = null;
-        let surname = null;
-        let login = null;
-        let phone = null;
-        let email = null;
-        if ($scope.User !== null){
-            name = $scope.User.name !== undefined ? $scope.User.name : null;
-            surname = $scope.User.surname !== undefined ? $scope.User.surname : null;
-            login = $scope.User.login !== undefined ? $scope.User.login : null;
-            phone = $scope.User.phone !== undefined ? $scope.User.phone : null;
-            email = $scope.User.email !== undefined ? $scope.User.email : null;
-        }
-
         $http({
             url: contextPath + "/users",
             method: 'POST',
             params: {
-                // role: $scope.filter.role !== null ? $scope.filter.role.id : null,
-                // specialization: $scope.filter.specialization !== undefined ? $scope.filter.specialization.id : null,
                 page: number,
-                // name: $scope.User.name !== undefined ? $scope.User.name : null,
-                // name: $scope.User.name,
-                name: name,
-                // name: '',
-                // surname: $scope.User.surname !== undefined ? $scope.User.surname : null,
-                // surname: $scope.User.surname,
-                surname: surname,
-                // surname: '',
-                // login: $scope.User.login !== undefined ? $scope.User.login : null,
-                // login: $scope.User.login,
-                login: login,
-                // login: '',
-                // phone: $scope.User.phone !== undefined ? $scope.User.phone : null,
-                // phone: $scope.User.phone,
-                phone: phone,
-                // phone: '',
-                // email: $scope.User.email !== undefined ? $scope.User.email : null,
-                // email: $scope.User.email
-                email: email
-                // email: ''
+                name: $scope.User.name,
+                surname: $scope.User.surname,
+                login: $scope.User.key,
+                phone: $scope.User.phone,
+                email: $scope.User.email
             }
         }).then(function (response) {
             $scope.pagination(response);
             $scope.UserList = response.data.content;
             // console.log(response.data)
+        }).catch(function (response) {
+            $scope.message = response.data.message;
+            $('.formMessage').addClass('alarmMessage');
         });
     };
 
@@ -89,6 +69,9 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
             }
         }).then(function (response) {
             $scope.User = response.data;
+        }).catch(function (response) {
+            $scope.message = response.data.message;
+            $('.formMessage').addClass('alarmMessage');
         });
     };
 
@@ -109,6 +92,7 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
 
     $scope.changes = function () {
         number = 1;
+        $scope.setMessage();
         $scope.updateUsers();
     };
 
@@ -120,7 +104,13 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
         $scope.User.email = '';
         // $scope.User.birthday = '';
         number = 1;
+        $scope.setMessage();
         $scope.updateUsers();
+    };
+
+    $scope.setMessage = function () {
+        $('.formMessage').removeClass('alarmMessage');
+        $scope.message = 'Р’РІРµРґРёС‚Рµ РґР°РЅРЅС‹Рµ';
     };
 
     // $scope.getRoleList = function () {
@@ -172,7 +162,7 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
 
 
     /***********************************
-     * Управление таблицей специализаций
+     * РЈРїСЂР°РІР»РµРЅРёРµ С‚Р°Р±Р»РёС†РµР№ СЃРїРµС†РёР°Р»РёР·Р°С†РёР№
      ***********************************/
 
     // $scope.loadSpecializations = function (pageNumber) {
@@ -215,6 +205,7 @@ angular.module('admin').controller('adminClientsController', function ($scope, $
     // $scope.setOfficeOwner();
     // $scope.OwnerPath();
     // $scope.getRoleList();
+    $scope.setMessage();
     $scope.updateUsers();
 
 });
