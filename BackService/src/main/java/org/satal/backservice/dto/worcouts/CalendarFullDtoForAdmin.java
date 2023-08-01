@@ -16,8 +16,6 @@ public class CalendarFullDtoForAdmin {
     private List<WorkoutWeekDto> week;
 
     public CalendarFullDtoForAdmin(Integer delta, List<String> list) {
-        System.out.println("Началось");
-        list.forEach(System.out::println);
         LocalDate cur = LocalDate.now();
         LocalDate newDate = cur.plusDays(delta * 7L);
         LocalDate firstDay = newDate.minusDays(newDate.getDayOfWeek().getValue() - 1);
@@ -40,8 +38,8 @@ public class CalendarFullDtoForAdmin {
 
         for (String s : list) {
             String[] split = s.split(",");
-            classType.put(split[7], "." + split[7]);
-            WorkoutWeekDto w = week.stream().filter(e -> e.getDayOfWeek().equals(split[11])).findFirst().orElse(null);
+            classType.put(split[6], "." + split[6]);
+            WorkoutWeekDto w = week.stream().filter(e -> e.getDayOfWeek().equals(split[10])).findFirst().orElse(null);
             assert w != null;
             w.getDay().add(new WorkoutGridDto(s));
         }

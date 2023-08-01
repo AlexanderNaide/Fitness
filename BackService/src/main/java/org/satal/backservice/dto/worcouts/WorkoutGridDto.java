@@ -20,12 +20,11 @@ public class WorkoutGridDto {
     }
 
     public WorkoutGridDto(String str) {
-//        System.out.println(str);
         String[] split = str.split(",");
-        this.id = Long.parseLong(split[2]);
-        this.dayOfWeek =split[11];
-        this.specialization = split[7];
-        this.trainer = split[6];
-        this.time = split[10];
+        this.id = Long.parseLong(split[1]);
+        this.dayOfWeek =split[10];
+        this.specialization = split[6];
+        this.trainer = split[5];
+        this.time = split[9];
     }
 }
