@@ -5,20 +5,29 @@
 
 	<div class="timetable">
 <!--		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="../images/timetable.jpg" data-speed="0.8"></div>-->
-		<div class="tt_overlay"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col">
-<!--					<div class="section_title_container">-->
-<!--						<div class="section_subtitle">welcome to sportfit</div>-->
-<!--						<div class="section_title">Classes Timetable</div>-->
-<!--					</div>-->
 
 <!--					https://codepen.io/desandro/pen/eYNEpQ-->
 
 					<div class="timetable_filtering">
 						<ul class="button-group d-flex flex-row align-items-start justify-content-start flex-wrap" data-filter-group="specialization">
 							<li class="item_filter_btn" ng-repeat="(key, val) in schedule.classType" data-filter="{{val}}">{{key}}</li>
+						</ul>
+					</div>
+
+<!--					Просто еще один фильтр для примера, пока не появится рельные фильтры-->
+					<div class="timetable_filtering">
+						<ul class="button-group d-flex flex-row align-items-start justify-content-start flex-wrap" data-filter-group="day">
+							<li class="item_filter_btn active" data-filter="">все</li>
+							<li class="item_filter_btn" data-filter=".Monday">MONDAY</li>
+							<li class="item_filter_btn" data-filter=".Tuesday">TUESDAY</li>
+							<li class="item_filter_btn" data-filter=".Wednesday">WEDNESDAY</li>
+							<li class="item_filter_btn" data-filter=".Thursday">THURSDAY</li>
+							<li class="item_filter_btn" data-filter=".Friday">FRIDAY</li>
+							<li class="item_filter_btn" data-filter=".Saturday">SATURDAY</li>
+							<li class="item_filter_btn" data-filter=".Sunday">SUNDAY</li>
 						</ul>
 					</div>
 
@@ -35,7 +44,7 @@
 							<div class="tt_day_content grid">
 
 								<!-- Class -->
-								<div class="tt_class grid-item {{class.specialization}}" ng-repeat="class in week.day">
+								<div class="tt_class grid-item {{class.specialization}} {{class.dayOfWeek}}" ng-repeat="class in week.day">
 									<div class="tt_class_title">{{class.specialization}}</div>
 									<div class="tt_class_instructor">{{class.trainer}}</div>
 									<div class="tt_class_time">{{class.time}}</div>

@@ -3,6 +3,9 @@ package org.satal.backservice.dto.worcouts;
 import lombok.Data;
 import org.satal.backservice.entities.gridClasses.Workout;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Data
 public class WorkoutGridDto {
     private Long id;
@@ -21,10 +24,13 @@ public class WorkoutGridDto {
 
     public WorkoutGridDto(String str) {
         String[] split = str.split(",");
+        DateTimeFormatter sourceFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+        DateTimeFormatter resultFormat = DateTimeFormatter.ofPattern("HH:mm");
         this.id = Long.parseLong(split[1]);
         this.dayOfWeek =split[10];
         this.specialization = split[6];
         this.trainer = split[5];
-        this.time = split[9];
+        this.time = resultFormat.format(LocalDateTime.parse(split[9], sourceFormat));
+
     }
 }

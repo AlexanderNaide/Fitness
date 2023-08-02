@@ -51,7 +51,7 @@ public class UserService {
 //    }
 
 
-    /*TODO: Уйти от спеки. Она здесь нах не нужна. Запросы через where. Пагинацию организовать https://sysout.ru/spring-data-jpa-zaprosy-generiruemye-po-imeni-metoda/ */
+    /*TODO: https://sysout.ru/spring-data-jpa-zaprosy-generiruemye-po-imeni-metoda/ */
     public Page<User> findAll(Long role, Long specialization, String value, Integer page){ // вот тут попробовать переделать на LOnd Id, по каждой сущности
 
 //        System.out.println("Service >>>");

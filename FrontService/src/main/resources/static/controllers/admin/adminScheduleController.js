@@ -66,41 +66,33 @@ angular.module('admin').controller('adminScheduleController', function ($scope, 
 
 
     // это работает.
-    // window.onload = function() {
-    //     // let $grid;
-    //     const filters = {};
-    //     const $grid = $('.grid').isotope({
-    //         itemSelector: '.grid-item'
-    //     });
-    //     $('.timetable_filtering').on('click', '.item_filter_btn', function (event){
-    //         const $button = $(event.currentTarget);
-    //         const $buttonGroup = $button.parents('.button-group');
-    //         const filterGroup = $buttonGroup.attr('data-filter-group');
-    //         filters[filterGroup] = $button.attr('data-filter');
-    //         const filterValue = concatValues(filters);
-    //         $grid.isotope({filter: filterValue});
-    //     });
-    //     $('.button-group').each(function (i, buttonGroup){
-    //         const $buttonGroup = $(buttonGroup);
-    //         $buttonGroup.on('click', 'li', function (event) {
-    //             $buttonGroup.find('.active').removeClass('active');
-    //             const $button = $(event.currentTarget);
-    //             $button.addClass('active');
-    //         });
-    //     });
-    //     $('[data-filter = ""]').addClass("active");
-    // };
-    //
-    // function concatValues( obj ) {
-    //     let value = '';
-    //     for (const prop in obj ) {
-    //         value += obj[ prop ];
-    //     }
-    //     return value;
-    // }
+    $scope.initIsotope = function (){
+        const filters = {};
+        const $grid = $('.grid').isotope({
+            itemSelector: '.grid-item'
+        });
+        $('.timetable_filtering').on('click', '.item_filter_btn', function (event){
+            const $button = $(event.currentTarget);
+            const $buttonGroup = $button.parents('.button-group');
+            const filterGroup = $buttonGroup.attr('data-filter-group');
+            filters[filterGroup] = $button.attr('data-filter');
+            const filterValue = $scope.concatValues(filters);
+            $grid.isotope({filter: filterValue});
+        });
+        $('.button-group').each(function (i, buttonGroup){
+            const $buttonGroup = $(buttonGroup);
+            $buttonGroup.on('click', 'li', function (event) {
+                $buttonGroup.find('.active').removeClass('active');
+                const $button = $(event.currentTarget);
+                $button.addClass('active');
+            });
+        });
+        $('[data-filter = ""]').addClass("active");
+    };
 
     // работает
-    $scope.initIsotope = function (){
+/*    $scope.initIsotope = function (){
+        const filters = {};
         const grid = $('.grid').isotope({
             itemSelector: '.grid-item',
             percentPosition: true,
@@ -108,26 +100,40 @@ angular.module('admin').controller('adminScheduleController', function ($scope, 
                 {
                     horizontalOrder: true
                 },
-            getSortData:
-                {
-                    price: function (itemElement) {
-                        const priceEle = $(itemElement).find('.product_price').text().replace('$', '');
-                        return parseFloat(priceEle);
-                    },
-                    name: '.tt_class_title'
-                }
+            // getSortData:
+            //     {
+            //         price: function (itemElement) {
+            //             const priceEle = $(itemElement).find('.product_price').text().replace('$', '');
+            //             return parseFloat(priceEle);
+            //         },
+            //         name: '.tt_class_title'
+            //     }
         });
 
-        // Filtering
-        $('.item_filter_btn').on('click', function()
+        // Filtering old
+/!*        $('.item_filter_btn').on('click', function()
         {
             const buttons = $('.item_filter_btn');
             buttons.removeClass('active');
             $(this).addClass('active');
             const filterValue = $(this).attr('data-filter');
             grid.isotope({ filter: filterValue });
-        });
+        });*!/
         $('[data-filter = ""]').addClass("active");
+    };*/
+
+    // function concatValues( obj ) {
+    $scope.concatValues = function (obj){
+        let value = '';
+        for (const prop in obj ) {
+            console.log(obj[ prop ]);
+            value += obj[ prop ];
+        }
+        if (value !== ''){
+            value += ', .add';
+        }
+
+        return value;
     };
 
     $scope.waitIsotope = function (){
@@ -135,7 +141,10 @@ angular.module('admin').controller('adminScheduleController', function ($scope, 
         const interval = setInterval(function () {
             if (gridCount === gridItem.length) {
                 clearInterval(interval);
+                let add =$('<div class="tt_class grid-item add"><div class="tt_class_title">+</div></div>');
+                $('.grid').append(add);
                 $scope.initIsotope();
+
             }
         }, 50);
     };
