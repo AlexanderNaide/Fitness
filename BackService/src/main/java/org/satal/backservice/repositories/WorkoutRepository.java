@@ -29,4 +29,17 @@ public interface WorkoutRepository extends CrudRepository<Workout, Long> {
                     "order by dayofweek(w.time);")
     List<String> getScheduleForWeek(@Param("delta") Integer delta, @Param("username") String username);
 
+
+    // запрос на получение всего расписания на неделю с индексом
+//    SELECT * from (
+//            SELECT @n := (w.id - dayofweek(curdate() - 1) + 1 + (7 * 1)) as delta, w.title as day, c.id, c.title, c.start, c.end, concat(tr.name, ' ', tr.surname) as trainer, s.specialization, c.duration, c.reccurence, (timestampadd(day, c.reccurence * (DATEDIFF(DATE_ADD(curdate(), INTERVAL @n DAY), c.start) / c.reccurence), c.start)) as 'event_date'
+//    FROM fitness.week as w,
+//    fitness.calendar as c
+//    inner join fitness.users as tr
+//    on c.trainer_id = tr.id
+//    inner join fitness.specialization as s
+//    on c.discipline_id = s.id
+//    where DATEDIFF(DATE_ADD(curdate(), INTERVAL @n DAY), c.start) % c.reccurence = 0
+//            ) as t where event_date between start and end
+//    order by event_date;
 }

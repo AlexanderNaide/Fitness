@@ -5,15 +5,16 @@ import org.satal.backservice.dto.users.ClientDto;
 import org.satal.backservice.dto.users.SpecializationDto;
 import org.satal.backservice.dto.users.UserDto;
 import org.satal.backservice.dto.users.UserFullDto;
+import org.satal.backservice.dto.worcouts.CalendarFullDtoForAdmin;
+import org.satal.backservice.dto.worcouts.WorkoutFullDto;
 import org.satal.backservice.entities.users.Specialization;
 import org.satal.backservice.entities.users.User;
 import org.satal.backservice.exception.ResourceNotFoundException;
-import org.satal.backservice.services.RoleService;
-import org.satal.backservice.services.SpecializationService;
-import org.satal.backservice.services.UserService;
+import org.satal.backservice.services.*;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +23,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AdminController {
 
-    private final RoleService roleService;
+    private final CalendarService calendarService;
     private final SpecializationService specializationService;
     private final UserService userService;
 
@@ -57,5 +58,10 @@ public class AdminController {
     public UserFullDto getProductById(@RequestParam Long id){
         Optional<User> userOptional = userService.findById(id);
         return userOptional.map(UserFullDto::new).orElseThrow(() -> new ResourceNotFoundException("id:" + id + " является ошибочным."));
+    }
+
+    @GetMapping("/week")
+    public CalendarFullDtoForAdmin upAllUsers(@RequestParam(required = false, defaultValue = "0") Integer delta){
+        return new CalendarFullDtoForAdmin(delta, calendarService.getCalendarForWeek(delta));
     }
 }
