@@ -7,9 +7,12 @@ import org.satal.backservice.repositories.UserRepository;
 import org.satal.backservice.repositories.UserSpecifications;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -48,7 +51,7 @@ public class UserService {
 //    }
 
 
-    /*TODO: Уйти от спеки. Она здесь нах не нужна. Запросы через where. Пагинацию организовать https://sysout.ru/spring-data-jpa-zaprosy-generiruemye-po-imeni-metoda/ */
+    /*TODO: https://sysout.ru/spring-data-jpa-zaprosy-generiruemye-po-imeni-metoda/ */
     public Page<User> findAll(Long role, Long specialization, String value, Integer page){ // вот тут попробовать переделать на LOnd Id, по каждой сущности
 
 //        System.out.println("Service >>>");
@@ -73,6 +76,16 @@ public class UserService {
             spec = spec.and(UserSpecifications.nameLike(value)).or(UserSpecifications.surnameLike(value));
         }
 
-        return userRepository.findAll(spec, PageRequest.of(page - 1, 15));
+        return userRepository.findAll(spec, PageRequest.of(page - 1, 10));
+    }
+
+//    public Page<User> findListUsers(){
+//        Pageable pageable = PageRequest.of(0, 10, Sort.by(Sort.Direction.DESC, "id"));
+//        return userRepository.findListUsers("%User1%", "%%", "%%", "%5%", "%%", pageable);
+//    }
+
+    public Page<User> findListUsers(Integer page, String name, String surname, String login, String phone, String email){
+        Pageable pageable = PageRequest.of(page - 1, 10, Sort.by(Sort.Direction.DESC, "id"));
+        return userRepository.findListUsers("%" + name + "%", "%" + surname + "%", "%" + login + "%", "%" + phone + "%", "%" + email + "%", pageable);
     }
 }

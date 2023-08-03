@@ -7,20 +7,20 @@ angular.module('fitness').controller('homeController', function ($scope, $http, 
         document.getElementById('cssId1').href = 'styles/main_styles.css';
         document.getElementById('cssId2').href = 'styles/responsive.css';
         // console.log(document.scripts);
-        for (let i = 0; i < document.scripts.length; i++) {
-            document.scripts.item(i).remove();
-        }
+        // for (let i = 0; i < document.scripts.length; i++) {
+        //     document.scripts.item(i).remove();
+        // }
 
-        $('.home_linc').addClass('active');
-        $('.about_linc').removeClass('active');
-        $('.services_linc').removeClass('active');
-        $('.blog_linc').removeClass('active');
-        $('.contact_linc').removeClass('active');
+        jQuery(window).trigger('resize').trigger('scroll');
+
+        // $('.home_linc').addClass('active');
+        // $('.about_linc').removeClass('active');
+        // $('.services_linc').removeClass('active');
+        // $('.blog_linc').removeClass('active');
+        // $('.contact_linc').removeClass('active');
+
+        // console.log(window.location.href);
     };
-
-
-
-
 
     // $scope.loadMaintenance = function () {
     //     $http({
@@ -50,4 +50,5 @@ angular.module('fitness').controller('homeController', function ($scope, $http, 
     // $scope.loadMaintenance();
     // $scope.setHeader();
     $scope.setStylesHome();
+    // $scope.starting();
 });

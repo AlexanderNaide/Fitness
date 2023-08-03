@@ -166,7 +166,8 @@
 }
 .timetable_container
 {
-	margin-top: 62px;
+	/*margin-top: 62px;*/
+	margin-top: 18px;
 	width: calc(100% + 156px);
 	left: -78px;
 }

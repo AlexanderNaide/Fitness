@@ -1,8 +1,7 @@
 package org.satal.backservice.services;
 
 import lombok.RequiredArgsConstructor;
-import org.satal.backservice.entities.Maintenance;
-import org.satal.backservice.entities.users.Role;
+import org.satal.backservice.entities.gridClasses.ClubService;
 import org.satal.backservice.repositories.MaintenanceRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,15 +13,15 @@ import java.util.Optional;
 public class MaintenanceService {
     private final MaintenanceRepository maintenanceRepository;
 
-    public void save(Maintenance maintenance){
+    public void save(ClubService maintenance){
         maintenanceRepository.save(maintenance);
     }
 
-    public Optional<Maintenance> findById(Long id){
+    public Optional<ClubService> findById(Long id){
         return maintenanceRepository.findById(id);
     }
 
-    public List<Maintenance> findAll(){
-        return (List<Maintenance>) maintenanceRepository.findAll();
+    public List<ClubService> findAll(){
+        return (List<ClubService>) maintenanceRepository.findAll();
     }
 }

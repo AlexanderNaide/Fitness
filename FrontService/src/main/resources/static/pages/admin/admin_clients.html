@@ -1,0 +1,179 @@
+<!--<script src="../../controllers/admin/adminClientsController.js"></script>-->
+<div>
+	<div class="userCard row">
+		<div class="col-4">
+			<div class="avatar exmpl">
+				<svg ng-show="!searchStatus" xmlns="http://www.w3.org/2000/svg" width="260" height="260" fill="white" class="bi bi-question-lg" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215 0 1.344-.665 2.288-1.79 2.973-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712 1.03-.632 1.397-1.135 1.397-2.028 0-.979-.758-1.698-1.926-1.698-1.009 0-1.71.529-1.938 1.402-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09 0-.618-.473-1.092-1.095-1.092-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z"/>
+				</svg>
+
+<!--				<img src="../../images/plug/m.jpg" alt="avatar">-->
+				<img ng-show="searchStatus" src="{{User.avatar}}" alt="avatar">
+			</div>
+
+		</div>
+		<div class="col-8" style="padding-top: 15px">
+		<!--Фоновое изображение лупы-->
+<!--			<div style="z-index: 1; position: absolute; top: 45px; right: 60px;">
+				<svg xmlns="http://www.w3.org/2000/svg" width="260" height="260" fill="white" class="bi bi-search" viewBox="0 0 16 16">
+					<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+				</svg>
+			</div>-->
+			<div>
+				<form id="userSearchForm" novalidate>
+					<div class="formMessage">
+						<h4>{{message}}</h4>
+					</div>
+					<div class="">
+						<div class="">
+							<label>
+								<div class="info-label" ng-show="searchStatus">Номер карты {{User.key}}</div>
+								<input ng-show="!searchStatus" ng-change="changes()" class="form-control" type="text" ng-model="User.key" value="{{User.key}}" placeholder="Номер карты">
+							</label>
+							<br><br>
+							<label>
+								<div class="info-label" ng-show="searchStatus">Имя: {{User.name}}</div>
+								<input ng-show="!searchStatus" ng-change="changes()" class="form-control" type="text" ng-model="User.name" value="{{User.name}}" placeholder="Имя">
+							</label>
+							<label>
+								<div class="info-label" ng-show="searchStatus">Фамилия: {{User.surname}}</div>
+								<input ng-show="!searchStatus" ng-change="changes()" class="form-control" type="text" ng-model="User.surname" value="{{User.surname}}" placeholder="Фамилия">
+							</label>
+							<label>
+								<div class="info-label" ng-show="searchStatus">Отчество: {{User.middleName}}</div>
+							</label>
+							<label>
+								<div class="info-label" ng-show="searchStatus">Пол: {{User.gender}}</div>
+							</label>
+							<br><br>
+							<label>
+								<div class="info-label" ng-show="searchStatus">Телефон: {{User.phone}}</div>
+								<input ng-show="!searchStatus" ng-change="changes()" class="form-control" type="text" ng-model="User.phone" value="{{User.phone}}" placeholder="Телефон">
+							</label>
+							<br><br>
+							<label>
+								<div class="info-label" ng-show="searchStatus">Электронная почта: {{User.email}}</div>
+								<input ng-show="!searchStatus" ng-change="changes()" class="form-control" type="text" ng-model="User.email" value="{{User.email}}" placeholder="Электронная почта">
+							</label>
+							<br><br>
+							<label>
+								<div class="info-label" ng-show="searchStatus">Дата рождения: {{User.birthday}}</div>
+							</label>
+							<label>
+								<div class="info-label" ng-show="searchStatus">Зарегистрирован(а): {{User.createdAt}}</div>
+							</label>
+<!--							<label>
+								<input ng-change="userNameMatching()" class="form-control" type="date" ng-model="User.birthday" placeholder="Дата рождения">
+							</label>-->
+						</div>
+						<div class="form-group mb-3">
+							<!--						<h6>Описание:</h6>-->
+							<!--						<div ng-repeat="l in ProductDescription">{{l}} <br></div>-->
+						</div>
+					</div>
+					<div class="">
+						<button type="button" class="btn btn-secondary" ng-click="resetChanges()">Сбросить</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+
+	</div>
+
+	<div >
+		<table class="table table-hover" style="table-layout: fixed">
+			<thead>
+			<tr>
+				<th style="width: 5%">ID</th>
+				<th style="width: 15%">Имя</th>
+				<th style="width: 15%">Фамилия</th>
+				<th style="width: 15%">Отчество</th>
+				<th style="width: 15%">Дата рождения</th>
+				<th style="width: 10%">Телефон</th>
+				<th style="width: 25%">Email</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="u in UserList">
+				<td ng-click="getUser(u.id)">{{u.id}}</td>
+				<td ng-click="getUser(u.id)">{{u.name}}</td>
+				<td ng-click="getUser(u.id)">{{u.surname}}</td>
+				<td ng-click="getUser(u.id)">{{u.middleName}}</td>
+				<td ng-click="getUser(u.id)">{{u.birthday}}</td>
+				<td ng-click="getUser(u.id)">{{u.phone}}</td>
+				<td ng-click="getUser(u.id)">{{u.email}}</td>
+			</tr>
+			</tbody>
+		</table>
+
+		<nav aria-label="...">
+			<ul class="pagination">
+				<li class="{{first}}"><a href="" hng-click="pageStart()">1<<<</a></li>
+				<li class="{{first10}}"><a href="" ng-click="pageClick(-10)">-10<<</a></li>
+				<li class="{{first}}"><a href="" ng-click="pageClick(-1)">-1<</a></li>
+				<li class="page-item active"><a href="">{{page1}}</a></li>
+				<li class="{{last}}"><a href="" ng-click="pageClick(+1)">>+1</a></li>
+				<li class="{{last10}}"><a href="" ng-click="pageClick(+10)">>>+10</a></li>
+				<li class="{{last}}"><a href="" ng-click="pageFinish()">>>>{{totalNumber}}</a></li>
+			</ul>
+		</nav>
+	</div>
+
+</div>
+
+<!-- Окно юзера (для правки) -->
+<!--<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<form id="form" novalidate>
+				<div class="modal-header">
+					<label class="modal-title" id="exampleModalCenterTitle">Информация о товаре</label>
+				</div>
+				<div class="modal-body">
+					<div class="form-group mb-3">
+						<h5 class="modal-title">{{.}}</h5>
+						<label>: {{.}}</label>
+						<h6>: {{.}}</h6>
+						<label>: {{.}}</label>
+					</div>
+					<div class="form-group mb-3">
+						<h6>:</h6>
+						<div ng-repeat="l in ProductDescription">{{l}} <br></div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>-->
+
+<!-- Окно специализации -->
+<!--
+<div class="modal fade" id="modalSpecializationWindow" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			&lt;!&ndash;			<form id="form" novalidate>&ndash;&gt;
+			<form novalidate>
+				<div class="modal-header">
+					&lt;!&ndash;					<label class="modal-title" id="exampleModalCenterTitle">Информация о товаре</label>&ndash;&gt;
+					<label class="modal-title">{{Specialization.message}}</label>
+				</div>
+				<div class="modal-body">
+					<div class="form-group mb-3">
+						<h5 class="modal-title">{{Specialization.message}}</h5>
+						<label>Id:</label>
+						<h6>{{Specialization.id}}</h6>
+						<label>Специализация:</label>
+						<h6>{{Specialization.specializationTitle}}</h6>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>-->

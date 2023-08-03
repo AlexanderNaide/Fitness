@@ -26,422 +26,422 @@
 
 	<!-- Content -->
 
-	<div class="container" style="min-height: 600px">
-<!--		<div class="tabs_container office-work-place">-->
-		<div class="office-work-place">
+<!--	<div class="container" style="min-height: 600px">-->
+<!--&lt;!&ndash;		<div class="tabs_container office-work-place">&ndash;&gt;-->
+<!--		<div class="office-work-place">-->
 
-			<!-- Панель информации -->
-			<div class="col-10">
-				<div class="tab_panels">
-
-
-
-
-					<!-- Таблица пользователей -->
-					<div class="tab_panel active">
-<!--						<div class="tab_panel_content d-flex flex-row align-items-start justify-content-start">-->
-							<div class="tab_panel_content">
-							<div class="tab_text">
-
-								<nav class="navbar bg-light">
-									<div class="container-fluid">
-
-										<div class="col-8">
-											<!--Фильтр сотрудников-->
-											<div style="text-align: inherit">
-												<label> Роль
-													<select name="role" ng-options="role.titleRole for role in RoleList" ng-change="roleChange()" ng-model="filter.role" class="form-control" style="width: 12vw; margin-right: 2vw">
-														<option value="">- Все -</option>
-													</select>
-												</label>
-												<label> Специализация
-													<!--												<select id="spec" name="sub_cat" ng-options="sub_cat.title for sub_cat in SubCategoriesList" ng-change="manufacturer()" ng-model="filter.sub_cat" class="form-control" style="margin-bottom: 30px">-->
-													<select id="spec" disabled ng-options="spec.specializationTitle for spec in SpecializationList" ng-change="specializationChange()" ng-model="filter.specialization" class="form-control" style="width: 12vw; margin-right: 2vw">
-														<option value="">- Все -</option>
-													</select>
-												</label>
-											</div>
-
-										</div>
-										<div class="col-4">
-											<!--Форма поиска по имени и фамилии-->
-											<label for="search">Поиск по имени или фамилии
-												<input id="search" class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск" ng-model="value" ng-change="resetAndUpdateUsers()">
-											</label>
-										</div>
-									</div>
-								</nav>
-
-								<table class="table table-hover" style="table-layout: fixed">
-									<thead>
-									<tr>
-										<th style="width: 10%">ID</th>
-										<th style="width: 30%">Имя</th>
-										<th style="width: 30%">Фамилия</th>
-										<th style="width: 20%">Роль</th>
-										<th style="width: 10%"></th>
-									</tr>
-									</thead>
-									<tbody>
-									<tr ng-repeat="u in UserList">
-										<td ng-click="getProduct(p.id)" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">{{u.id}}</td>
-										<td ng-click="getProduct(p.id)" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">{{u.name}}</td>
-										<td ng-click="getProduct(p.id)" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">{{u.surname}}</td>
-										<td ng-click="getProduct(p.id)" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">{{u.titleRole}}</td>
-										<td ><button type="button" class="btn btn-outline-secondary" ng-click="addToCart(p.id, 1)" ng-show="ifUserLoggedIn()"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 20 20">
-											<path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
-											<path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg></button></td>
-									</tr>
-									</tbody>
-								</table>
-								<nav class="main_nav pagination">
-									<ul class="d-flex flex-row align-items-center justify-content-start">
-										<li class="{{first}}"><a href="" hng-click="pageStart()">1<<<</a></li>
-										<li class="{{first10}}"><a href="" ng-click="pageClick(-10)">-10<<</a></li>
-										<li class="{{first}}"><a href="" ng-click="pageClick(-1)">-1<</a></li>
-										<li class="active"><a href="">{{page1}}</a></li>
-										<li class="{{last}}"><a href="" ng-click="pageClick(+1)">>+1</a></li>
-										<li class="{{last10}}"><a href="" ng-click="pageClick(+10)">>>+10</a></li>
-										<li class="{{last}}"><a href="" ng-click="pageFinish()">>>>{{totalNumber}}</a></li>
-									</ul>
-								</nav>
-							</div>
-						</div>
-					</div>
-
-					<!-- Таблица Специальностей -->
-					<div class="tab_panel">
-<!--						<div class="tab_panel_content d-flex flex-row align-items-start justify-content-start">-->
-						<div class="tab_panel_content">
-							<div class="tab_text">
-
-								<table class="table table-hover" style="table-layout: fixed">
-									<thead>
-									<tr>
-										<th style="width: 10%">ID</th>
-										<th style="width: 90%">Специализация</th>
-									</tr>
-									</thead>
-									<tbody>
-									<tr ng-repeat="s in SpecializationList">
-										<td ng-click="getSpecializations(s.id)" data-bs-toggle="modal" data-bs-target="#modalSpecializationWindow">{{s.id}}</td>
-										<td ng-click="getSpecializations(s.id)" data-bs-toggle="modal" data-bs-target="#modalSpecializationWindow">{{s.specializationTitle}}</td>
-									</tr>
-									</tbody>
-								</table>
-								<nav class="main_nav pagination">
-									<ul class="d-flex flex-row align-items-center justify-content-start">
-										<li class="{{first}}"><a href="" ng-click="pageSpecClick(-1)">-1<</a></li>
-										<li class="active"><a href="">{{page1}}</a></li>
-										<li class="{{last}}"><a href="" ng-click="pageSpecClick(+1)">>+1</a></li>
-									</ul>
-								</nav>
-							</div>
-						</div>
-					</div>
-
-
-					<div class="tab_panel">
-						<div class="tab_panel_content">
-							<div class="tab_text">
-								<p>2Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
-							</div>
-						</div>
-					</div>
-					<div class="tab_panel">
-						<div class="tab_panel_content">
-							<div class="tab_text">
-								<p>3Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
-							</div>
-						</div>
-					</div>
-					<div class="tab_panel">
-						<div class="tab_panel_content">
-							<div class="tab_text">
-								<p>4Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
-							</div>
-						</div>
-					</div>
+<!--			&lt;!&ndash; Панель информации &ndash;&gt;-->
+<!--			<div class="col-10">-->
+<!--				<div class="tab_panels">-->
 
 
 
 
-				</div>
-			</div>
+<!--					&lt;!&ndash; Таблица пользователей &ndash;&gt;-->
+<!--					<div class="tab_panel active">-->
+<!--&lt;!&ndash;						<div class="tab_panel_content d-flex flex-row align-items-start justify-content-start">&ndash;&gt;-->
+<!--							<div class="tab_panel_content">-->
+<!--							<div class="tab_text">-->
+
+<!--								<nav class="navbar bg-light">-->
+<!--									<div class="container-fluid">-->
+
+<!--										<div class="col-8">-->
+<!--											&lt;!&ndash;Фильтр сотрудников&ndash;&gt;-->
+<!--											<div style="text-align: inherit">-->
+<!--												<label> Роль-->
+<!--													<select name="role" ng-options="role.titleRole for role in RoleList" ng-change="roleChange()" ng-model="filter.role" class="form-control" style="width: 12vw; margin-right: 2vw">-->
+<!--														<option value="">- Все -</option>-->
+<!--													</select>-->
+<!--												</label>-->
+<!--												<label> Специализация-->
+<!--													&lt;!&ndash;												<select id="spec" name="sub_cat" ng-options="sub_cat.title for sub_cat in SubCategoriesList" ng-change="manufacturer()" ng-model="filter.sub_cat" class="form-control" style="margin-bottom: 30px">&ndash;&gt;-->
+<!--													<select id="spec" disabled ng-options="spec.specializationTitle for spec in SpecializationList" ng-change="specializationChange()" ng-model="filter.specialization" class="form-control" style="width: 12vw; margin-right: 2vw">-->
+<!--														<option value="">- Все -</option>-->
+<!--													</select>-->
+<!--												</label>-->
+<!--											</div>-->
+
+<!--										</div>-->
+<!--										<div class="col-4">-->
+<!--											&lt;!&ndash;Форма поиска по имени и фамилии&ndash;&gt;-->
+<!--											<label for="search">Поиск по имени или фамилии-->
+<!--												<input id="search" class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск" ng-model="value" ng-change="resetAndUpdateUsers()">-->
+<!--											</label>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--								</nav>-->
+
+<!--								<table class="table table-hover" style="table-layout: fixed">-->
+<!--									<thead>-->
+<!--									<tr>-->
+<!--										<th style="width: 10%">ID</th>-->
+<!--										<th style="width: 30%">Имя</th>-->
+<!--										<th style="width: 30%">Фамилия</th>-->
+<!--										<th style="width: 20%">Роль</th>-->
+<!--										<th style="width: 10%"></th>-->
+<!--									</tr>-->
+<!--									</thead>-->
+<!--									<tbody>-->
+<!--									<tr ng-repeat="u in UserList">-->
+<!--										<td ng-click="getProduct(p.id)" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">{{u.id}}</td>-->
+<!--										<td ng-click="getProduct(p.id)" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">{{u.name}}</td>-->
+<!--										<td ng-click="getProduct(p.id)" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">{{u.surname}}</td>-->
+<!--										<td ng-click="getProduct(p.id)" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">{{u.titleRole}}</td>-->
+<!--										<td ><button type="button" class="btn btn-outline-secondary" ng-click="addToCart(p.id, 1)" ng-show="ifUserLoggedIn()"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 20 20">-->
+<!--											<path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>-->
+<!--											<path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>-->
+<!--										</svg></button></td>-->
+<!--									</tr>-->
+<!--									</tbody>-->
+<!--								</table>-->
+<!--								<nav class="main_nav pagination">-->
+<!--									<ul class="d-flex flex-row align-items-center justify-content-start">-->
+<!--										<li class="{{first}}"><a href="" hng-click="pageStart()">1<<<</a></li>-->
+<!--										<li class="{{first10}}"><a href="" ng-click="pageClick(-10)">-10<<</a></li>-->
+<!--										<li class="{{first}}"><a href="" ng-click="pageClick(-1)">-1<</a></li>-->
+<!--										<li class="active"><a href="">{{page1}}</a></li>-->
+<!--										<li class="{{last}}"><a href="" ng-click="pageClick(+1)">>+1</a></li>-->
+<!--										<li class="{{last10}}"><a href="" ng-click="pageClick(+10)">>>+10</a></li>-->
+<!--										<li class="{{last}}"><a href="" ng-click="pageFinish()">>>>{{totalNumber}}</a></li>-->
+<!--									</ul>-->
+<!--								</nav>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+
+<!--					&lt;!&ndash; Таблица Специальностей &ndash;&gt;-->
+<!--					<div class="tab_panel">-->
+<!--&lt;!&ndash;						<div class="tab_panel_content d-flex flex-row align-items-start justify-content-start">&ndash;&gt;-->
+<!--						<div class="tab_panel_content">-->
+<!--							<div class="tab_text">-->
+
+<!--								<table class="table table-hover" style="table-layout: fixed">-->
+<!--									<thead>-->
+<!--									<tr>-->
+<!--										<th style="width: 10%">ID</th>-->
+<!--										<th style="width: 90%">Специализация</th>-->
+<!--									</tr>-->
+<!--									</thead>-->
+<!--									<tbody>-->
+<!--									<tr ng-repeat="s in SpecializationList">-->
+<!--										<td ng-click="getSpecializations(s.id)" data-bs-toggle="modal" data-bs-target="#modalSpecializationWindow">{{s.id}}</td>-->
+<!--										<td ng-click="getSpecializations(s.id)" data-bs-toggle="modal" data-bs-target="#modalSpecializationWindow">{{s.specializationTitle}}</td>-->
+<!--									</tr>-->
+<!--									</tbody>-->
+<!--								</table>-->
+<!--								<nav class="main_nav pagination">-->
+<!--									<ul class="d-flex flex-row align-items-center justify-content-start">-->
+<!--										<li class="{{first}}"><a href="" ng-click="pageSpecClick(-1)">-1<</a></li>-->
+<!--										<li class="active"><a href="">{{page1}}</a></li>-->
+<!--										<li class="{{last}}"><a href="" ng-click="pageSpecClick(+1)">>+1</a></li>-->
+<!--									</ul>-->
+<!--								</nav>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
 
 
-			<!-- Панель меню -->
-			<div class="col-2">
-<!--				<div class="tabs d-flex flex-row align-items-center justify-content-start flex-wrap">-->
-				<div class="tabs flex-row align-items-center justify-content-start flex-wrap" style="margin-top: 20px">
-					<div class="tab active" ng-click="loadUsers()">Пользователи</div>
-					<div class="tab" ng-click="loadSpecializations(1)">Специализация</div>
-					<div class="tab">Акции</div>
-					<div class="tab">Тарифы</div>
-				</div>
-			</div>
+<!--					<div class="tab_panel">-->
+<!--						<div class="tab_panel_content">-->
+<!--							<div class="tab_text">-->
+<!--								<p>2Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--					<div class="tab_panel">-->
+<!--						<div class="tab_panel_content">-->
+<!--							<div class="tab_text">-->
+<!--								<p>3Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--					<div class="tab_panel">-->
+<!--						<div class="tab_panel_content">-->
+<!--							<div class="tab_text">-->
+<!--								<p>4Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
 
-		</div>
-	</div>
+
+
+
+<!--				</div>-->
+<!--			</div>-->
+
+
+<!--			&lt;!&ndash; Панель меню &ndash;&gt;-->
+<!--			<div class="col-2">-->
+<!--&lt;!&ndash;				<div class="tabs d-flex flex-row align-items-center justify-content-start flex-wrap">&ndash;&gt;-->
+<!--				<div class="tabs flex-row align-items-center justify-content-start flex-wrap" style="margin-top: 20px">-->
+<!--					<div class="tab active" ng-click="loadUsers()">Пользователи</div>-->
+<!--					<div class="tab" ng-click="loadSpecializations(1)">Специализация</div>-->
+<!--					<div class="tab">Акции</div>-->
+<!--					<div class="tab">Тарифы</div>-->
+<!--				</div>-->
+<!--			</div>-->
+
+<!--		</div>-->
+<!--	</div>-->
 
 	<!-- Elements -->
 
-	<div class="elements">
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					
-					<!-- Buttons -->
-					<div class="buttons">
-						<div class="elements_title">Buttons</div>
-						<div class="buttons_container d-flex flex-row align-items-start justify-content-start flex-wrap">
-							<div class="button button_1"><a href="#">Send</a></div>
-							<div class="button button_2 trans_200"><a href="#">Send</a></div>
-							<div class="button button_3 trans_200"><a href="#">Send</a></div>
-							<div class="button button_4"><a href="#">Send</a></div>
-						</div>
-					</div>
+<!--	<div class="elements">-->
+<!--		<div class="container">-->
+<!--			<div class="row">-->
+<!--				<div class="col">-->
+<!--					-->
+<!--					&lt;!&ndash; Buttons &ndash;&gt;-->
+<!--					<div class="buttons">-->
+<!--						<div class="elements_title">Buttons</div>-->
+<!--						<div class="buttons_container d-flex flex-row align-items-start justify-content-start flex-wrap">-->
+<!--							<div class="button button_1"><a href="#">Send</a></div>-->
+<!--							<div class="button button_2 trans_200"><a href="#">Send</a></div>-->
+<!--							<div class="button button_3 trans_200"><a href="#">Send</a></div>-->
+<!--							<div class="button button_4"><a href="#">Send</a></div>-->
+<!--						</div>-->
+<!--					</div>-->
 
-					<!-- Accordions & Tabs -->
+<!--					&lt;!&ndash; Accordions & Tabs &ndash;&gt;-->
 
-					<div class="accordions_and_tabs">
-						<div class="elements_title">Accordions & Tabs</div>
+<!--					<div class="accordions_and_tabs">-->
+<!--						<div class="elements_title">Accordions & Tabs</div>-->
 
-						<div class="row accordidons_and_tabs_row">
+<!--						<div class="row accordidons_and_tabs_row">-->
 
-							<!-- Accordions -->
-							<div class="col-lg-6">
-								<div class="accordions">
-									
-									<!-- Accordion -->
-									<div class="accordion_container">
-										<div class="accordion d-flex flex-row align-items-center active"><div>Etiam commodo justo nec aliquam feugiat.</div></div>
-										<div class="accordion_panel">
-											<div>
-												<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
-											</div>
-										</div>
-									</div>
-									
-									<!-- Accordion -->
-									<div class="accordion_container">
-										<div class="accordion d-flex flex-row align-items-center"><div>Commodo justo nec aliquam feugiat. </div></div>
-										<div class="accordion_panel">
-											<div>
-												<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
-											</div>
-										</div>
-									</div>
+<!--							&lt;!&ndash; Accordions &ndash;&gt;-->
+<!--							<div class="col-lg-6">-->
+<!--								<div class="accordions">-->
+<!--									-->
+<!--									&lt;!&ndash; Accordion &ndash;&gt;-->
+<!--									<div class="accordion_container">-->
+<!--										<div class="accordion d-flex flex-row align-items-center active"><div>Etiam commodo justo nec aliquam feugiat.</div></div>-->
+<!--										<div class="accordion_panel">-->
+<!--											<div>-->
+<!--												<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>-->
+<!--											</div>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--									-->
+<!--									&lt;!&ndash; Accordion &ndash;&gt;-->
+<!--									<div class="accordion_container">-->
+<!--										<div class="accordion d-flex flex-row align-items-center"><div>Commodo justo nec aliquam feugiat. </div></div>-->
+<!--										<div class="accordion_panel">-->
+<!--											<div>-->
+<!--												<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>-->
+<!--											</div>-->
+<!--										</div>-->
+<!--									</div>-->
 
-									<!-- Accordion -->
-									<div class="accordion_container">
-										<div class="accordion d-flex flex-row align-items-center"><div>Phasellus mattis erat a ante laoreet sodales</div></div>
-										<div class="accordion_panel">
-											<div>
-												<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
-											</div>
-										</div>
-									</div>
+<!--									&lt;!&ndash; Accordion &ndash;&gt;-->
+<!--									<div class="accordion_container">-->
+<!--										<div class="accordion d-flex flex-row align-items-center"><div>Phasellus mattis erat a ante laoreet sodales</div></div>-->
+<!--										<div class="accordion_panel">-->
+<!--											<div>-->
+<!--												<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>-->
+<!--											</div>-->
+<!--										</div>-->
+<!--									</div>-->
 
-								</div>
-							</div>
+<!--								</div>-->
+<!--							</div>-->
 
-							<!-- Tabs -->
-							<div class="col-lg-6 tabs_col">
-								<div class="tabs_container">
+<!--							&lt;!&ndash; Tabs &ndash;&gt;-->
+<!--							<div class="col-lg-6 tabs_col">-->
+<!--								<div class="tabs_container">-->
 
-									<div class="tabs d-flex flex-row align-items-center justify-content-start flex-wrap">
-										<div class="tab active">Etiam commodo</div>
-										<div class="tab">Commodo justo</div>
-										<div class="tab">Phasellus mat</div>
-									</div>
-									<div class="tab_panels">
-										<div class="tab_panel active">
-											<div class="tab_panel_content d-flex flex-row align-items-start justify-content-start">
-												<div class="tab_text">
-													<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
-												</div>
-											</div>
-										</div>
-										<div class="tab_panel">
-											<div class="tab_panel_content">
-												<div class="tab_text">
-													<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
-												</div>
-											</div>
-										</div>
-										<div class="tab_panel">
-											<div class="tab_panel_content">
-												<div class="tab_text">
-													<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>
-												</div>
-											</div>
-										</div>
-									</div>
+<!--									<div class="tabs d-flex flex-row align-items-center justify-content-start flex-wrap">-->
+<!--										<div class="tab active">Etiam commodo</div>-->
+<!--										<div class="tab">Commodo justo</div>-->
+<!--										<div class="tab">Phasellus mat</div>-->
+<!--									</div>-->
+<!--									<div class="tab_panels">-->
+<!--										<div class="tab_panel active">-->
+<!--											<div class="tab_panel_content d-flex flex-row align-items-start justify-content-start">-->
+<!--												<div class="tab_text">-->
+<!--													<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>-->
+<!--												</div>-->
+<!--											</div>-->
+<!--										</div>-->
+<!--										<div class="tab_panel">-->
+<!--											<div class="tab_panel_content">-->
+<!--												<div class="tab_text">-->
+<!--													<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>-->
+<!--												</div>-->
+<!--											</div>-->
+<!--										</div>-->
+<!--										<div class="tab_panel">-->
+<!--											<div class="tab_panel_content">-->
+<!--												<div class="tab_text">-->
+<!--													<p>Morbi sed varius risus, vitae molestie lectus. Donec id hendrerit velit, eu fringilla neque. Etiam id finibus sapien. Donec sollicitudin luctus ex non pharetra. Aenean lobortis ut leo vel porta.</p>-->
+<!--												</div>-->
+<!--											</div>-->
+<!--										</div>-->
+<!--									</div>-->
 
-								</div>
-							</div>
-						</div>
-					</div>
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
 
-					<!-- Loaders -->
-					<div class="loaders">
-						<div class="elements_title">Loaders</div>
-						<div class="row loaders_row">
+<!--					&lt;!&ndash; Loaders &ndash;&gt;-->
+<!--					<div class="loaders">-->
+<!--						<div class="elements_title">Loaders</div>-->
+<!--						<div class="row loaders_row">-->
 
-							<!-- Loader -->
-							<div class="col-xl-3 col-md-6 loader_col">
-								<!-- Loader -->
-								<div class="loader_container text-center">
-									<div class="loader text-center" data-perc="1.00"></div>
-									<div class="loader_content">
-										<div class="loader_title">Team Work</div>
-									</div>
-								</div>
-							</div>
+<!--							&lt;!&ndash; Loader &ndash;&gt;-->
+<!--							<div class="col-xl-3 col-md-6 loader_col">-->
+<!--								&lt;!&ndash; Loader &ndash;&gt;-->
+<!--								<div class="loader_container text-center">-->
+<!--									<div class="loader text-center" data-perc="1.00"></div>-->
+<!--									<div class="loader_content">-->
+<!--										<div class="loader_title">Team Work</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 
-							<!-- Loader -->
-							<div class="col-xl-3 col-md-6 loader_col">
-								<!-- Loader -->
-								<div class="loader_container text-center">
-									<div class="loader text-center" data-perc="0.75"></div>
-									<div class="loader_content">
-										<div class="loader_title">Fitness</div>
-									</div>
-								</div>
-							</div>
+<!--							&lt;!&ndash; Loader &ndash;&gt;-->
+<!--							<div class="col-xl-3 col-md-6 loader_col">-->
+<!--								&lt;!&ndash; Loader &ndash;&gt;-->
+<!--								<div class="loader_container text-center">-->
+<!--									<div class="loader text-center" data-perc="0.75"></div>-->
+<!--									<div class="loader_content">-->
+<!--										<div class="loader_title">Fitness</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 
-							<!-- Loader -->
-							<div class="col-xl-3 col-md-6 loader_col">
-								<!-- Loader -->
-								<div class="loader_container text-center">
-									<div class="loader text-center" data-perc="0.90"></div>
-									<div class="loader_content">
-										<div class="loader_title">Aerobics</div>
-									</div>
-								</div>
-							</div>
+<!--							&lt;!&ndash; Loader &ndash;&gt;-->
+<!--							<div class="col-xl-3 col-md-6 loader_col">-->
+<!--								&lt;!&ndash; Loader &ndash;&gt;-->
+<!--								<div class="loader_container text-center">-->
+<!--									<div class="loader text-center" data-perc="0.90"></div>-->
+<!--									<div class="loader_content">-->
+<!--										<div class="loader_title">Aerobics</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 
-							<!-- Loader -->
-							<div class="col-xl-3 col-md-6 loader_col">
-								<!-- Loader -->
-								<div class="loader_container text-center">
-									<div class="loader text-center" data-perc="0.60"></div>
-									<div class="loader_content">
-										<div class="loader_title">Pilates</div>
-									</div>
-								</div>
-							</div>
+<!--							&lt;!&ndash; Loader &ndash;&gt;-->
+<!--							<div class="col-xl-3 col-md-6 loader_col">-->
+<!--								&lt;!&ndash; Loader &ndash;&gt;-->
+<!--								<div class="loader_container text-center">-->
+<!--									<div class="loader text-center" data-perc="0.60"></div>-->
+<!--									<div class="loader_content">-->
+<!--										<div class="loader_title">Pilates</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 
-						</div>
-					</div>
+<!--						</div>-->
+<!--					</div>-->
 
-					<!-- Milestones -->
-					<div class="milestones">
-						<div class="elements_title">Milestones</div>
-						<div class="row milestones_row">
-							
-							<!-- Milestone -->
-							<div class="col-xl-3 col-md-6 milestone_col">
-								<div class="milestone d-flex flex-row align-items-center justify-content-start">
-									<div><div class="milestone_icon d-flex flex-column align-items-start justify-content-center"><img src="images/icon_10.png" alt=""></div></div>
-									<div class="milestone_content">
-										<div class="milestone_counter" data-end-value="1273">0</div>
-										<div class="milestone_text">Clients</div>
-									</div>
-								</div>
-							</div>
+<!--					&lt;!&ndash; Milestones &ndash;&gt;-->
+<!--					<div class="milestones">-->
+<!--						<div class="elements_title">Milestones</div>-->
+<!--						<div class="row milestones_row">-->
+<!--							-->
+<!--							&lt;!&ndash; Milestone &ndash;&gt;-->
+<!--							<div class="col-xl-3 col-md-6 milestone_col">-->
+<!--								<div class="milestone d-flex flex-row align-items-center justify-content-start">-->
+<!--									<div><div class="milestone_icon d-flex flex-column align-items-start justify-content-center"><img src="images/icon_10.png" alt=""></div></div>-->
+<!--									<div class="milestone_content">-->
+<!--										<div class="milestone_counter" data-end-value="1273">0</div>-->
+<!--										<div class="milestone_text">Clients</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 
-							<!-- Milestone -->
-							<div class="col-xl-3 col-md-6 milestone_col">
-								<div class="milestone d-flex flex-row align-items-center justify-content-start">
-									<div><div class="milestone_icon d-flex flex-column align-items-start justify-content-center"><img src="images/icon_11.png" alt=""></div></div>
-									<div class="milestone_content">
-										<div class="milestone_counter" data-end-value="25" data-sign-after="k">0</div>
-										<div class="milestone_text">Calories burned</div>
-									</div>
-								</div>
-							</div>
+<!--							&lt;!&ndash; Milestone &ndash;&gt;-->
+<!--							<div class="col-xl-3 col-md-6 milestone_col">-->
+<!--								<div class="milestone d-flex flex-row align-items-center justify-content-start">-->
+<!--									<div><div class="milestone_icon d-flex flex-column align-items-start justify-content-center"><img src="images/icon_11.png" alt=""></div></div>-->
+<!--									<div class="milestone_content">-->
+<!--										<div class="milestone_counter" data-end-value="25" data-sign-after="k">0</div>-->
+<!--										<div class="milestone_text">Calories burned</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 
-							<!-- Milestone -->
-							<div class="col-xl-3 col-md-6 milestone_col">
-								<div class="milestone d-flex flex-row align-items-center justify-content-start">
-									<div><div class="milestone_icon d-flex flex-column align-items-start justify-content-center"><img src="images/icon_12.png" alt=""></div></div>
-									<div class="milestone_content">
-										<div class="milestone_counter" data-end-value="30">0</div>
-										<div class="milestone_text">Minutes / day</div>
-									</div>
-									
-								</div>
-							</div>
+<!--							&lt;!&ndash; Milestone &ndash;&gt;-->
+<!--							<div class="col-xl-3 col-md-6 milestone_col">-->
+<!--								<div class="milestone d-flex flex-row align-items-center justify-content-start">-->
+<!--									<div><div class="milestone_icon d-flex flex-column align-items-start justify-content-center"><img src="images/icon_12.png" alt=""></div></div>-->
+<!--									<div class="milestone_content">-->
+<!--										<div class="milestone_counter" data-end-value="30">0</div>-->
+<!--										<div class="milestone_text">Minutes / day</div>-->
+<!--									</div>-->
+<!--									-->
+<!--								</div>-->
+<!--							</div>-->
 
-							<!-- Milestone -->
-							<div class="col-xl-3 col-md-6 milestone_col">
-								<div class="milestone d-flex flex-row align-items-center justify-content-start">
-									<div><div class="milestone_icon d-flex flex-column align-items-start justify-content-center"><img src="images/icon_13.png" alt=""></div></div>
-									<div class="milestone_content">
-										<div class="milestone_counter" data-end-value="120" data-sign-after="k">0</div>
-										<div class="milestone_text">Km ran</div>
-									</div>
-								</div>
-							</div>
+<!--							&lt;!&ndash; Milestone &ndash;&gt;-->
+<!--							<div class="col-xl-3 col-md-6 milestone_col">-->
+<!--								<div class="milestone d-flex flex-row align-items-center justify-content-start">-->
+<!--									<div><div class="milestone_icon d-flex flex-column align-items-start justify-content-center"><img src="images/icon_13.png" alt=""></div></div>-->
+<!--									<div class="milestone_content">-->
+<!--										<div class="milestone_counter" data-end-value="120" data-sign-after="k">0</div>-->
+<!--										<div class="milestone_text">Km ran</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 
-						</div>
-					</div>
+<!--						</div>-->
+<!--					</div>-->
 
-					<!-- Icon Boxes -->
-					<div class="icon_boxes">
-						<div class="elements_title">Milestones</div>
-						<div class="row services_row">
-							
-							<!-- Service -->
-							<div class="col-xl-4 col-md-6 service_col">
-								<div class="service">
-									<div class="service_title_container d-flex flex-row align-items-center justify-content-start">
-										<div><div class="service_icon"><img src="images/icon_4.png" alt=""></div></div>
-										<div class="service_title">Weight Loss Class</div>
-									</div>
-									<div class="service_text">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum.</p>
-									</div>
-								</div>
-							</div>
+<!--					&lt;!&ndash; Icon Boxes &ndash;&gt;-->
+<!--					<div class="icon_boxes">-->
+<!--						<div class="elements_title">Milestones</div>-->
+<!--						<div class="row services_row">-->
+<!--							-->
+<!--							&lt;!&ndash; Service &ndash;&gt;-->
+<!--							<div class="col-xl-4 col-md-6 service_col">-->
+<!--								<div class="service">-->
+<!--									<div class="service_title_container d-flex flex-row align-items-center justify-content-start">-->
+<!--										<div><div class="service_icon"><img src="images/icon_4.png" alt=""></div></div>-->
+<!--										<div class="service_title">Weight Loss Class</div>-->
+<!--									</div>-->
+<!--									<div class="service_text">-->
+<!--										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum.</p>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 
-							<!-- Service -->
-							<div class="col-xl-4 col-md-6 service_col">
-								<div class="service">
-									<div class="service_title_container d-flex flex-row align-items-center justify-content-start">
-										<div><div class="service_icon"><img src="images/icon_5.png" alt=""></div></div>
-										<div class="service_title">Yoga Classes</div>
-									</div>
-									<div class="service_text">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum.</p>
-									</div>
-								</div>
-							</div>
+<!--							&lt;!&ndash; Service &ndash;&gt;-->
+<!--							<div class="col-xl-4 col-md-6 service_col">-->
+<!--								<div class="service">-->
+<!--									<div class="service_title_container d-flex flex-row align-items-center justify-content-start">-->
+<!--										<div><div class="service_icon"><img src="images/icon_5.png" alt=""></div></div>-->
+<!--										<div class="service_title">Yoga Classes</div>-->
+<!--									</div>-->
+<!--									<div class="service_text">-->
+<!--										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum.</p>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 
-							<!-- Service -->
-							<div class="col-xl-4 col-md-6 service_col">
-								<div class="service">
-									<div class="service_title_container d-flex flex-row align-items-center justify-content-start">
-										<div><div class="service_icon"><img src="images/icon_6.png" alt=""></div></div>
-										<div class="service_title">Spinning Class</div>
-									</div>
-									<div class="service_text">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum.</p>
-									</div>
-								</div>
-							</div>
-							
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<!--							&lt;!&ndash; Service &ndash;&gt;-->
+<!--							<div class="col-xl-4 col-md-6 service_col">-->
+<!--								<div class="service">-->
+<!--									<div class="service_title_container d-flex flex-row align-items-center justify-content-start">-->
+<!--										<div><div class="service_icon"><img src="images/icon_6.png" alt=""></div></div>-->
+<!--										<div class="service_title">Spinning Class</div>-->
+<!--									</div>-->
+<!--									<div class="service_text">-->
+<!--										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum.</p>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--							-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		</div>-->
+<!--	</div>-->
 
-	<script src="../js/jquery-3.2.1.min.js"></script>
+	<script src="../js/jquery-3.7.0.min.js"></script>
 	<script src="../styles/bootstrap-4.1.2/popper.js"></script>
 	<script src="../styles/bootstrap-4.1.2/bootstrap.min.js"></script>
 	<script src="../plugins/greensock/TweenMax.min.js"></script>

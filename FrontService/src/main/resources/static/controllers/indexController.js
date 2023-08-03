@@ -1,76 +1,59 @@
-(function () {
-    angular
-        .module('fitness', ['ngRoute', 'ngStorage'])
-        .config(config)
-        // .configuration(config)
-        .run(run);
 
-
-    function config($routeProvider){
-        $routeProvider
-            .when('/user_office', {
-                templateUrl: 'pages/user_office.html',
-                controller: 'userOfficeController'
-            })
-            .when('/trainer_office', {
-                templateUrl: 'pages/trainer_office.html',
-                controller: 'trainerOfficeController'
-            })
-            .when('/admin_office', {
-                templateUrl: 'pages/admin_office.html',
-                controller: 'adminOfficeController'
-            })
-            .when('/super_office', {
-                templateUrl: 'pages/super_office.html',
-                controller: 'superOfficeController'
-            })
-            .when('/contact', {
-                templateUrl: 'pages/contact.html',
-                controller: 'contactController'
-            })
-            .when('/blog', {
-                templateUrl: 'pages/blog.html',
-                controller: 'blogController'
-            })
-            .when('/services', {
-                templateUrl: 'pages/services.html',
-                controller: 'servicesController'
-            })
-            .when('/about', {
-                templateUrl: 'pages/about.html',
-                controller: 'aboutController'
-            })
-            .when('/', {
-                templateUrl: 'pages/home.html',
-                controller: 'homeController'
-            })
-            .otherwise({
-                redirectTo: '/'
-            });
-    }
-
-    function run($rootScope, $http, $localStorage, $location) {
-        if ($localStorage.officeOwner) {
-            try {
-                let jwt = $localStorage.officeOwner.token;
-                let payload = JSON.parse(atob(jwt.split('.')[1]));
-                let currentTime = parseInt(new Date().getTime() / 1000);
-                if (currentTime > payload.exp) {
-                    console.log("Время жизни токена истекло");
-                    delete $localStorage.officeOwner;
-                    $http.defaults.headers.common.Authorization = '';
-                    $location.path('/')
-                } else {
-                    $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.officeOwner.token;
-                }
-            } catch (e) {
-            }
-        }
-    }
-})();
-
-angular.module('fitness').controller('indexController', function ($rootScope, $scope, $http, $location, $localStorage) {
+angular.module('fitness').controller('indexController', function ($rootScope, $scope, $http, $location, $localStorage, $compile, $element) {
     const contextPath = 'http://localhost:3881/fitness';
+    let header = $('.lower_header_content');
+    let headerClasses = [];
+    let sidePageClass = 'side_menu';
+    headerClasses.push(sidePageClass);
+
+    $scope.createSideMenu = function (header) {
+        let home =$('<div class="linc home_linc active"><a href="#!/">Главная</a></div>');
+        let about =$('<div class="linc about_linc"><a href="#!/about">О клубе</a></div>');
+        let services =$('<div class="linc services_linc"><a href="#!/services">Сервисы и услуги</a></div>');
+        let blog =$('<div class="linc blog_linc"><a href="#!/blog">Блог</a></div>');
+        let contact =$('<div class="linc contact_linc"><a href="#!/contact">Контакты</a></div>');
+
+        for (let ch of header.children()) {
+            ch.remove();
+        }
+        header.append(home);
+        header.append(about);
+        header.append(services);
+        header.append(blog);
+        header.append(contact);
+        $scope.setOfficeLinc();
+
+        header.children().on('click', function(){
+            const buttons = $('.linc');
+            buttons.removeClass('active');
+            $(this).addClass('active');
+        });
+    };
+
+    $scope.refreshSideMenu = function () {
+        $rootScope.$emit('refreshMenu', $scope.createSideMenu, sidePageClass);
+    };
+
+    $rootScope.$on('refreshMenu', function (event, func, newPageClass) {
+        if(!header.hasClass(newPageClass)){
+            header.removeClass('visible');
+            header.addClass('hidden');
+            document.querySelector('.lower_header_content').addEventListener('transitionend', () => {
+                func(header);
+                header.removeClass('hidden');
+                header.removeClass(headerClasses);
+                headerClasses.push(newPageClass);
+                header.addClass(newPageClass);
+                header.addClass('visible');
+            }, { once: true });
+        }
+    });
+
+    $rootScope.$on('testEvent', function (event, pageClass, newPage) {
+        console.log("start test in index");
+        console.log(pageClass);
+        newPage('callback page');
+    });
 
     $scope.authentications = function () {
         $http.post(contextPath + '/auth', $scope.auth)
@@ -104,7 +87,6 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
             surname: response.data.surname,
             role: response.data.role
         };
-        console.log($localStorage.officeOwner.role);
         $scope.goToOffice();
     }
 
@@ -112,11 +94,14 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
         if($localStorage.officeOwner.role === "super"){
             $location.path('/super_office');
         } else if ($localStorage.officeOwner.role === "admin") {
-            $location.path('/admin_office');
+            // $location.path('/admin_office/clients');
+            // $location.replace('../pages/admin/admin_index.html');
+            // $location.replace('http://localhost:3880/pages/admin/admin_index.html');
+            window.location.replace('http://localhost:3880/pages/admin/admin_index.html');
         } else if ($localStorage.officeOwner.role === "trainer") {
             $location.path('/trainer_office');
         } else {
-            $location.path('/user_office');
+            $location.path("/user_office/schedule");
         }
     }
 
@@ -124,7 +109,42 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
         delete $localStorage.officeOwner;
         $http.defaults.headers.common.Authorization = '';
         $location.path('/');
-    }
+        $scope.deleteOfficeLinc();
+        $scope.refreshSideMenu();
+    };
+
+    $scope.test1 = function () {
+        let header = $('.lower_header_content');
+        if (header.hasClass('visible')){
+            header.removeClass('visible');
+            header.addClass('hidden');
+        } else {
+            header.removeClass('hidden');
+            header.addClass('visible');
+        }
+
+
+        // let header = $('.lower_header_content');
+        // header.removeClass('visible');
+        // header.addClass('hidden');
+        // document.querySelector('.lower_header_content').addEventListener('transitionend', () => {
+        //     header.removeClass('hidden');
+        //     header.addClass('visible');
+        // }, { once: true });
+    };
+
+    $scope.deleteOfficeLinc = function (){
+        Promise.resolve($('.my_fitness_linc').animate({left: 600}, {duration: 400, queue: false}).promise()).
+        then(function () {
+            return $('.lower_header_content').children('.my_fitness_linc').remove();
+        });
+
+        // let linc = $('.my_fitness_linc');
+        // const p1 = Promise.resolve(linc.animate({left: 600}, {duration: 400, queue: false}).promise());
+        // Promise.all([p1]).then(function () {
+        //     return $('.lower_header_content').children('.my_fitness_linc').remove();
+        // });
+    };
 
     $scope.ownerIsEmpty = function (){
         return !!$localStorage.officeOwner;
@@ -236,12 +256,32 @@ angular.module('fitness').controller('indexController', function ($rootScope, $s
     //     return !!$localStorage.webmarketUser;
     // }
     $scope.starting = function (){
+        let str = window.location.href;
+        let str2 = str.substring(str.lastIndexOf('/') + 1);
+        console.log(str2);
+    };
 
-    }
+    $scope.setOfficeLinc = function (){
+        if ($scope.ownerIsEmpty()){
+            // let header = $('.lower_header_content');
+            let myFitness =$('<div class="linc my_fitness_linc"><a href="" ng-click="goToOffice()">Мой фитнес</a></div>');
+            // let myFitness =$('<div class="linc my_fitness_linc" ui-sref="user_office.schedule"><a href="" >Мой фитнес</a></div>');
+            $compile(myFitness)($scope);
+            myFitness.appendTo($element);
+            header.append(myFitness);
+        }
+    };
+
+
 
 
     // $scope.filter = null;
     // $scope.showCartCount();
-    $scope.starting();
+    // $scope.starting();
+    // if(!$('.lower_header_content').hasClass('side_menu')){
+    //     $scope.refreshSideMenu().then();
+    // }
+    $scope.refreshSideMenu();
+    // $scope.setOfficeLinc();
 });
 

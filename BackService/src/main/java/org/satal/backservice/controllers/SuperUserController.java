@@ -1,10 +1,12 @@
 package org.satal.backservice.controllers;
 
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.satal.backservice.api.AuthRequest;
 import org.satal.backservice.dto.users.*;
 import org.satal.backservice.entities.users.Specialization;
 import org.satal.backservice.entities.users.User;
+import org.satal.backservice.exception.ResourceNotFoundException;
 import org.satal.backservice.services.*;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -73,7 +75,7 @@ public class SuperUserController {
     @PostMapping("/spec_one")
     public SpecializationDto getProductById(@RequestParam Long id){
         Optional<Specialization> specializationOptional = specializationService.findById(id);
-        return specializationOptional.map(SpecializationDto::new).orElseGet(() -> new SpecializationDto(null, "Специализация с id:" + id + " не найдена."));
+        return specializationOptional.map(SpecializationDto::new).orElseThrow(() -> new ResourceNotFoundException("Специализация с id:" + id + " не найдена."));
     }
 
 //    @PostConstruct
