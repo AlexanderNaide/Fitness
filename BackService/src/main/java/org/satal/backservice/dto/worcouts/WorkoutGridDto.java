@@ -13,6 +13,7 @@ public class WorkoutGridDto {
     private String specialization;
     private String trainer;
     private String time;
+    private String dateTime;
 
     public WorkoutGridDto(Workout workout) {
         this.id = workout.getId();
@@ -26,11 +27,13 @@ public class WorkoutGridDto {
         String[] split = str.split(",");
         DateTimeFormatter sourceFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
         DateTimeFormatter resultFormat = DateTimeFormatter.ofPattern("HH:mm");
+        DateTimeFormatter resultDateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        this.dayOfWeek =split[0];
         this.id = Long.parseLong(split[1]);
-        this.dayOfWeek =split[10];
-        this.specialization = split[6];
         this.trainer = split[5];
+        this.specialization = split[6];
         this.time = resultFormat.format(LocalDateTime.parse(split[9], sourceFormat));
+        this.dateTime = resultDateTimeFormat.format(LocalDateTime.parse(split[9], sourceFormat));
 
     }
 }

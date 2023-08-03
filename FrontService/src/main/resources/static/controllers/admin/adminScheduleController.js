@@ -3,44 +3,6 @@ angular.module('admin').controller('adminScheduleController', function ($scope, 
     let currentWeek;
     let gridCount;
 
-    // Преднастройки страницы
-    /*$scope.setStylesOffice = function () {
-        document.getElementById('cssId1').href = '../../styles/services.css';
-        document.getElementById('cssId2').href = '../../styles/services_responsive.css';
-
-        // $scope.refreshMenu();
-
-        // $('.home_linc').removeClass('active');
-        // $('.about_linc').removeClass('active');
-        // $('.services_linc').removeClass('active');
-        // $('.blog_linc').removeClass('active');
-        // $('.contact_linc').removeClass('active');
-        // document.getElementById('a').style.backgroundImage="url(images/img.jpg)"; // specify the image path here
-        jQuery(window).trigger('resize').trigger('scroll');
-        document.getElementById('office_heading').style.backgroundImage="url(../images/contact.jpg)";
-
-        // const header = $('.header');
-        // const hamburgerBar = $('.hamburger_bar');
-        // const hamburger = $('.hamburger');
-
-        // setHeader();
-        //
-        // function setHeader()
-        // {
-        //     if($(window).scrollTop() > 91)
-        //     {
-        //         header.addClass('scrolled');
-        //         hamburgerBar.addClass('scrolled');
-        //     }
-        //     else
-        //     {
-        //         header.removeClass('scrolled');
-        //         hamburgerBar.removeClass('scrolled');
-        //     }
-        // }
-    };*/
-
-
 
     $scope.loadSchedule = function (delta) {
         delta = currentWeek === undefined ? null : currentWeek + delta;
@@ -51,7 +13,7 @@ angular.module('admin').controller('adminScheduleController', function ($scope, 
                 delta: delta
             }
         }).then(function (response) {
-            console.log(response.data);
+            // console.log(response.data);
             $scope.schedule = response.data;
             currentWeek = response.data.currentWeek;
             gridCount = 0;
@@ -59,6 +21,32 @@ angular.module('admin').controller('adminScheduleController', function ($scope, 
                 gridCount += Object.keys(k.day).length;
             }
             $scope.waitIsotope();
+        });
+    };
+
+    $scope.closeModal = function (modal){
+        $(modal).modal('hide');
+    };
+
+    $scope.getFullInformationForClass = function (id, dateTime) {
+        // $scope.CurrentClass = {
+        //     "id": id,
+        //     "dateTime": dateTime
+        // };
+
+        $http({
+            url: contextPath + "/class",
+            method: 'POST',
+            params: {
+                id: id,
+                dateTime: dateTime
+            }
+        }).then(function (response) {
+            // console.log(response.data);
+            $scope.CurrentClass = response.data;
+            $('#modalClassInfo').modal('toggle');
+        }).catch(function (response) {
+            alert(response.data.message);
         });
     };
 
@@ -141,7 +129,7 @@ angular.module('admin').controller('adminScheduleController', function ($scope, 
         const interval = setInterval(function () {
             if (gridCount === gridItem.length) {
                 clearInterval(interval);
-                let add =$('<div class="tt_class grid-item add"><div class="tt_class_title">+</div></div>');
+                let add =$('<div class="tt_class grid-item add" ng-click="getTicketById(t.id)" data-bs-toggle="modal" data-bs-target="#modalClassNew"><div class="tt_class_title">+</div></div>');
                 $('.grid').append(add);
                 $scope.initIsotope();
 

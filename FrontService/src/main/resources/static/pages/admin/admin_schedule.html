@@ -38,13 +38,14 @@
 					</div>
 
 <!--					Все в одним repeat-->
-					<div class="timetable_container d-flex flex-sm-row flex-column align-items-start justify-content-sm-between justify-content-start" >
+					<div class="timetable_container d-flex flex-sm-row flex-column align-items-start justify-content-sm-between justify-content-start">
 						<div class="tt_day" ng-repeat="week in schedule.week">
 							<div class="tt_title">{{week.dayOfWeek}}</div>
 							<div class="tt_day_content grid">
 
 								<!-- Class -->
-								<div class="tt_class grid-item {{class.specialization}} {{class.dayOfWeek}}" ng-repeat="class in week.day">
+<!--								<div class="tt_class grid-item {{class.specialization}} {{class.dayOfWeek}}" ng-click="getFullInformationForClass(class.id, class.dateTime)" data-bs-toggle="modal" data-bs-target="#modalClassInfo" ng-repeat="class in week.day">-->
+								<div class="tt_class grid-item {{class.specialization}} {{class.dayOfWeek}}" ng-click="getFullInformationForClass(class.id, class.dateTime)" ng-repeat="class in week.day">
 									<div class="tt_class_title">{{class.specialization}}</div>
 									<div class="tt_class_instructor">{{class.trainer}}</div>
 									<div class="tt_class_time">{{class.time}}</div>
@@ -81,5 +82,43 @@
 <!--	</script>-->
 </div>
 
+<div class="modal fade" id="modalClassInfo" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg">
+		<div class="modal-content">
+			<div style="margin-left: 12px; margin-top: 30px; margin-bottom: 8px">
+				<h3>{{CurrentClass.title}}</h3>
+				<h4>Дата и время: {{CurrentClass.dateTime}}</h4>
+				<h4>Продолжительность: {{CurrentClass.duration}} минут</h4>
+				<h4>Повторяется до: {{CurrentClass.endEvent}}</h4>
+				<h4>Интервал повторений в днях: {{CurrentClass.replay}}</h4>
+				<h4>Класс: {{CurrentClass.specialization}}</h4>
+				<h4>Тренер: {{CurrentClass.trainer}}</h4>
+
+<!--				<h6>Оформлен: {{currentSubscription.createdAt}},    Текущий статус: {{currentSubscription.status}} </h6>-->
+			</div>
+
+			<div class="modal-footer">
+<!--				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>-->
+				<button type="button" class="btn btn-secondary" ng-click="closeModal('#modalClassInfo')">Закрыть</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modalClassNew" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg">
+		<div class="modal-content">
+			<div style="margin-left: 12px; margin-top: 30px; margin-bottom: 8px">
+				<h3>Здесь вероятно нужна какая-то информация об абонементе, но команда еще не решила</h3>
+
+				<h6>Оформлен: {{currentSubscription.createdAt}},    Текущий статус: {{currentSubscription.status}} </h6>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 

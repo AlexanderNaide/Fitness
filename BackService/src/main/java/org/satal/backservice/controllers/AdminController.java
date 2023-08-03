@@ -6,6 +6,7 @@ import org.satal.backservice.dto.users.SpecializationDto;
 import org.satal.backservice.dto.users.UserDto;
 import org.satal.backservice.dto.users.UserFullDto;
 import org.satal.backservice.dto.worcouts.CalendarFullDtoForAdmin;
+import org.satal.backservice.dto.worcouts.ClassFullDto;
 import org.satal.backservice.dto.worcouts.WorkoutFullDto;
 import org.satal.backservice.entities.users.Specialization;
 import org.satal.backservice.entities.users.User;
@@ -63,5 +64,17 @@ public class AdminController {
     @GetMapping("/week")
     public CalendarFullDtoForAdmin upAllUsers(@RequestParam(required = false, defaultValue = "0") Integer delta){
         return new CalendarFullDtoForAdmin(delta, calendarService.getCalendarForWeek(delta));
+    }
+
+    @PostMapping("/class")
+    public ClassFullDto getFullInformationForClass(
+            @RequestParam Long id,
+            @RequestParam String dateTime
+    ){
+        List<String> list = calendarService.getClass(id, dateTime);
+        if (list.size() != 1){
+            throw new ResourceNotFoundException("Параметры запроса не определены");
+        }
+        return new ClassFullDto(list.get(0), dateTime);
     }
 }

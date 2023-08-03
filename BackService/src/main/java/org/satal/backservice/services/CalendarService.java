@@ -34,6 +34,10 @@ public class CalendarService {
         return calendarRepository.getCalendarForWeek(delta);
     }
 
+    public List<String> getClass(Long id, String dateTime){
+        return calendarRepository.getClass(id, dateTime);
+    }
+
 
 
     // https://www.internet-technologies.ru/articles/rabota-s-datoy-i-vremenem-v-mysql.html
