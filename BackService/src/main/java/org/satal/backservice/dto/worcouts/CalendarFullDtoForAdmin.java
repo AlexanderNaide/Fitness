@@ -24,13 +24,13 @@ public class CalendarFullDtoForAdmin {
         this.currentWeek = delta;
         this.period = df.format(firstDay) + " - " + df.format(secondDay);
         this.week = List.of(
-                new WorkoutWeekDto("Monday"),
-                new WorkoutWeekDto("Tuesday"),
-                new WorkoutWeekDto("Wednesday"),
-                new WorkoutWeekDto("Thursday"),
-                new WorkoutWeekDto("Friday"),
-                new WorkoutWeekDto("Saturday"),
-                new WorkoutWeekDto("Sunday")
+                new WorkoutWeekDto("Понедельник"),
+                new WorkoutWeekDto("Вторник"),
+                new WorkoutWeekDto("Среда"),
+                new WorkoutWeekDto("Четверг"),
+                new WorkoutWeekDto("Пятница"),
+                new WorkoutWeekDto("Суббота"),
+                new WorkoutWeekDto("Воскресенье")
         );
 
         this.classType = new TreeMap<>();
@@ -39,7 +39,7 @@ public class CalendarFullDtoForAdmin {
         for (String s : list) {
             String[] split = s.split(",");
             classType.put(split[6], "." + split[6]);
-            WorkoutWeekDto w = week.stream().filter(e -> e.getDayOfWeek().equals(split[10])).findFirst().orElse(null);
+            WorkoutWeekDto w = week.stream().filter(e -> e.getDayOfWeek().equals(split[0])).findFirst().orElse(null);
             assert w != null;
             w.getDay().add(new WorkoutGridDto(s));
         }
